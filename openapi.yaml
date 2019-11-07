@@ -1,0 +1,308 @@
+openapi: 3.0.0
+info:
+  title: swagger
+  version: '1.0'
+  contact:
+    name: tyr
+servers:
+  - url: 'http://localhost:3000'
+    description: local-dev
+paths:
+  /oauth/login:
+    post:
+      summary: ''
+      responses:
+        '200':
+          description: LoginResponse
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        description: LoginRequest
+      operationId: login
+  /oauth/register:
+    post:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+        description: RegistrationRequest
+      operationId: register
+  /oauth/authorize:
+    post:
+      summary: ''
+      responses:
+        '301':
+          description: Moved Permanently
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: response_type
+        - schema:
+            type: string
+          in: query
+          name: client_id
+        - schema:
+            type: string
+          in: query
+          name: redirect_uri
+      operationId: authorize
+  /oauth/logout:
+    post:
+      summary: ''
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+      responses:
+        '200':
+          description: OK
+      operationId: logout
+  /route:
+    post:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: createRoute
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRouteRequest'
+        description: ''
+  '/route/{id}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      operationId: getRouteById
+    put:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRouteRequest'
+      operationId: updateRouteById
+    delete:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      operationId: deleteRouteById
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+  '/{routeId}/share-in-group/{groupId}':
+    parameters:
+      - name: routeId
+        in: path
+        required: true
+        schema: {}
+        description: ''
+      - name: groupId
+        in: path
+        required: true
+        schema: {}
+    post:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      operationId: shareInGroup
+  /oauth/token:
+    post:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: grant_type
+        - schema:
+            type: string
+          in: query
+          name: code
+        - schema:
+            type: string
+          in: query
+          name: redirect_uri
+        - schema:
+            type: string
+          in: query
+          name: client_id
+        - schema:
+            type: string
+          in: query
+          name: refresh_token
+      operationId: token
+components:
+  schemas:
+    LoginRequest:
+      title: LoginRequest
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        clientId:
+          type: string
+        redirectUri:
+          type: string
+    LoginResponse:
+      title: LoginResponse
+      type: object
+      properties:
+        code:
+          type: string
+        redirectUri:
+          type: string
+    CreateRouteRequest:
+      title: CreateRouteRequest
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        path:
+          $ref: '#/components/schemas/LineString'
+    LineString:
+      title: LineString
+      type: object
+      properties:
+        type:
+          type: string
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+    UpdateRouteRequest:
+      title: UpdateRouteRequest
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        path:
+          $ref: '#/components/schemas/LineString'
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      properties:
+        cause:
+          type: string
+        message:
+          type: string
+      required:
+        - cause
+    RouteResponse:
+      title: RouteResponse
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        path:
+          $ref: '#/components/schemas/LineString'
+        audit:
+          $ref: '#/components/schemas/Audit'
+    Audit:
+      title: Audit
+      type: object
+      properties:
+        createdBy:
+          type: string
+        createdAt:
+          type: string
+        modifiedBy:
+          type: string
+        modifiedAt:
+          type: string
+    TokenResponse:
+      title: TokenResponse
+      type: object
+      properties:
+        accessToken:
+          type: string
+        accessTokenExpiration:
+          type: string
+        refreshToken:
+          type: string
+        refreshTokenExpiration:
+          type: string
+  securitySchemes: {}
+tags:
+  - name: oauth
+    description: oauth
