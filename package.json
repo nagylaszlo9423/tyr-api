@@ -4,7 +4,7 @@
   "description": "https://github.com/OpenAPITools/openapi-generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "tsc -b -d tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -15,9 +15,15 @@
   "bugs": {
     "url": "https://github.com/nagylaszlo9423/tyr-api/issues"
   },
+  "files": [
+    "dist"
+  ],
   "homepage": "https://github.com/nagylaszlo9423/tyr-api#readme",
   "dependencies": {
     "axios": "^0.19.0",
     "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.2"
   }
 }
