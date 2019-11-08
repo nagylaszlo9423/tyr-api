@@ -34,18 +34,4 @@ subprocess.call(["java",
                  "dtos",
                  "--skip-validate-spec"])
 
-subprocess.call(["java",
-                 "-DapiDocs=false",
-                 "-DapiTests=false",
-                 "-jar",
-                 os.path.join(currentFilePath, "openapi-codegen-cli.jar"),
-                 "generate",
-                 "-i",
-                 "openapi.yaml",
-                 "-g",
-                 "typescript-axios",
-                 "-o",
-                 os.path.join(currentFilePath, "api/axios/"),
-                 "--skip-validate-spec"])
-
 subprocess.call(["git", "add", os.path.join(currentFilePath, "api")])
