@@ -18,12 +18,5 @@
   "files": [
     "api"
   ],
-  "homepage": "https://github.com/nagylaszlo9423/tyr-api#readme",
-  "dependencies": {
-    "axios": "^0.19.0",
-    "url": "^0.11.0"
-  },
-  "devDependencies": {
-    "typescript": "^3.7.2"
-  }
+  "homepage": "https://github.com/nagylaszlo9423/tyr-api#readme"
 }
