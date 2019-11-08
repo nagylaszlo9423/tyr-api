@@ -16,7 +16,7 @@
     "url": "https://github.com/nagylaszlo9423/tyr-api/issues"
   },
   "files": [
-    "api"
+    "api/**/*.ts"
   ],
   "homepage": "https://github.com/nagylaszlo9423/tyr-api#readme"
 }
