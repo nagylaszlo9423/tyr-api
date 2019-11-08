@@ -1,6 +1,6 @@
 {
   "name": "tyr-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "https://github.com/OpenAPITools/openapi-generator",
   "main": "index.js",
   "scripts": {
