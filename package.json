@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "webpack && git add dist"
+    "build": "webpack && git add dist && git add types"
   },
   "repository": {
     "type": "git",

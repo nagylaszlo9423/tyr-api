@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
+    "declarationDir": "./types",
     "sourceMap": true,
     "declaration": true,
     "noImplicitReturns": true,
@@ -10,6 +11,7 @@
     "module": "commonjs",
     "rootDir": "./src",
     "typeRoots": ["node_modules/@types"],
+    "removeComments": true,
     "lib": [
       "dom",
       "es2015"
