@@ -1,5 +1,5 @@
 import * as axiosApi from './axios/api';
-export declare const AxiosClient: typeof axiosApi;
+export declare const AxiosApi: typeof axiosApi;
 export * from './dtos/audit';
 export * from './dtos/createRouteRequest';
 export * from './dtos/errorResponse';
