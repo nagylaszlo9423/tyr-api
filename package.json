@@ -4,7 +4,7 @@
   "description": "https://github.com/OpenAPITools/openapi-generator",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc -b tsconfig.json && tsc -d"
+    "compile": "tsc -b tsconfig.json && tsc -d && git add dist"
   },
   "repository": {
     "type": "git",
