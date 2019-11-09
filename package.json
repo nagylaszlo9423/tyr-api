@@ -4,7 +4,7 @@
   "description": "https://github.com/OpenAPITools/openapi-generator",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc -b -d tsconfig.json"
+    "compile": "tsc -b tsconfig.json && tsc -d"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
     "url": "https://github.com/nagylaszlo9423/tyr-api/issues"
   },
   "files": [
-    "api/**/*.ts"
+    "dist/**/*.ts"
   ],
   "homepage": "https://github.com/nagylaszlo9423/tyr-api#readme"
 }

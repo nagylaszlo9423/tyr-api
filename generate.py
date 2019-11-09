@@ -14,9 +14,6 @@ if not os.path.exists("api"):
 if not os.path.exists("api/dtos"):
     os.mkdir("api/dtos")
 
-if not os.path.exists("api/axios"):
-    os.mkdir("api/axios")
-
 subprocess.call(["java",
                  "-Dmodels",
                  "-DmodelDocs=false",
