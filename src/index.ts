@@ -1,3 +1,6 @@
+import * as axiosApi from './axios/api';
+
+export const AxiosClient = axiosApi;
 export * from './dtos/audit';
 export * from './dtos/createRouteRequest';
 export * from './dtos/errorResponse';
