@@ -4,7 +4,7 @@
   "description": "https://github.com/OpenAPITools/openapi-generator",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc -b tsconfig.json && tsc -d && git add dist"
+    "build": "webpack && git add dist"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,15 @@
     "url": "https://github.com/nagylaszlo9423/tyr-api/issues"
   },
   "files": [
-    "dist/**/*.ts"
+    "dist/**/*.d.ts",
+    "dist/**/*.js"
   ],
-  "homepage": "https://github.com/nagylaszlo9423/tyr-api#readme"
+  "homepage": "https://github.com/nagylaszlo9423/tyr-api#readme",
+  "devDependencies": {
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.40.1",
+    "webpack-cli": "^3.3.8",
+    "webpack-node-externals": "^1.7.2"
+  }
 }
