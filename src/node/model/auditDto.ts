@@ -11,7 +11,7 @@
  */
 
 
-export class Audit {
+export class AuditDto {
     'createdBy'?: string;
     'createdAt'?: string;
     'modifiedBy'?: string;
@@ -42,7 +42,7 @@ export class Audit {
         }    ];
 
     static getAttributeTypeMap() {
-        return Audit.attributeTypeMap;
+        return AuditDto.attributeTypeMap;
     }
 }
 

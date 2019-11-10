@@ -22,31 +22,31 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 /**
  * 
  * @export
- * @interface Audit
+ * @interface AuditDto
  */
-export interface Audit {
+export interface AuditDto {
     /**
      * 
      * @type {string}
-     * @memberof Audit
+     * @memberof AuditDto
      */
     createdBy?: string;
     /**
      * 
      * @type {string}
-     * @memberof Audit
+     * @memberof AuditDto
      */
     createdAt?: string;
     /**
      * 
      * @type {string}
-     * @memberof Audit
+     * @memberof AuditDto
      */
     modifiedBy?: string;
     /**
      * 
      * @type {string}
-     * @memberof Audit
+     * @memberof AuditDto
      */
     modifiedAt?: string;
 }
@@ -221,10 +221,10 @@ export interface RouteResponse {
     path?: LineStringDto;
     /**
      * 
-     * @type {Audit}
+     * @type {AuditDto}
      * @memberof RouteResponse
      */
-    audit?: Audit;
+    audit?: AuditDto;
 }
 /**
  * 

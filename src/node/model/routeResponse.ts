@@ -10,14 +10,14 @@
  * Do not edit the class manually.
  */
 
-import { Audit } from './audit';
+import { AuditDto } from './auditDto';
 import { LineStringDto } from './lineStringDto';
 
 export class RouteResponse {
     'title'?: string;
     'description'?: string;
     'path'?: LineStringDto;
-    'audit'?: Audit;
+    'audit'?: AuditDto;
 
     static discriminator: string | undefined = undefined;
 
@@ -40,7 +40,7 @@ export class RouteResponse {
         {
             "name": "audit",
             "baseName": "audit",
-            "type": "Audit"
+            "type": "AuditDto"
         }    ];
 
     static getAttributeTypeMap() {

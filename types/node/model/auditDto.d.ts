@@ -1,4 +1,4 @@
-export declare class Audit {
+export declare class AuditDto {
     'createdBy'?: string;
     'createdAt'?: string;
     'modifiedBy'?: string;

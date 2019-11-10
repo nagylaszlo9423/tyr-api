@@ -283,9 +283,9 @@ components:
         path:
           $ref: '#/components/schemas/LineStringDto'
         audit:
-          $ref: '#/components/schemas/Audit'
-    Audit:
-      title: Audit
+          $ref: '#/components/schemas/AuditDto'
+    AuditDto:
+      title: AuditDto
       type: object
       properties:
         createdBy:

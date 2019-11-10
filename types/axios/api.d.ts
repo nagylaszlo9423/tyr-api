@@ -1,7 +1,7 @@
 import { Configuration } from './configuration';
 import { AxiosPromise, AxiosInstance } from 'axios';
 import { RequestArgs, BaseAPI } from './base';
-export interface Audit {
+export interface AuditDto {
     createdBy?: string;
     createdAt?: string;
     modifiedBy?: string;
@@ -41,7 +41,7 @@ export interface RouteResponse {
     title?: string;
     description?: string;
     path?: LineStringDto;
-    audit?: Audit;
+    audit?: AuditDto;
 }
 export interface TokenResponse {
     accessToken?: string;

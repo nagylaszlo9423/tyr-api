@@ -1,6 +1,6 @@
 import * as axiosApi from './axios/api';
 export const AxiosApi = axiosApi;
-export * from './node/model/audit';
+export * from './node/model/auditDto';
 export * from './node/model/createRouteRequest';
 export * from './node/model/errorResponse';
 export * from './node/model/lineStringDto';
