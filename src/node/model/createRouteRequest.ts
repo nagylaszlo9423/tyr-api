@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { LineString } from './lineString';
+import { LineStringDto } from './lineStringDto';
 
 export class CreateRouteRequest {
     'title'?: string;
     'description'?: string;
-    'path'?: LineString;
+    'path'?: LineStringDto;
 
     static discriminator: string | undefined = undefined;
 
@@ -33,7 +33,7 @@ export class CreateRouteRequest {
         {
             "name": "path",
             "baseName": "path",
-            "type": "LineString"
+            "type": "LineStringDto"
         }    ];
 
     static getAttributeTypeMap() {

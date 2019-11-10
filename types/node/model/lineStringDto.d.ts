@@ -1,4 +1,4 @@
-export declare class LineString {
+export declare class LineStringDto {
     'type'?: string;
     'coordinates'?: Array<Array<number>>;
     static discriminator: string | undefined;

@@ -70,10 +70,10 @@ export interface CreateRouteRequest {
     description?: string;
     /**
      * 
-     * @type {LineString}
+     * @type {LineStringDto}
      * @memberof CreateRouteRequest
      */
-    path?: LineString;
+    path?: LineStringDto;
 }
 /**
  * 
@@ -97,19 +97,19 @@ export interface ErrorResponse {
 /**
  * 
  * @export
- * @interface LineString
+ * @interface LineStringDto
  */
-export interface LineString {
+export interface LineStringDto {
     /**
      * 
      * @type {string}
-     * @memberof LineString
+     * @memberof LineStringDto
      */
     type?: string;
     /**
      * 
      * @type {Array<Array<number>>}
-     * @memberof LineString
+     * @memberof LineStringDto
      */
     coordinates?: Array<Array<number>>;
 }
@@ -215,10 +215,10 @@ export interface RouteResponse {
     description?: string;
     /**
      * 
-     * @type {LineString}
+     * @type {LineStringDto}
      * @memberof RouteResponse
      */
-    path?: LineString;
+    path?: LineStringDto;
     /**
      * 
      * @type {Audit}
@@ -277,10 +277,10 @@ export interface UpdateRouteRequest {
     description?: string;
     /**
      * 
-     * @type {LineString}
+     * @type {LineStringDto}
      * @memberof UpdateRouteRequest
      */
-    path?: LineString;
+    path?: LineStringDto;
 }
 
 /**

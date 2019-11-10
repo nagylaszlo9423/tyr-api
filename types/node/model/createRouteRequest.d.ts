@@ -1,8 +1,8 @@
-import { LineString } from './lineString';
+import { LineStringDto } from './lineStringDto';
 export declare class CreateRouteRequest {
     'title'?: string;
     'description'?: string;
-    'path'?: LineString;
+    'path'?: LineStringDto;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

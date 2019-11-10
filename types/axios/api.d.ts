@@ -10,13 +10,13 @@ export interface Audit {
 export interface CreateRouteRequest {
     title?: string;
     description?: string;
-    path?: LineString;
+    path?: LineStringDto;
 }
 export interface ErrorResponse {
     cause: string;
     message?: string;
 }
-export interface LineString {
+export interface LineStringDto {
     type?: string;
     coordinates?: Array<Array<number>>;
 }
@@ -40,7 +40,7 @@ export interface RegistrationResponse {
 export interface RouteResponse {
     title?: string;
     description?: string;
-    path?: LineString;
+    path?: LineStringDto;
     audit?: Audit;
 }
 export interface TokenResponse {
@@ -52,7 +52,7 @@ export interface TokenResponse {
 export interface UpdateRouteRequest {
     title?: string;
     description?: string;
-    path?: LineString;
+    path?: LineStringDto;
 }
 export declare const DefaultApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     shareInGroup(routeId: object, groupId: object, options?: any): RequestArgs;

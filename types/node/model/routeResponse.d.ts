@@ -1,9 +1,9 @@
 import { Audit } from './audit';
-import { LineString } from './lineString';
+import { LineStringDto } from './lineStringDto';
 export declare class RouteResponse {
     'title'?: string;
     'description'?: string;
-    'path'?: LineString;
+    'path'?: LineStringDto;
     'audit'?: Audit;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{

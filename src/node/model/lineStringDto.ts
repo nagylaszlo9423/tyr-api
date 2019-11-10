@@ -11,26 +11,26 @@
  */
 
 
-export class InlineObject {
-    'email'?: string;
-    'password'?: string;
+export class LineStringDto {
+    'type'?: string;
+    'coordinates'?: Array<Array<number>>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "email",
-            "baseName": "email",
+            "name": "type",
+            "baseName": "type",
             "type": "string"
         },
         {
-            "name": "password",
-            "baseName": "password",
-            "type": "string"
+            "name": "coordinates",
+            "baseName": "coordinates",
+            "type": "Array<Array<number>>"
         }    ];
 
     static getAttributeTypeMap() {
-        return InlineObject.attributeTypeMap;
+        return LineStringDto.attributeTypeMap;
     }
 }
 

@@ -46,11 +46,11 @@ subprocess.call(["java",
                  os.path.join(currentFilePath, "src/axios/"),
                  "--skip-validate-spec"])
 
-with open(os.path.join(currentFilePath, './src/index.ts'), 'r+b') as indexFile:
+with open(os.path.join(currentFilePath, './src/index.ts'), 'w+') as indexFile:
     indexFile.truncate(0)
-    indexFile.write(bytes("import * as axiosApi from './axios/api';\n", 'utf-8'))
-    indexFile.write(bytes("export const AxiosApi = axiosApi;\n", 'utf-8'))
+    indexFile.write("import * as axiosApi from './axios/api';\n")
+    indexFile.write("export const AxiosApi = axiosApi;\n")
     for modelFile in os.listdir(os.path.join(currentFilePath, './src/node/model')):
-        indexFile.write(bytes("export * from './node/model/"+modelFile[0:len(modelFile)-3]+"';\n", 'utf-8'))
+        indexFile.write("export * from './node/model/"+modelFile[0:len(modelFile)-3]+"';\n")
 
 subprocess.call(["git", "add", os.path.join(currentFilePath, "src")])

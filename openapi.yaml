@@ -251,19 +251,7 @@ components:
         description:
           type: string
         path:
-          $ref: '#/components/schemas/LineString'
-    LineString:
-      title: LineString
-      type: object
-      properties:
-        type:
-          type: string
-        coordinates:
-          type: array
-          items:
-            type: array
-            items:
-              type: number
+          $ref: '#/components/schemas/LineStringDto'
     UpdateRouteRequest:
       title: UpdateRouteRequest
       type: object
@@ -273,7 +261,7 @@ components:
         description:
           type: string
         path:
-          $ref: '#/components/schemas/LineString'
+          $ref: '#/components/schemas/LineStringDto'
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -293,7 +281,7 @@ components:
         description:
           type: string
         path:
-          $ref: '#/components/schemas/LineString'
+          $ref: '#/components/schemas/LineStringDto'
         audit:
           $ref: '#/components/schemas/Audit'
     Audit:
@@ -337,4 +325,15 @@ components:
       properties:
         userId:
           type: string
-  securitySchemes: {}
+    LineStringDto:
+      title: LineStringDto
+      type: object
+      properties:
+        type:
+          type: string
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: number

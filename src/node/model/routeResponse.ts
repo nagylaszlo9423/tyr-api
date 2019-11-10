@@ -11,12 +11,12 @@
  */
 
 import { Audit } from './audit';
-import { LineString } from './lineString';
+import { LineStringDto } from './lineStringDto';
 
 export class RouteResponse {
     'title'?: string;
     'description'?: string;
-    'path'?: LineString;
+    'path'?: LineStringDto;
     'audit'?: Audit;
 
     static discriminator: string | undefined = undefined;
@@ -35,7 +35,7 @@ export class RouteResponse {
         {
             "name": "path",
             "baseName": "path",
-            "type": "LineString"
+            "type": "LineStringDto"
         },
         {
             "name": "audit",
