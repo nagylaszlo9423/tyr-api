@@ -8,11 +8,14 @@ if not os.path.isfile(os.path.join(currentFilePath, "openapi-codegen-cli.jar")):
     openapi_codegen_url = "http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.0/openapi-generator-cli-4.2.0.jar"
     urllib.request.urlretrieve(openapi_codegen_url, "openapi-codegen-cli.jar")
 
-if not os.path.exists("api"):
-    os.mkdir("api")
+if not os.path.exists("src"):
+    os.mkdir("src")
 
-if not os.path.exists("api/dtos"):
-    os.mkdir("api/dtos")
+if not os.path.exists("src/node"):
+    os.mkdir("src/node")
+
+if not os.path.exists("src/axios"):
+    os.mkdir("src/axios")
 
 subprocess.call(["java",
                  "-Dmodels",
@@ -26,9 +29,7 @@ subprocess.call(["java",
                  "-g",
                  "typescript-node",
                  "-o",
-                 os.path.join(currentFilePath, "src/"),
-                 "--model-package",
-                 "dtos",
+                 os.path.join(currentFilePath, "src/node"),
                  "--skip-validate-spec"])
 
 subprocess.call(["java",
@@ -44,5 +45,12 @@ subprocess.call(["java",
                  "-o",
                  os.path.join(currentFilePath, "src/axios/"),
                  "--skip-validate-spec"])
+
+with open(os.path.join(currentFilePath, './src/index.ts'), 'r+b') as indexFile:
+    indexFile.truncate(0)
+    indexFile.write(bytes("import * as axiosApi from './axios/api';\n", 'utf-8'))
+    indexFile.write(bytes("export const AxiosApi = axiosApi;\n", 'utf-8'))
+    for modelFile in os.listdir(os.path.join(currentFilePath, './src/node/model')):
+        indexFile.write(bytes("export * from './node/model/"+modelFile[0:len(modelFile)-3]+"';\n", 'utf-8'))
 
 subprocess.call(["git", "add", os.path.join(currentFilePath, "src")])
