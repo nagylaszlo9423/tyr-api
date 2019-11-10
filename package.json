@@ -23,7 +23,7 @@
   ],
   "homepage": "https://github.com/nagylaszlo9423/tyr-api#readme",
   "devDependencies": {
-    "awesome-typescript-loader": "^5.2.1",
+    "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
     "webpack": "^4.40.1",
     "webpack-cli": "^3.3.8",

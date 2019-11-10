@@ -4,7 +4,7 @@
     "declarationDir": "./types",
     "sourceMap": true,
     "declaration": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noImplicitAny": false,
     "moduleResolution": "node",
     "target": "es5",
