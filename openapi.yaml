@@ -7,6 +7,7 @@ info:
 tags:
   - name: oauth
   - name: route
+  - name: group
 servers:
   - url: 'http://localhost:3000'
     description: local-dev
@@ -39,16 +40,15 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrationResponse'
       requestBody:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
+              $ref: '#/components/schemas/RegistrationRequest'
         description: RegistrationRequest
       operationId: register
   /oauth/authorize:
@@ -319,5 +319,22 @@ components:
         refreshToken:
           type: string
         refreshTokenExpiration:
+          type: string
+    RegistrationRequest:
+      title: RegistrationRequest
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required:
+        - email
+        - password
+    RegistrationResponse:
+      title: RegistrationResponse
+      type: object
+      properties:
+        userId:
           type: string
   securitySchemes: {}

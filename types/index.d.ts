@@ -7,6 +7,8 @@ export * from './node/model/inlineObject';
 export * from './node/model/lineString';
 export * from './node/model/loginRequest';
 export * from './node/model/loginResponse';
+export * from './node/model/registrationRequest';
+export * from './node/model/registrationResponse';
 export * from './node/model/routeResponse';
 export * from './node/model/tokenResponse';
 export * from './node/model/updateRouteRequest';

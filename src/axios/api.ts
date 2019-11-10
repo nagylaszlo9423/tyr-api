@@ -97,25 +97,6 @@ export interface ErrorResponse {
 /**
  * 
  * @export
- * @interface InlineObject
- */
-export interface InlineObject {
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject
-     */
-    email?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject
-     */
-    password?: string;
-}
-/**
- * 
- * @export
  * @interface LineString
  */
 export interface LineString {
@@ -181,6 +162,38 @@ export interface LoginResponse {
      * @memberof LoginResponse
      */
     redirectUri?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RegistrationRequest
+ */
+export interface RegistrationRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof RegistrationRequest
+     */
+    email: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RegistrationRequest
+     */
+    password: string;
+}
+/**
+ * 
+ * @export
+ * @interface RegistrationResponse
+ */
+export interface RegistrationResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof RegistrationResponse
+     */
+    userId?: string;
 }
 /**
  * 
@@ -598,11 +611,11 @@ export const OauthApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @param {InlineObject} [inlineObject] 
+         * @param {RegistrationRequest} [registrationRequest] RegistrationRequest
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        register(inlineObject?: InlineObject, options: any = {}): RequestArgs {
+        register(registrationRequest?: RegistrationRequest, options: any = {}): RequestArgs {
             const localVarPath = `/oauth/register`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -621,8 +634,8 @@ export const OauthApiAxiosParamCreator = function (configuration?: Configuration
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-            const needsSerialization = (typeof inlineObject !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(inlineObject !== undefined ? inlineObject : {}) : (inlineObject || "");
+            const needsSerialization = (typeof registrationRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(registrationRequest !== undefined ? registrationRequest : {}) : (registrationRequest || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -681,12 +694,12 @@ export const OauthApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {InlineObject} [inlineObject] 
+         * @param {RegistrationRequest} [registrationRequest] RegistrationRequest
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        register(inlineObject?: InlineObject, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = OauthApiAxiosParamCreator(configuration).register(inlineObject, options);
+        register(registrationRequest?: RegistrationRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<RegistrationResponse> {
+            const localVarAxiosArgs = OauthApiAxiosParamCreator(configuration).register(registrationRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -732,12 +745,12 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * 
-         * @param {InlineObject} [inlineObject] 
+         * @param {RegistrationRequest} [registrationRequest] RegistrationRequest
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        register(inlineObject?: InlineObject, options?: any) {
-            return OauthApiFp(configuration).register(inlineObject, options)(axios, basePath);
+        register(registrationRequest?: RegistrationRequest, options?: any) {
+            return OauthApiFp(configuration).register(registrationRequest, options)(axios, basePath);
         },
     };
 };
@@ -786,13 +799,13 @@ export class OauthApi extends BaseAPI {
 
     /**
      * 
-     * @param {InlineObject} [inlineObject] 
+     * @param {RegistrationRequest} [registrationRequest] RegistrationRequest
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OauthApi
      */
-    public register(inlineObject?: InlineObject, options?: any) {
-        return OauthApiFp(this.configuration).register(inlineObject, options)(this.axios, this.basePath);
+    public register(registrationRequest?: RegistrationRequest, options?: any) {
+        return OauthApiFp(this.configuration).register(registrationRequest, options)(this.axios, this.basePath);
     }
 
 }

@@ -16,10 +16,6 @@ export interface ErrorResponse {
     cause: string;
     message?: string;
 }
-export interface InlineObject {
-    email?: string;
-    password?: string;
-}
 export interface LineString {
     type?: string;
     coordinates?: Array<Array<number>>;
@@ -33,6 +29,13 @@ export interface LoginRequest {
 export interface LoginResponse {
     code?: string;
     redirectUri?: string;
+}
+export interface RegistrationRequest {
+    email: string;
+    password: string;
+}
+export interface RegistrationResponse {
+    userId?: string;
 }
 export interface RouteResponse {
     title?: string;
@@ -71,25 +74,25 @@ export declare const OauthApiAxiosParamCreator: (configuration?: Configuration |
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): RequestArgs;
     login(loginRequest?: LoginRequest | undefined, options?: any): RequestArgs;
     logout(authorization?: string | undefined, options?: any): RequestArgs;
-    register(inlineObject?: InlineObject | undefined, options?: any): RequestArgs;
+    register(registrationRequest?: RegistrationRequest | undefined, options?: any): RequestArgs;
 };
 export declare const OauthApiFp: (configuration?: Configuration | undefined) => {
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     login(loginRequest?: LoginRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<LoginResponse>;
     logout(authorization?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-    register(inlineObject?: InlineObject | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    register(registrationRequest?: RegistrationRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RegistrationResponse>;
 };
 export declare const OauthApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): AxiosPromise<void>;
     login(loginRequest?: LoginRequest | undefined, options?: any): AxiosPromise<LoginResponse>;
     logout(authorization?: string | undefined, options?: any): AxiosPromise<void>;
-    register(inlineObject?: InlineObject | undefined, options?: any): AxiosPromise<void>;
+    register(registrationRequest?: RegistrationRequest | undefined, options?: any): AxiosPromise<RegistrationResponse>;
 };
 export declare class OauthApi extends BaseAPI {
     authorize(responseType?: string, clientId?: string, redirectUri?: string, options?: any): AxiosPromise<void>;
     login(loginRequest?: LoginRequest, options?: any): AxiosPromise<LoginResponse>;
     logout(authorization?: string, options?: any): AxiosPromise<void>;
-    register(inlineObject?: InlineObject, options?: any): AxiosPromise<void>;
+    register(registrationRequest?: RegistrationRequest, options?: any): AxiosPromise<RegistrationResponse>;
 }
 export declare const RouteApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createRoute(createRouteRequest?: CreateRouteRequest | undefined, options?: any): RequestArgs;
