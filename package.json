@@ -6,8 +6,10 @@
   "types": "types/index.d.ts",
   "scripts": {
     "start": "npm run generate && npm run build",
-    "generate": "python generate.py",
-    "build": "webpack && git add dist && git add types"
+    "clean:build": "rimraf ./dist && rimraf ./types",
+    "clean:source": "rimraf ./src",
+    "generate": "npm run clean:source && python generate.py",
+    "build": "npm run clean:build && webpack && git add dist && git add types"
   },
   "repository": {
     "type": "git",
