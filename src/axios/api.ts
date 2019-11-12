@@ -216,6 +216,31 @@ export interface LoginResponse {
 /**
  * 
  * @export
+ * @interface PageResponse
+ */
+export interface PageResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof PageResponse
+     */
+    page?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageResponse
+     */
+    size?: number;
+    /**
+     * 
+     * @type {Array<object>}
+     * @memberof PageResponse
+     */
+    items?: Array<object>;
+}
+/**
+ * 
+ * @export
  * @interface RegistrationRequest
  */
 export interface RegistrationRequest {
@@ -357,6 +382,105 @@ export interface UpdateRouteRequest {
      */
     path?: LineStringDto;
 }
+
+/**
+ * DefaultApi - axios parameter creator
+ * @export
+ */
+export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary getGroupsPaged
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupsPaged(options: any = {}): RequestArgs {
+            const localVarPath = `/group/page`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DefaultApi - functional programming interface
+ * @export
+ */
+export const DefaultApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary getGroupsPaged
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupsPaged(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageResponse> {
+            const localVarAxiosArgs = DefaultApiAxiosParamCreator(configuration).getGroupsPaged(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+    }
+};
+
+/**
+ * DefaultApi - factory interface
+ * @export
+ */
+export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    return {
+        /**
+         * 
+         * @summary getGroupsPaged
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGroupsPaged(options?: any) {
+            return DefaultApiFp(configuration).getGroupsPaged(options)(axios, basePath);
+        },
+    };
+};
+
+/**
+ * DefaultApi - object-oriented interface
+ * @export
+ * @class DefaultApi
+ * @extends {BaseAPI}
+ */
+export class DefaultApi extends BaseAPI {
+    /**
+     * 
+     * @summary getGroupsPaged
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getGroupsPaged(options?: any) {
+        return DefaultApiFp(this.configuration).getGroupsPaged(options)(this.axios, this.basePath);
+    }
+
+}
+
 
 /**
  * GroupApi - axios parameter creator

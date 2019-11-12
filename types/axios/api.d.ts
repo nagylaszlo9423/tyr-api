@@ -40,6 +40,11 @@ export interface LoginResponse {
     code?: string;
     redirectUri?: string;
 }
+export interface PageResponse {
+    page?: number;
+    size?: number;
+    items?: Array<object>;
+}
 export interface RegistrationRequest {
     email: string;
     password: string;
@@ -68,6 +73,18 @@ export interface UpdateRouteRequest {
     title?: string;
     description?: string;
     path?: LineStringDto;
+}
+export declare const DefaultApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
+    getGroupsPaged(options?: any): RequestArgs;
+};
+export declare const DefaultApiFp: (configuration?: Configuration | undefined) => {
+    getGroupsPaged(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PageResponse>;
+};
+export declare const DefaultApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
+    getGroupsPaged(options?: any): AxiosPromise<PageResponse>;
+};
+export declare class DefaultApi extends BaseAPI {
+    getGroupsPaged(options?: any): AxiosPromise<PageResponse>;
 }
 export declare const GroupApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createGroup(createGroupRequest?: CreateGroupRequest | undefined, options?: any): RequestArgs;

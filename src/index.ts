@@ -8,6 +8,7 @@ export * from './node/model/groupResponse';
 export * from './node/model/lineStringDto';
 export * from './node/model/loginRequest';
 export * from './node/model/loginResponse';
+export * from './node/model/pageResponse';
 export * from './node/model/registrationRequest';
 export * from './node/model/registrationResponse';
 export * from './node/model/routeResponse';

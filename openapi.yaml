@@ -357,6 +357,18 @@ paths:
       operationId: leaveGroup
       tags:
         - group
+  /group/page:
+    get:
+      summary: getGroupsPaged
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageResponse'
+      operationId: getGroupsPaged
 components:
   schemas:
     LoginRequest:
@@ -504,3 +516,14 @@ components:
           type: string
         access:
           type: string
+    PageResponse:
+      title: PageResponse
+      type: object
+      properties:
+        page:
+          type: number
+        size:
+          type: number
+        items:
+          type: array
+          items: {}
