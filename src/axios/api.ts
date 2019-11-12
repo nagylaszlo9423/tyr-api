@@ -53,6 +53,31 @@ export interface AuditDto {
 /**
  * 
  * @export
+ * @interface CreateGroupRequest
+ */
+export interface CreateGroupRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRequest
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateGroupRequest
+     */
+    access?: string;
+}
+/**
+ * 
+ * @export
  * @interface CreateRouteRequest
  */
 export interface CreateRouteRequest {
@@ -93,6 +118,31 @@ export interface ErrorResponse {
      * @memberof ErrorResponse
      */
     message?: string;
+}
+/**
+ * 
+ * @export
+ * @interface GroupResponse
+ */
+export interface GroupResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupResponse
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupResponse
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupResponse
+     */
+    access?: string;
 }
 /**
  * 
@@ -260,6 +310,31 @@ export interface TokenResponse {
 /**
  * 
  * @export
+ * @interface UpdateGroupRequest
+ */
+export interface UpdateGroupRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateGroupRequest
+     */
+    access?: string;
+}
+/**
+ * 
+ * @export
  * @interface UpdateRouteRequest
  */
 export interface UpdateRouteRequest {
@@ -284,29 +359,127 @@ export interface UpdateRouteRequest {
 }
 
 /**
- * DefaultApi - axios parameter creator
+ * GroupApi - axios parameter creator
  * @export
  */
-export const DefaultApiAxiosParamCreator = function (configuration?: Configuration) {
+export const GroupApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {object} routeId 
-         * @param {object} groupId 
+         * @summary createGroup
+         * @param {CreateGroupRequest} [createGroupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareInGroup(routeId: object, groupId: object, options: any = {}): RequestArgs {
-            // verify required parameter 'routeId' is not null or undefined
-            if (routeId === null || routeId === undefined) {
-                throw new RequiredError('routeId','Required parameter routeId was null or undefined when calling shareInGroup.');
+        createGroup(createGroupRequest?: CreateGroupRequest, options: any = {}): RequestArgs {
+            const localVarPath = `/group`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
             }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (typeof createGroupRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(createGroupRequest !== undefined ? createGroupRequest : {}) : (createGroupRequest || "");
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary findById
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        findById(groupId: string, options: any = {}): RequestArgs {
             // verify required parameter 'groupId' is not null or undefined
             if (groupId === null || groupId === undefined) {
-                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling shareInGroup.');
+                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling findById.');
             }
-            const localVarPath = `/{routeId}/share-in-group/{groupId}`
-                .replace(`{${"routeId"}}`, encodeURIComponent(String(routeId)))
+            const localVarPath = `/group/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupGroupIdDelete(groupId: string, options: any = {}): RequestArgs {
+            // verify required parameter 'groupId' is not null or undefined
+            if (groupId === null || groupId === undefined) {
+                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling groupGroupIdDelete.');
+            }
+            const localVarPath = `/group/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary joinGroup
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinGroup(groupId: string, options: any = {}): RequestArgs {
+            // verify required parameter 'groupId' is not null or undefined
+            if (groupId === null || groupId === undefined) {
+                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling joinGroup.');
+            }
+            const localVarPath = `/group/{groupId}/join`
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -331,16 +504,18 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} [grantType] 
-         * @param {string} [code] 
-         * @param {string} [redirectUri] 
-         * @param {string} [clientId] 
-         * @param {string} [refreshToken] 
+         * @summary leaveGroup
+         * @param {string} groupId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options: any = {}): RequestArgs {
-            const localVarPath = `/oauth/token`;
+        leaveGroup(groupId: string, options: any = {}): RequestArgs {
+            // verify required parameter 'groupId' is not null or undefined
+            if (groupId === null || groupId === undefined) {
+                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling leaveGroup.');
+            }
+            const localVarPath = `/group/{groupId}/leave`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -349,26 +524,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
-
-            if (grantType !== undefined) {
-                localVarQueryParameter['grant_type'] = grantType;
-            }
-
-            if (code !== undefined) {
-                localVarQueryParameter['code'] = code;
-            }
-
-            if (redirectUri !== undefined) {
-                localVarQueryParameter['redirect_uri'] = redirectUri;
-            }
-
-            if (clientId !== undefined) {
-                localVarQueryParameter['client_id'] = clientId;
-            }
-
-            if (refreshToken !== undefined) {
-                localVarQueryParameter['refresh_token'] = refreshToken;
-            }
 
 
     
@@ -382,24 +537,64 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary updateGroup
+         * @param {string} groupId 
+         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options: any = {}): RequestArgs {
+            // verify required parameter 'groupId' is not null or undefined
+            if (groupId === null || groupId === undefined) {
+                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling updateGroup.');
+            }
+            const localVarPath = `/group/{groupId}`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (typeof updateGroupRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(updateGroupRequest !== undefined ? updateGroupRequest : {}) : (updateGroupRequest || "");
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
 /**
- * DefaultApi - functional programming interface
+ * GroupApi - functional programming interface
  * @export
  */
-export const DefaultApiFp = function(configuration?: Configuration) {
+export const GroupApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {object} routeId 
-         * @param {object} groupId 
+         * @summary createGroup
+         * @param {CreateGroupRequest} [createGroupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareInGroup(routeId: object, groupId: object, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = DefaultApiAxiosParamCreator(configuration).shareInGroup(routeId, groupId, options);
+        createGroup(createGroupRequest?: CreateGroupRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).createGroup(createGroupRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -407,16 +602,69 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} [grantType] 
-         * @param {string} [code] 
-         * @param {string} [redirectUri] 
-         * @param {string} [clientId] 
-         * @param {string} [refreshToken] 
+         * @summary findById
+         * @param {string} groupId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse> {
-            const localVarAxiosArgs = DefaultApiAxiosParamCreator(configuration).token(grantType, code, redirectUri, clientId, refreshToken, options);
+        findById(groupId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupResponse> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).findById(groupId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupGroupIdDelete(groupId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).groupGroupIdDelete(groupId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary joinGroup
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinGroup(groupId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).joinGroup(groupId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary leaveGroup
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        leaveGroup(groupId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).leaveGroup(groupId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
+         * @summary updateGroup
+         * @param {string} groupId 
+         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).updateGroup(groupId, updateGroupRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -426,69 +674,151 @@ export const DefaultApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * DefaultApi - factory interface
+ * GroupApi - factory interface
  * @export
  */
-export const DefaultApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const GroupApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
          * 
-         * @param {object} routeId 
-         * @param {object} groupId 
+         * @summary createGroup
+         * @param {CreateGroupRequest} [createGroupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareInGroup(routeId: object, groupId: object, options?: any) {
-            return DefaultApiFp(configuration).shareInGroup(routeId, groupId, options)(axios, basePath);
+        createGroup(createGroupRequest?: CreateGroupRequest, options?: any) {
+            return GroupApiFp(configuration).createGroup(createGroupRequest, options)(axios, basePath);
         },
         /**
          * 
-         * @param {string} [grantType] 
-         * @param {string} [code] 
-         * @param {string} [redirectUri] 
-         * @param {string} [clientId] 
-         * @param {string} [refreshToken] 
+         * @summary findById
+         * @param {string} groupId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any) {
-            return DefaultApiFp(configuration).token(grantType, code, redirectUri, clientId, refreshToken, options)(axios, basePath);
+        findById(groupId: string, options?: any) {
+            return GroupApiFp(configuration).findById(groupId, options)(axios, basePath);
+        },
+        /**
+         * 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        groupGroupIdDelete(groupId: string, options?: any) {
+            return GroupApiFp(configuration).groupGroupIdDelete(groupId, options)(axios, basePath);
+        },
+        /**
+         * 
+         * @summary joinGroup
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinGroup(groupId: string, options?: any) {
+            return GroupApiFp(configuration).joinGroup(groupId, options)(axios, basePath);
+        },
+        /**
+         * 
+         * @summary leaveGroup
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        leaveGroup(groupId: string, options?: any) {
+            return GroupApiFp(configuration).leaveGroup(groupId, options)(axios, basePath);
+        },
+        /**
+         * 
+         * @summary updateGroup
+         * @param {string} groupId 
+         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: any) {
+            return GroupApiFp(configuration).updateGroup(groupId, updateGroupRequest, options)(axios, basePath);
         },
     };
 };
 
 /**
- * DefaultApi - object-oriented interface
+ * GroupApi - object-oriented interface
  * @export
- * @class DefaultApi
+ * @class GroupApi
  * @extends {BaseAPI}
  */
-export class DefaultApi extends BaseAPI {
+export class GroupApi extends BaseAPI {
     /**
      * 
-     * @param {object} routeId 
-     * @param {object} groupId 
+     * @summary createGroup
+     * @param {CreateGroupRequest} [createGroupRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApi
+     * @memberof GroupApi
      */
-    public shareInGroup(routeId: object, groupId: object, options?: any) {
-        return DefaultApiFp(this.configuration).shareInGroup(routeId, groupId, options)(this.axios, this.basePath);
+    public createGroup(createGroupRequest?: CreateGroupRequest, options?: any) {
+        return GroupApiFp(this.configuration).createGroup(createGroupRequest, options)(this.axios, this.basePath);
     }
 
     /**
      * 
-     * @param {string} [grantType] 
-     * @param {string} [code] 
-     * @param {string} [redirectUri] 
-     * @param {string} [clientId] 
-     * @param {string} [refreshToken] 
+     * @summary findById
+     * @param {string} groupId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApi
+     * @memberof GroupApi
      */
-    public token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any) {
-        return DefaultApiFp(this.configuration).token(grantType, code, redirectUri, clientId, refreshToken, options)(this.axios, this.basePath);
+    public findById(groupId: string, options?: any) {
+        return GroupApiFp(this.configuration).findById(groupId, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupApi
+     */
+    public groupGroupIdDelete(groupId: string, options?: any) {
+        return GroupApiFp(this.configuration).groupGroupIdDelete(groupId, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary joinGroup
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupApi
+     */
+    public joinGroup(groupId: string, options?: any) {
+        return GroupApiFp(this.configuration).joinGroup(groupId, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary leaveGroup
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupApi
+     */
+    public leaveGroup(groupId: string, options?: any) {
+        return GroupApiFp(this.configuration).leaveGroup(groupId, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary updateGroup
+     * @param {string} groupId 
+     * @param {UpdateGroupRequest} [updateGroupRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GroupApi
+     */
+    public updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: any) {
+        return GroupApiFp(this.configuration).updateGroup(groupId, updateGroupRequest, options)(this.axios, this.basePath);
     }
 
 }
@@ -642,6 +972,59 @@ export const OauthApiAxiosParamCreator = function (configuration?: Configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {string} [grantType] 
+         * @param {string} [code] 
+         * @param {string} [redirectUri] 
+         * @param {string} [clientId] 
+         * @param {string} [refreshToken] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options: any = {}): RequestArgs {
+            const localVarPath = `/oauth/token`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (grantType !== undefined) {
+                localVarQueryParameter['grant_type'] = grantType;
+            }
+
+            if (code !== undefined) {
+                localVarQueryParameter['code'] = code;
+            }
+
+            if (redirectUri !== undefined) {
+                localVarQueryParameter['redirect_uri'] = redirectUri;
+            }
+
+            if (clientId !== undefined) {
+                localVarQueryParameter['client_id'] = clientId;
+            }
+
+            if (refreshToken !== undefined) {
+                localVarQueryParameter['refresh_token'] = refreshToken;
+            }
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -705,6 +1088,23 @@ export const OauthApiFp = function(configuration?: Configuration) {
                 return axios.request(axiosRequestArgs);
             };
         },
+        /**
+         * 
+         * @param {string} [grantType] 
+         * @param {string} [code] 
+         * @param {string} [redirectUri] 
+         * @param {string} [clientId] 
+         * @param {string} [refreshToken] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse> {
+            const localVarAxiosArgs = OauthApiAxiosParamCreator(configuration).token(grantType, code, redirectUri, clientId, refreshToken, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
     }
 };
 
@@ -751,6 +1151,19 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
          */
         register(registrationRequest?: RegistrationRequest, options?: any) {
             return OauthApiFp(configuration).register(registrationRequest, options)(axios, basePath);
+        },
+        /**
+         * 
+         * @param {string} [grantType] 
+         * @param {string} [code] 
+         * @param {string} [redirectUri] 
+         * @param {string} [clientId] 
+         * @param {string} [refreshToken] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any) {
+            return OauthApiFp(configuration).token(grantType, code, redirectUri, clientId, refreshToken, options)(axios, basePath);
         },
     };
 };
@@ -806,6 +1219,21 @@ export class OauthApi extends BaseAPI {
      */
     public register(registrationRequest?: RegistrationRequest, options?: any) {
         return OauthApiFp(this.configuration).register(registrationRequest, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} [grantType] 
+     * @param {string} [code] 
+     * @param {string} [redirectUri] 
+     * @param {string} [clientId] 
+     * @param {string} [refreshToken] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OauthApi
+     */
+    public token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any) {
+        return OauthApiFp(this.configuration).token(grantType, code, redirectUri, clientId, refreshToken, options)(this.axios, this.basePath);
     }
 
 }
@@ -921,6 +1349,46 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
+         * @param {string} routeId 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shareInGroup(routeId: string, groupId: string, options: any = {}): RequestArgs {
+            // verify required parameter 'routeId' is not null or undefined
+            if (routeId === null || routeId === undefined) {
+                throw new RequiredError('routeId','Required parameter routeId was null or undefined when calling shareInGroup.');
+            }
+            // verify required parameter 'groupId' is not null or undefined
+            if (groupId === null || groupId === undefined) {
+                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling shareInGroup.');
+            }
+            const localVarPath = `/route/{routeId}/share-in-group/{groupId}`
+                .replace(`{${"routeId"}}`, encodeURIComponent(String(routeId)))
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {UpdateRouteRequest} [updateRouteRequest] 
          * @param {*} [options] Override http request option.
@@ -1009,6 +1477,20 @@ export const RouteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} routeId 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shareInGroup(routeId: string, groupId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).shareInGroup(routeId, groupId, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} id 
          * @param {UpdateRouteRequest} [updateRouteRequest] 
          * @param {*} [options] Override http request option.
@@ -1057,6 +1539,16 @@ export const RouteApiFactory = function (configuration?: Configuration, basePath
          */
         getRouteById(id: string, options?: any) {
             return RouteApiFp(configuration).getRouteById(id, options)(axios, basePath);
+        },
+        /**
+         * 
+         * @param {string} routeId 
+         * @param {string} groupId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        shareInGroup(routeId: string, groupId: string, options?: any) {
+            return RouteApiFp(configuration).shareInGroup(routeId, groupId, options)(axios, basePath);
         },
         /**
          * 
@@ -1110,6 +1602,18 @@ export class RouteApi extends BaseAPI {
      */
     public getRouteById(id: string, options?: any) {
         return RouteApiFp(this.configuration).getRouteById(id, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} routeId 
+     * @param {string} groupId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RouteApi
+     */
+    public shareInGroup(routeId: string, groupId: string, options?: any) {
+        return RouteApiFp(this.configuration).shareInGroup(routeId, groupId, options)(this.axios, this.basePath);
     }
 
     /**

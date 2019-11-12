@@ -165,17 +165,19 @@ paths:
         name: id
         in: path
         required: true
-  '/{routeId}/share-in-group/{groupId}':
+  '/route/{routeId}/share-in-group/{groupId}':
     parameters:
       - name: routeId
         in: path
         required: true
-        schema: {}
+        schema:
+          type: string
         description: ''
       - name: groupId
         in: path
         required: true
-        schema: {}
+        schema:
+          type: string
     post:
       summary: ''
       responses:
@@ -188,6 +190,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       operationId: shareInGroup
+      tags:
+        - route
   /oauth/token:
     post:
       summary: ''
@@ -220,6 +224,139 @@ paths:
           in: query
           name: refresh_token
       operationId: token
+      tags:
+        - oauth
+  /group:
+    post:
+      summary: createGroup
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      operationId: createGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupRequest'
+      tags:
+        - group
+  '/group/{groupId}':
+    parameters:
+      - schema:
+          type: string
+        name: groupId
+        in: path
+        required: true
+    get:
+      summary: findById
+      tags:
+        - group
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: ''
+      operationId: findById
+    put:
+      summary: updateGroup
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      operationId: updateGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupRequest'
+      tags:
+        - group
+    delete:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - group
+  '/group/{groupId}/join':
+    parameters:
+      - schema:
+          type: string
+        name: groupId
+        in: path
+        required: true
+    post:
+      summary: joinGroup
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      description: ''
+      operationId: joinGroup
+      tags:
+        - group
+  '/group/{groupId}/leave':
+    parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      summary: leaveGroup
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      operationId: leaveGroup
+      tags:
+        - group
 components:
   schemas:
     LoginRequest:
@@ -337,3 +474,33 @@ components:
             type: array
             items:
               type: number
+    CreateGroupRequest:
+      title: CreateGroupRequest
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        access:
+          type: string
+    UpdateGroupRequest:
+      title: UpdateGroupRequest
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        access:
+          type: string
+    GroupResponse:
+      title: GroupResponse
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        access:
+          type: string
