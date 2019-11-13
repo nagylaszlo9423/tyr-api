@@ -5,12 +5,14 @@
   "main": "dist/index.js",
   "types": "types/index.d.ts",
   "scripts": {
-    "start": "npm run generate && npm run build",
+    "start": "npm run generate && npm run build && npm run git:publish",
     "clean:build": "rimraf ./dist && rimraf ./types",
     "clean:source": "rimraf ./src",
     "generate": "npm run clean:source && python generate.py",
     "build": "npm run clean:build && webpack && git add dist && git add types",
-    "git:commit": ""
+    "git:publish": "npm run git:commit && npm run git:push",
+    "git:commit": "git commit -a -m *",
+    "git:push": "git push"
   },
   "repository": {
     "type": "git",
