@@ -143,6 +143,12 @@ export interface GroupResponse {
      * @memberof GroupResponse
      */
     access?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupResponse
+     */
+    owner?: string;
 }
 /**
  * 

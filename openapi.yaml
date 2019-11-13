@@ -516,6 +516,8 @@ components:
           type: string
         access:
           type: string
+        owner:
+          type: string
     PageResponse:
       title: PageResponse
       type: object

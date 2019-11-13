@@ -15,6 +15,7 @@ export class GroupResponse {
     'name'?: string;
     'description'?: string;
     'access'?: string;
+    'owner'?: string;
 
     static discriminator: string | undefined = undefined;
 
@@ -32,6 +33,11 @@ export class GroupResponse {
         {
             "name": "access",
             "baseName": "access",
+            "type": "string"
+        },
+        {
+            "name": "owner",
+            "baseName": "owner",
             "type": "string"
         }    ];
 

@@ -25,6 +25,7 @@ export interface GroupResponse {
     name?: string;
     description?: string;
     access?: string;
+    owner?: string;
 }
 export interface LineStringDto {
     type?: string;
