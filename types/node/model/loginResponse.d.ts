@@ -1,6 +1,6 @@
 export declare class LoginResponse {
-    'code'?: string;
-    'redirectUri'?: string;
+    'code': string;
+    'redirectUri': string;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

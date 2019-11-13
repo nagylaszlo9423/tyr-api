@@ -12,9 +12,9 @@
 
 
 export class PageResponse {
-    'page'?: number;
-    'size'?: number;
-    'items'?: Array<object>;
+    'page': number;
+    'size': number;
+    'items': Array<object>;
 
     static discriminator: string | undefined = undefined;
 

@@ -12,7 +12,7 @@
 
 
 export class RegistrationResponse {
-    'userId'?: string;
+    'userId': string;
 
     static discriminator: string | undefined = undefined;
 

@@ -1,6 +1,6 @@
 export declare class LineStringDto {
-    'type'?: string;
-    'coordinates'?: Array<Array<number>>;
+    'type': string;
+    'coordinates': Array<Array<number>>;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

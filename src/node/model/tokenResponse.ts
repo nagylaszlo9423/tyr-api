@@ -12,10 +12,10 @@
 
 
 export class TokenResponse {
-    'accessToken'?: string;
-    'accessTokenExpiration'?: string;
-    'refreshToken'?: string;
-    'refreshTokenExpiration'?: string;
+    'accessToken': string;
+    'accessTokenExpiration': string;
+    'refreshToken': string;
+    'refreshTokenExpiration': string;
 
     static discriminator: string | undefined = undefined;
 

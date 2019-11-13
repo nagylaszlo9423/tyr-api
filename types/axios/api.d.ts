@@ -18,21 +18,21 @@ export interface CreateRouteRequest {
     path?: LineStringDto;
 }
 export interface CreatedRespone {
-    id?: string;
+    id: string;
 }
 export interface ErrorResponse {
     cause: string;
     message?: string;
 }
 export interface GroupResponse {
-    name?: string;
-    description?: string;
-    access?: string;
-    owner?: string;
+    name: string;
+    description: string;
+    access: string;
+    owner: string;
 }
 export interface LineStringDto {
-    type?: string;
-    coordinates?: Array<Array<number>>;
+    type: string;
+    coordinates: Array<Array<number>>;
 }
 export interface LoginRequest {
     email?: string;
@@ -41,32 +41,32 @@ export interface LoginRequest {
     redirectUri?: string;
 }
 export interface LoginResponse {
-    code?: string;
-    redirectUri?: string;
+    code: string;
+    redirectUri: string;
 }
 export interface PageResponse {
-    page?: number;
-    size?: number;
-    items?: Array<object>;
+    page: number;
+    size: number;
+    items: Array<object>;
 }
 export interface RegistrationRequest {
     email: string;
     password: string;
 }
 export interface RegistrationResponse {
-    userId?: string;
+    userId: string;
 }
 export interface RouteResponse {
-    title?: string;
-    description?: string;
-    path?: LineStringDto;
-    audit?: AuditDto;
+    title: string;
+    description: string;
+    path: LineStringDto;
+    audit: AuditDto;
 }
 export interface TokenResponse {
-    accessToken?: string;
-    accessTokenExpiration?: string;
-    refreshToken?: string;
-    refreshTokenExpiration?: string;
+    accessToken: string;
+    accessTokenExpiration: string;
+    refreshToken: string;
+    refreshTokenExpiration: string;
 }
 export interface UpdateGroupRequest {
     name?: string;

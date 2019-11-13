@@ -391,6 +391,9 @@ components:
           type: string
         redirectUri:
           type: string
+      required:
+        - code
+        - redirectUri
     CreateRouteRequest:
       title: CreateRouteRequest
       type: object
@@ -433,6 +436,11 @@ components:
           $ref: '#/components/schemas/LineStringDto'
         audit:
           $ref: '#/components/schemas/AuditDto'
+      required:
+        - title
+        - description
+        - path
+        - audit
     AuditDto:
       title: AuditDto
       type: object
@@ -457,6 +465,11 @@ components:
           type: string
         refreshTokenExpiration:
           type: string
+      required:
+        - accessToken
+        - accessTokenExpiration
+        - refreshToken
+        - refreshTokenExpiration
     RegistrationRequest:
       title: RegistrationRequest
       type: object
@@ -474,6 +487,8 @@ components:
       properties:
         userId:
           type: string
+      required:
+        - userId
     LineStringDto:
       title: LineStringDto
       type: object
@@ -486,6 +501,9 @@ components:
             type: array
             items:
               type: number
+      required:
+        - type
+        - coordinates
     CreateGroupRequest:
       title: CreateGroupRequest
       type: object
@@ -518,6 +536,11 @@ components:
           type: string
         owner:
           type: string
+      required:
+        - name
+        - description
+        - access
+        - owner
     PageResponse:
       title: PageResponse
       type: object
@@ -529,9 +552,15 @@ components:
         items:
           type: array
           items: {}
+      required:
+        - page
+        - size
+        - items
     CreatedRespone:
       title: CreatedRespone
       type: object
       properties:
         id:
           type: string
+      required:
+        - id

@@ -12,10 +12,10 @@
 
 
 export class GroupResponse {
-    'name'?: string;
-    'description'?: string;
-    'access'?: string;
-    'owner'?: string;
+    'name': string;
+    'description': string;
+    'access': string;
+    'owner': string;
 
     static discriminator: string | undefined = undefined;
 

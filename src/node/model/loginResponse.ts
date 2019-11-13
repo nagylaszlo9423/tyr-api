@@ -12,8 +12,8 @@
 
 
 export class LoginResponse {
-    'code'?: string;
-    'redirectUri'?: string;
+    'code': string;
+    'redirectUri': string;
 
     static discriminator: string | undefined = undefined;
 

@@ -14,10 +14,10 @@ import { AuditDto } from './auditDto';
 import { LineStringDto } from './lineStringDto';
 
 export class RouteResponse {
-    'title'?: string;
-    'description'?: string;
-    'path'?: LineStringDto;
-    'audit'?: AuditDto;
+    'title': string;
+    'description': string;
+    'path': LineStringDto;
+    'audit': AuditDto;
 
     static discriminator: string | undefined = undefined;
 

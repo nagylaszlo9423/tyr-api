@@ -1,5 +1,5 @@
 export declare class RegistrationResponse {
-    'userId'?: string;
+    'userId': string;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

@@ -12,7 +12,7 @@
 
 
 export class CreatedRespone {
-    'id'?: string;
+    'id': string;
 
     static discriminator: string | undefined = undefined;
 

@@ -1,5 +1,5 @@
 export declare class CreatedRespone {
-    'id'?: string;
+    'id': string;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;

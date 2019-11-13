@@ -111,7 +111,7 @@ export interface CreatedRespone {
      * @type {string}
      * @memberof CreatedRespone
      */
-    id?: string;
+    id: string;
 }
 /**
  * 
@@ -143,25 +143,25 @@ export interface GroupResponse {
      * @type {string}
      * @memberof GroupResponse
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof GroupResponse
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {string}
      * @memberof GroupResponse
      */
-    access?: string;
+    access: string;
     /**
      * 
      * @type {string}
      * @memberof GroupResponse
      */
-    owner?: string;
+    owner: string;
 }
 /**
  * 
@@ -174,13 +174,13 @@ export interface LineStringDto {
      * @type {string}
      * @memberof LineStringDto
      */
-    type?: string;
+    type: string;
     /**
      * 
      * @type {Array<Array<number>>}
      * @memberof LineStringDto
      */
-    coordinates?: Array<Array<number>>;
+    coordinates: Array<Array<number>>;
 }
 /**
  * 
@@ -224,13 +224,13 @@ export interface LoginResponse {
      * @type {string}
      * @memberof LoginResponse
      */
-    code?: string;
+    code: string;
     /**
      * 
      * @type {string}
      * @memberof LoginResponse
      */
-    redirectUri?: string;
+    redirectUri: string;
 }
 /**
  * 
@@ -243,19 +243,19 @@ export interface PageResponse {
      * @type {number}
      * @memberof PageResponse
      */
-    page?: number;
+    page: number;
     /**
      * 
      * @type {number}
      * @memberof PageResponse
      */
-    size?: number;
+    size: number;
     /**
      * 
      * @type {Array<object>}
      * @memberof PageResponse
      */
-    items?: Array<object>;
+    items: Array<object>;
 }
 /**
  * 
@@ -287,7 +287,7 @@ export interface RegistrationResponse {
      * @type {string}
      * @memberof RegistrationResponse
      */
-    userId?: string;
+    userId: string;
 }
 /**
  * 
@@ -300,25 +300,25 @@ export interface RouteResponse {
      * @type {string}
      * @memberof RouteResponse
      */
-    title?: string;
+    title: string;
     /**
      * 
      * @type {string}
      * @memberof RouteResponse
      */
-    description?: string;
+    description: string;
     /**
      * 
      * @type {LineStringDto}
      * @memberof RouteResponse
      */
-    path?: LineStringDto;
+    path: LineStringDto;
     /**
      * 
      * @type {AuditDto}
      * @memberof RouteResponse
      */
-    audit?: AuditDto;
+    audit: AuditDto;
 }
 /**
  * 
@@ -331,25 +331,25 @@ export interface TokenResponse {
      * @type {string}
      * @memberof TokenResponse
      */
-    accessToken?: string;
+    accessToken: string;
     /**
      * 
      * @type {string}
      * @memberof TokenResponse
      */
-    accessTokenExpiration?: string;
+    accessTokenExpiration: string;
     /**
      * 
      * @type {string}
      * @memberof TokenResponse
      */
-    refreshToken?: string;
+    refreshToken: string;
     /**
      * 
      * @type {string}
      * @memberof TokenResponse
      */
-    refreshTokenExpiration?: string;
+    refreshTokenExpiration: string;
 }
 /**
  * 

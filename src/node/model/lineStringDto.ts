@@ -12,8 +12,8 @@
 
 
 export class LineStringDto {
-    'type'?: string;
-    'coordinates'?: Array<Array<number>>;
+    'type': string;
+    'coordinates': Array<Array<number>>;
 
     static discriminator: string | undefined = undefined;
 
