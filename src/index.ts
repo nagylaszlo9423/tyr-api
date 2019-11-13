@@ -1,6 +1,7 @@
 import * as axiosApi from './axios/api';
 export const AxiosApi = axiosApi;
 export * from './node/model/auditDto';
+export * from './node/model/createdRespone';
 export * from './node/model/createGroupRequest';
 export * from './node/model/createRouteRequest';
 export * from './node/model/errorResponse';

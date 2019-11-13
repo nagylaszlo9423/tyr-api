@@ -17,6 +17,9 @@ export interface CreateRouteRequest {
     description?: string;
     path?: LineStringDto;
 }
+export interface CreatedRespone {
+    id?: string;
+}
 export interface ErrorResponse {
     cause: string;
     message?: string;

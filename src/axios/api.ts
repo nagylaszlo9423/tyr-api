@@ -103,6 +103,19 @@ export interface CreateRouteRequest {
 /**
  * 
  * @export
+ * @interface CreatedRespone
+ */
+export interface CreatedRespone {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatedRespone
+     */
+    id?: string;
+}
+/**
+ * 
+ * @export
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
