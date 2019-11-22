@@ -372,7 +372,8 @@ paths:
   /route/most-popular:
     get:
       summary: mostPopularRoutes
-      tags: []
+      tags:
+        - route
       responses:
         '200':
           description: OK

@@ -437,35 +437,6 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @summary mostPopularRoutes
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMostPopularRoutes(options: any = {}): RequestArgs {
-            const localVarPath = `/route/most-popular`;
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -483,19 +454,6 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          */
         getGroupsPaged(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageResponse> {
             const localVarAxiosArgs = DefaultApiAxiosParamCreator(configuration).getGroupsPaged(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary mostPopularRoutes
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMostPopularRoutes(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RouteResponse>> {
-            const localVarAxiosArgs = DefaultApiAxiosParamCreator(configuration).getMostPopularRoutes(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -519,15 +477,6 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         getGroupsPaged(options?: any) {
             return DefaultApiFp(configuration).getGroupsPaged(options)(axios, basePath);
         },
-        /**
-         * 
-         * @summary mostPopularRoutes
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getMostPopularRoutes(options?: any) {
-            return DefaultApiFp(configuration).getMostPopularRoutes(options)(axios, basePath);
-        },
     };
 };
 
@@ -547,17 +496,6 @@ export class DefaultApi extends BaseAPI {
      */
     public getGroupsPaged(options?: any) {
         return DefaultApiFp(this.configuration).getGroupsPaged(options)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary mostPopularRoutes
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof DefaultApi
-     */
-    public getMostPopularRoutes(options?: any) {
-        return DefaultApiFp(this.configuration).getMostPopularRoutes(options)(this.axios, this.basePath);
     }
 
 }
@@ -1519,6 +1457,35 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
+         * @summary mostPopularRoutes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMostPopularRoutes(options: any = {}): RequestArgs {
+            const localVarPath = `/route/most-popular`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Your GET endpoint
          * @param {string} id 
          * @param {*} [options] Override http request option.
@@ -1668,6 +1635,19 @@ export const RouteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary mostPopularRoutes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMostPopularRoutes(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RouteResponse>> {
+            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).getMostPopularRoutes(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @summary Your GET endpoint
          * @param {string} id 
          * @param {*} [options] Override http request option.
@@ -1737,6 +1717,15 @@ export const RouteApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * 
+         * @summary mostPopularRoutes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMostPopularRoutes(options?: any) {
+            return RouteApiFp(configuration).getMostPopularRoutes(options)(axios, basePath);
+        },
+        /**
+         * 
          * @summary Your GET endpoint
          * @param {string} id 
          * @param {*} [options] Override http request option.
@@ -1795,6 +1784,17 @@ export class RouteApi extends BaseAPI {
      */
     public deleteRouteById(id: string, options?: any) {
         return RouteApiFp(this.configuration).deleteRouteById(id, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary mostPopularRoutes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof RouteApi
+     */
+    public getMostPopularRoutes(options?: any) {
+        return RouteApiFp(this.configuration).getMostPopularRoutes(options)(this.axios, this.basePath);
     }
 
     /**
