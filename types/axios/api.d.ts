@@ -80,19 +80,19 @@ export interface UpdateRouteRequest {
 }
 export declare const DefaultApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     getGroupsPaged(options?: any): RequestArgs;
-    routeMostPopularGet(options?: any): RequestArgs;
+    getMostPopularRoutes(options?: any): RequestArgs;
 };
 export declare const DefaultApiFp: (configuration?: Configuration | undefined) => {
     getGroupsPaged(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PageResponse>;
-    routeMostPopularGet(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RouteResponse[]>;
+    getMostPopularRoutes(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RouteResponse[]>;
 };
 export declare const DefaultApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     getGroupsPaged(options?: any): AxiosPromise<PageResponse>;
-    routeMostPopularGet(options?: any): AxiosPromise<RouteResponse[]>;
+    getMostPopularRoutes(options?: any): AxiosPromise<RouteResponse[]>;
 };
 export declare class DefaultApi extends BaseAPI {
     getGroupsPaged(options?: any): AxiosPromise<PageResponse>;
-    routeMostPopularGet(options?: any): AxiosPromise<RouteResponse[]>;
+    getMostPopularRoutes(options?: any): AxiosPromise<RouteResponse[]>;
 }
 export declare const GroupApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createGroup(createGroupRequest?: CreateGroupRequest | undefined, options?: any): RequestArgs;

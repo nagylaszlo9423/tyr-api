@@ -439,11 +439,11 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @summary Your GET endpoint
+         * @summary mostPopularRoutes
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        routeMostPopularGet(options: any = {}): RequestArgs {
+        getMostPopularRoutes(options: any = {}): RequestArgs {
             const localVarPath = `/route/most-popular`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -490,12 +490,12 @@ export const DefaultApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Your GET endpoint
+         * @summary mostPopularRoutes
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        routeMostPopularGet(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RouteResponse>> {
-            const localVarAxiosArgs = DefaultApiAxiosParamCreator(configuration).routeMostPopularGet(options);
+        getMostPopularRoutes(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RouteResponse>> {
+            const localVarAxiosArgs = DefaultApiAxiosParamCreator(configuration).getMostPopularRoutes(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -521,12 +521,12 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @summary Your GET endpoint
+         * @summary mostPopularRoutes
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        routeMostPopularGet(options?: any) {
-            return DefaultApiFp(configuration).routeMostPopularGet(options)(axios, basePath);
+        getMostPopularRoutes(options?: any) {
+            return DefaultApiFp(configuration).getMostPopularRoutes(options)(axios, basePath);
         },
     };
 };
@@ -551,13 +551,13 @@ export class DefaultApi extends BaseAPI {
 
     /**
      * 
-     * @summary Your GET endpoint
+     * @summary mostPopularRoutes
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public routeMostPopularGet(options?: any) {
-        return DefaultApiFp(this.configuration).routeMostPopularGet(options)(this.axios, this.basePath);
+    public getMostPopularRoutes(options?: any) {
+        return DefaultApiFp(this.configuration).getMostPopularRoutes(options)(this.axios, this.basePath);
     }
 
 }

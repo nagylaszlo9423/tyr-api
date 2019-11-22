@@ -371,7 +371,7 @@ paths:
       operationId: getGroupsPaged
   /route/most-popular:
     get:
-      summary: Your GET endpoint
+      summary: mostPopularRoutes
       tags: []
       responses:
         '200':
@@ -382,6 +382,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RouteResponse'
+      operationId: getMostPopularRoutes
 components:
   schemas:
     LoginRequest:
