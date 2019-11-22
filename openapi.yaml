@@ -9,7 +9,7 @@ tags:
   - name: route
   - name: group
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://localhost:3001'
     description: local-dev
 paths:
   /oauth/login:
@@ -360,7 +360,8 @@ paths:
   /group/page:
     get:
       summary: getGroupsPaged
-      tags: []
+      tags:
+        - group
       responses:
         '200':
           description: OK
