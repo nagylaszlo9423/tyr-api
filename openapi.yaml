@@ -369,6 +369,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/PageResponse'
       operationId: getGroupsPaged
+  /route/most-popular:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RouteResponse'
 components:
   schemas:
     LoginRequest:
