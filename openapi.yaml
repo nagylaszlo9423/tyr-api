@@ -455,7 +455,7 @@ components:
         images:
           type: array
           items:
-            $ref: '#/components/schemas/ResourceItem'
+            $ref: '#/components/schemas/ResourceItemResponse'
       required:
         - title
         - description
@@ -585,8 +585,8 @@ components:
           type: string
       required:
         - id
-    ResourceItem:
-      title: ResourceItem
+    ResourceItemResponse:
+      title: ResourceItemResponse
       type: object
       properties:
         id:

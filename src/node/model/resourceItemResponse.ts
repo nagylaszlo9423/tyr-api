@@ -11,7 +11,7 @@
  */
 
 
-export class ResourceItem {
+export class ResourceItemResponse {
     'id': string;
     'name': string;
     'url': string;
@@ -36,7 +36,7 @@ export class ResourceItem {
         }    ];
 
     static getAttributeTypeMap() {
-        return ResourceItem.attributeTypeMap;
+        return ResourceItemResponse.attributeTypeMap;
     }
 }
 

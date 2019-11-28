@@ -56,7 +56,7 @@ export interface RegistrationRequest {
 export interface RegistrationResponse {
     userId: string;
 }
-export interface ResourceItem {
+export interface ResourceItemResponse {
     id: string;
     name: string;
     url: string;
@@ -66,7 +66,7 @@ export interface RouteResponse {
     description: string;
     path: LineStringDto;
     audit: AuditDto;
-    images: Array<ResourceItem>;
+    images: Array<ResourceItemResponse>;
 }
 export interface TokenResponse {
     accessToken: string;

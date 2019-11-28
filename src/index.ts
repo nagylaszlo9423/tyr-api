@@ -12,7 +12,7 @@ export * from './node/model/loginResponse';
 export * from './node/model/pageResponse';
 export * from './node/model/registrationRequest';
 export * from './node/model/registrationResponse';
-export * from './node/model/resourceItem';
+export * from './node/model/resourceItemResponse';
 export * from './node/model/routeResponse';
 export * from './node/model/tokenResponse';
 export * from './node/model/updateGroupRequest';

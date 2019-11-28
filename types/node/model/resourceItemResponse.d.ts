@@ -1,4 +1,4 @@
-export declare class ResourceItem {
+export declare class ResourceItemResponse {
     'id': string;
     'name': string;
     'url': string;
