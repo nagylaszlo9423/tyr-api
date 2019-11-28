@@ -292,6 +292,31 @@ export interface RegistrationResponse {
 /**
  * 
  * @export
+ * @interface ResourceItem
+ */
+export interface ResourceItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceItem
+     */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceItem
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ResourceItem
+     */
+    url: string;
+}
+/**
+ * 
+ * @export
  * @interface RouteResponse
  */
 export interface RouteResponse {
@@ -319,6 +344,12 @@ export interface RouteResponse {
      * @memberof RouteResponse
      */
     audit: AuditDto;
+    /**
+     * 
+     * @type {Array<ResourceItem>}
+     * @memberof RouteResponse
+     */
+    images: Array<ResourceItem>;
 }
 /**
  * 

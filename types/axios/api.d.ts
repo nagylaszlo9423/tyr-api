@@ -56,11 +56,17 @@ export interface RegistrationRequest {
 export interface RegistrationResponse {
     userId: string;
 }
+export interface ResourceItem {
+    id: string;
+    name: string;
+    url: string;
+}
 export interface RouteResponse {
     title: string;
     description: string;
     path: LineStringDto;
     audit: AuditDto;
+    images: Array<ResourceItem>;
 }
 export interface TokenResponse {
     accessToken: string;

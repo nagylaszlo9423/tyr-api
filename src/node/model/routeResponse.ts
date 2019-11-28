@@ -12,12 +12,14 @@
 
 import { AuditDto } from './auditDto';
 import { LineStringDto } from './lineStringDto';
+import { ResourceItem } from './resourceItem';
 
 export class RouteResponse {
     'title': string;
     'description': string;
     'path': LineStringDto;
     'audit': AuditDto;
+    'images': Array<ResourceItem>;
 
     static discriminator: string | undefined = undefined;
 
@@ -41,6 +43,11 @@ export class RouteResponse {
             "name": "audit",
             "baseName": "audit",
             "type": "AuditDto"
+        },
+        {
+            "name": "images",
+            "baseName": "images",
+            "type": "Array<ResourceItem>"
         }    ];
 
     static getAttributeTypeMap() {

@@ -452,11 +452,16 @@ components:
           $ref: '#/components/schemas/LineStringDto'
         audit:
           $ref: '#/components/schemas/AuditDto'
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceItem'
       required:
         - title
         - description
         - path
         - audit
+        - images
     AuditDto:
       title: AuditDto
       type: object
@@ -580,3 +585,17 @@ components:
           type: string
       required:
         - id
+    ResourceItem:
+      title: ResourceItem
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+      required:
+        - id
+        - name
+        - url
