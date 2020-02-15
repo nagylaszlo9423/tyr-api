@@ -368,15 +368,7 @@ paths:
           content:
             application/json:
               schema:
-                title: GroupPageResponse
-                allOf:
-                  - $ref: '#/components/schemas/PageResponse'
-                  - type: object
-                    properties:
-                      items:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/GroupResponse'
+                $ref: '#/components/schemas/GroupPageResponse'
       operationId: getGroupsPaged
   /route/most-popular:
     get:
@@ -570,6 +562,15 @@ components:
         - description
         - access
         - owner
+    GroupPageResponse:
+      allOf:
+        - $ref: '#/components/schemas/PageResponse'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/GroupResponse'
     PageResponse:
       title: PageResponse
       type: object

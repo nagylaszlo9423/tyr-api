@@ -135,6 +135,44 @@ export interface ErrorResponse {
 /**
  * 
  * @export
+ * @interface GroupPageResponse
+ */
+export interface GroupPageResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof GroupPageResponse
+     */
+    page: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GroupPageResponse
+     */
+    size: number;
+    /**
+     * 
+     * @type {Array<GroupResponse>}
+     * @memberof GroupPageResponse
+     */
+    items: Array<GroupResponse>;
+}
+/**
+ * 
+ * @export
+ * @interface GroupPageResponseAllOf
+ */
+export interface GroupPageResponseAllOf {
+    /**
+     * 
+     * @type {Array<GroupResponse>}
+     * @memberof GroupPageResponseAllOf
+     */
+    items?: Array<GroupResponse>;
+}
+/**
+ * 
+ * @export
  * @interface GroupResponse
  */
 export interface GroupResponse {
@@ -724,7 +762,7 @@ export const GroupApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageResponse> {
+        getGroupsPaged(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupPageResponse> {
             const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).getGroupsPaged(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};

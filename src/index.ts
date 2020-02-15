@@ -5,6 +5,8 @@ export * from './node/model/createdRespone';
 export * from './node/model/createGroupRequest';
 export * from './node/model/createRouteRequest';
 export * from './node/model/errorResponse';
+export * from './node/model/groupPageResponse';
+export * from './node/model/groupPageResponseAllOf';
 export * from './node/model/groupResponse';
 export * from './node/model/lineStringDto';
 export * from './node/model/loginRequest';
