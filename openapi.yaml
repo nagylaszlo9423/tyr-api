@@ -368,7 +368,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PageResponse'
+                allOf:
+                  - $ref: '#/components/schemas/PageResponse'
+                  - items:
+                      properties:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/GroupResponse'
       operationId: getGroupsPaged
   /route/most-popular:
     get:
