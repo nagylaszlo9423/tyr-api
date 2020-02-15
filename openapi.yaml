@@ -563,6 +563,8 @@ components:
         - access
         - owner
     GroupPageResponse:
+      title: GroupPageResponse
+      type: object
       allOf:
         - $ref: '#/components/schemas/PageResponse'
         - type: object
