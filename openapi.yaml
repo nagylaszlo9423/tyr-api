@@ -368,10 +368,12 @@ paths:
           content:
             application/json:
               schema:
+                title: GroupPageResponse
                 allOf:
                   - $ref: '#/components/schemas/PageResponse'
-                  - items:
-                      properties:
+                  - type: object
+                    properties:
+                      items:
                         type: array
                         items:
                           $ref: '#/components/schemas/GroupResponse'
