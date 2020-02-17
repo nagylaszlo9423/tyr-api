@@ -549,10 +549,12 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary getGroupsPaged
+         * @param {number} [page] 
+         * @param {number} [size] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(options: any = {}): RequestArgs {
+        getGroupsPaged(page?: number, size?: number, options: any = {}): RequestArgs {
             const localVarPath = `/group/page`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -562,6 +564,14 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
+            }
 
 
     
@@ -759,11 +769,13 @@ export const GroupApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary getGroupsPaged
+         * @param {number} [page] 
+         * @param {number} [size] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupPageResponse> {
-            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).getGroupsPaged(options);
+        getGroupsPaged(page?: number, size?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupPageResponse> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).getGroupsPaged(page, size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -857,11 +869,13 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @summary getGroupsPaged
+         * @param {number} [page] 
+         * @param {number} [size] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(options?: any) {
-            return GroupApiFp(configuration).getGroupsPaged(options)(axios, basePath);
+        getGroupsPaged(page?: number, size?: number, options?: any) {
+            return GroupApiFp(configuration).getGroupsPaged(page, size, options)(axios, basePath);
         },
         /**
          * 
@@ -940,12 +954,14 @@ export class GroupApi extends BaseAPI {
     /**
      * 
      * @summary getGroupsPaged
+     * @param {number} [page] 
+     * @param {number} [size] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GroupApi
      */
-    public getGroupsPaged(options?: any) {
-        return GroupApiFp(this.configuration).getGroupsPaged(options)(this.axios, this.basePath);
+    public getGroupsPaged(page?: number, size?: number, options?: any) {
+        return GroupApiFp(this.configuration).getGroupsPaged(page, size, options)(this.axios, this.basePath);
     }
 
     /**
