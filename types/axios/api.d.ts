@@ -95,6 +95,18 @@ export interface UpdateRouteRequest {
     description?: string;
     path?: LineStringDto;
 }
+export declare const DefaultApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
+    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): RequestArgs;
+};
+export declare const DefaultApiFp: (configuration?: Configuration | undefined) => {
+    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+};
+export declare const DefaultApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
+    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): AxiosPromise<void>;
+};
+export declare class DefaultApi extends BaseAPI {
+    postOauthLogoutAll(logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void>;
+}
 export declare const GroupApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createGroup(createGroupRequest?: CreateGroupRequest | undefined, options?: any): RequestArgs;
     findById(groupId: string, options?: any): RequestArgs;

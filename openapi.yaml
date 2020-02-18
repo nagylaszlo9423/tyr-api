@@ -392,6 +392,18 @@ paths:
                 items:
                   $ref: '#/components/schemas/RouteResponse'
       operationId: getMostPopularRoutes
+  /oauth/logout/all:
+    post:
+      summary: ''
+      operationId: post-oauth-logout-all
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
 components:
   parameters:
     page:
@@ -428,12 +440,6 @@ components:
       required:
         - code
         - redirectUri
-    LogoutRequest:
-      title: LogoutRequest
-      type: object
-      properties:
-        accessToken:
-          type: string
     CreateRouteRequest:
       title: CreateRouteRequest
       type: object
@@ -634,3 +640,9 @@ components:
         - id
         - name
         - url
+    LogoutRequest:
+      title: LogoutRequest
+      type: object
+      properties:
+        accessToken:
+          type: string
