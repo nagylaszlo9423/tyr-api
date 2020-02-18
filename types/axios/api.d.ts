@@ -52,6 +52,9 @@ export interface LoginResponse {
     code: string;
     redirectUri: string;
 }
+export interface LogoutRequest {
+    accessToken?: string;
+}
 export interface PageResponse {
     page: number;
     size: number;
@@ -138,21 +141,21 @@ export declare const OauthApiAxiosParamCreator: (configuration?: Configuration |
 export declare const OauthApiFp: (configuration?: Configuration | undefined) => {
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     login(loginRequest?: LoginRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<LoginResponse>;
-    logout(authorization?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    logout(authorization?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<LogoutRequest>;
     register(registrationRequest?: RegistrationRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RegistrationResponse>;
     token(grantType?: string | undefined, code?: string | undefined, redirectUri?: string | undefined, clientId?: string | undefined, refreshToken?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TokenResponse>;
 };
 export declare const OauthApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): AxiosPromise<void>;
     login(loginRequest?: LoginRequest | undefined, options?: any): AxiosPromise<LoginResponse>;
-    logout(authorization?: string | undefined, options?: any): AxiosPromise<void>;
+    logout(authorization?: string | undefined, options?: any): AxiosPromise<LogoutRequest>;
     register(registrationRequest?: RegistrationRequest | undefined, options?: any): AxiosPromise<RegistrationResponse>;
     token(grantType?: string | undefined, code?: string | undefined, redirectUri?: string | undefined, clientId?: string | undefined, refreshToken?: string | undefined, options?: any): AxiosPromise<TokenResponse>;
 };
 export declare class OauthApi extends BaseAPI {
     authorize(responseType?: string, clientId?: string, redirectUri?: string, options?: any): AxiosPromise<void>;
     login(loginRequest?: LoginRequest, options?: any): AxiosPromise<LoginResponse>;
-    logout(authorization?: string, options?: any): AxiosPromise<void>;
+    logout(authorization?: string, options?: any): AxiosPromise<LogoutRequest>;
     register(registrationRequest?: RegistrationRequest, options?: any): AxiosPromise<RegistrationResponse>;
     token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any): AxiosPromise<TokenResponse>;
 }

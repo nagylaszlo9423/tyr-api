@@ -87,6 +87,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutRequest'
       operationId: logout
   /route:
     post:
@@ -424,6 +428,12 @@ components:
       required:
         - code
         - redirectUri
+    LogoutRequest:
+      title: LogoutRequest
+      type: object
+      properties:
+        accessToken:
+          type: string
     CreateRouteRequest:
       title: CreateRouteRequest
       type: object

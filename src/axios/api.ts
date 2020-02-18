@@ -273,6 +273,19 @@ export interface LoginResponse {
 /**
  * 
  * @export
+ * @interface LogoutRequest
+ */
+export interface LogoutRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof LogoutRequest
+     */
+    accessToken?: string;
+}
+/**
+ * 
+ * @export
  * @interface PageResponse
  */
 export interface PageResponse {
@@ -1259,7 +1272,7 @@ export const OauthApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logout(authorization?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+        logout(authorization?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LogoutRequest> {
             const localVarAxiosArgs = OauthApiAxiosParamCreator(configuration).logout(authorization, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
