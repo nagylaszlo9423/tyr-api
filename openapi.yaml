@@ -563,8 +563,9 @@ components:
           type: string
         description:
           type: string
-        access:
+        joinPolicy:
           type: string
+          enum: ['INVITE_ONLY', 'REQUEST', 'PUBLIC']
     UpdateGroupRequest:
       title: UpdateGroupRequest
       type: object
@@ -573,8 +574,9 @@ components:
           type: string
         description:
           type: string
-        access:
+        joinPolicy:
           type: string
+          enum: ['INVITE_ONLY', 'REQUEST', 'PUBLIC']
     GroupResponse:
       title: GroupResponse
       type: object
@@ -583,8 +585,9 @@ components:
           type: string
         description:
           type: string
-        access:
+        joinPolicy:
           type: string
+          enum: ['INVITE_ONLY', 'REQUEST', 'PUBLIC']
         owner:
           type: string
       required:

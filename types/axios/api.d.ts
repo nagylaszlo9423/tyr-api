@@ -10,7 +10,12 @@ export interface AuditDto {
 export interface CreateGroupRequest {
     name?: string;
     description?: string;
-    access?: string;
+    joinPolicy?: CreateGroupRequestJoinPolicyEnum;
+}
+export declare enum CreateGroupRequestJoinPolicyEnum {
+    INVITEONLY = "INVITE_ONLY",
+    REQUEST = "REQUEST",
+    PUBLIC = "PUBLIC"
 }
 export interface CreateRouteRequest {
     title?: string;
@@ -35,8 +40,13 @@ export interface GroupPageResponseAllOf {
 export interface GroupResponse {
     name: string;
     description: string;
-    access: string;
+    joinPolicy?: GroupResponseJoinPolicyEnum;
     owner: string;
+}
+export declare enum GroupResponseJoinPolicyEnum {
+    INVITEONLY = "INVITE_ONLY",
+    REQUEST = "REQUEST",
+    PUBLIC = "PUBLIC"
 }
 export interface LineStringDto {
     type: string;
@@ -88,7 +98,12 @@ export interface TokenResponse {
 export interface UpdateGroupRequest {
     name?: string;
     description?: string;
-    access?: string;
+    joinPolicy?: UpdateGroupRequestJoinPolicyEnum;
+}
+export declare enum UpdateGroupRequestJoinPolicyEnum {
+    INVITEONLY = "INVITE_ONLY",
+    REQUEST = "REQUEST",
+    PUBLIC = "PUBLIC"
 }
 export interface UpdateRouteRequest {
     title?: string;

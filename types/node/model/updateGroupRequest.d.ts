@@ -1,7 +1,7 @@
 export declare class UpdateGroupRequest {
     'name'?: string;
     'description'?: string;
-    'access'?: string;
+    'joinPolicy'?: UpdateGroupRequest.JoinPolicyEnum;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;
@@ -13,4 +13,11 @@ export declare class UpdateGroupRequest {
         baseName: string;
         type: string;
     }[];
+}
+export declare namespace UpdateGroupRequest {
+    enum JoinPolicyEnum {
+        INVITEONLY,
+        REQUEST,
+        PUBLIC
+    }
 }

@@ -14,7 +14,7 @@
 export class GroupResponse {
     'name': string;
     'description': string;
-    'access': string;
+    'joinPolicy'?: GroupResponse.JoinPolicyEnum;
     'owner': string;
 
     static discriminator: string | undefined = undefined;
@@ -31,9 +31,9 @@ export class GroupResponse {
             "type": "string"
         },
         {
-            "name": "access",
-            "baseName": "access",
-            "type": "string"
+            "name": "joinPolicy",
+            "baseName": "joinPolicy",
+            "type": "GroupResponse.JoinPolicyEnum"
         },
         {
             "name": "owner",
@@ -46,3 +46,10 @@ export class GroupResponse {
     }
 }
 
+export namespace GroupResponse {
+    export enum JoinPolicyEnum {
+        INVITEONLY = <any> 'INVITE_ONLY',
+        REQUEST = <any> 'REQUEST',
+        PUBLIC = <any> 'PUBLIC'
+    }
+}

@@ -73,8 +73,19 @@ export interface CreateGroupRequest {
      * @type {string}
      * @memberof CreateGroupRequest
      */
-    access?: string;
+    joinPolicy?: CreateGroupRequestJoinPolicyEnum;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum CreateGroupRequestJoinPolicyEnum {
+    INVITEONLY = 'INVITE_ONLY',
+    REQUEST = 'REQUEST',
+    PUBLIC = 'PUBLIC'
+}
+
 /**
  * 
  * @export
@@ -193,7 +204,7 @@ export interface GroupResponse {
      * @type {string}
      * @memberof GroupResponse
      */
-    access: string;
+    joinPolicy?: GroupResponseJoinPolicyEnum;
     /**
      * 
      * @type {string}
@@ -201,6 +212,17 @@ export interface GroupResponse {
      */
     owner: string;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum GroupResponseJoinPolicyEnum {
+    INVITEONLY = 'INVITE_ONLY',
+    REQUEST = 'REQUEST',
+    PUBLIC = 'PUBLIC'
+}
+
 /**
  * 
  * @export
@@ -456,8 +478,19 @@ export interface UpdateGroupRequest {
      * @type {string}
      * @memberof UpdateGroupRequest
      */
-    access?: string;
+    joinPolicy?: UpdateGroupRequestJoinPolicyEnum;
 }
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum UpdateGroupRequestJoinPolicyEnum {
+    INVITEONLY = 'INVITE_ONLY',
+    REQUEST = 'REQUEST',
+    PUBLIC = 'PUBLIC'
+}
+
 /**
  * 
  * @export

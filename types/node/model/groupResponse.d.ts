@@ -1,7 +1,7 @@
 export declare class GroupResponse {
     'name': string;
     'description': string;
-    'access': string;
+    'joinPolicy'?: GroupResponse.JoinPolicyEnum;
     'owner': string;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
@@ -14,4 +14,11 @@ export declare class GroupResponse {
         baseName: string;
         type: string;
     }[];
+}
+export declare namespace GroupResponse {
+    enum JoinPolicyEnum {
+        INVITEONLY,
+        REQUEST,
+        PUBLIC
+    }
 }

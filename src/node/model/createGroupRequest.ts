@@ -14,7 +14,7 @@
 export class CreateGroupRequest {
     'name'?: string;
     'description'?: string;
-    'access'?: string;
+    'joinPolicy'?: CreateGroupRequest.JoinPolicyEnum;
 
     static discriminator: string | undefined = undefined;
 
@@ -30,9 +30,9 @@ export class CreateGroupRequest {
             "type": "string"
         },
         {
-            "name": "access",
-            "baseName": "access",
-            "type": "string"
+            "name": "joinPolicy",
+            "baseName": "joinPolicy",
+            "type": "CreateGroupRequest.JoinPolicyEnum"
         }    ];
 
     static getAttributeTypeMap() {
@@ -40,3 +40,10 @@ export class CreateGroupRequest {
     }
 }
 
+export namespace CreateGroupRequest {
+    export enum JoinPolicyEnum {
+        INVITEONLY = <any> 'INVITE_ONLY',
+        REQUEST = <any> 'REQUEST',
+        PUBLIC = <any> 'PUBLIC'
+    }
+}

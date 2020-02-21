@@ -1,7 +1,7 @@
 export declare class CreateGroupRequest {
     'name'?: string;
     'description'?: string;
-    'access'?: string;
+    'joinPolicy'?: CreateGroupRequest.JoinPolicyEnum;
     static discriminator: string | undefined;
     static attributeTypeMap: Array<{
         name: string;
@@ -13,4 +13,11 @@ export declare class CreateGroupRequest {
         baseName: string;
         type: string;
     }[];
+}
+export declare namespace CreateGroupRequest {
+    enum JoinPolicyEnum {
+        INVITEONLY,
+        REQUEST,
+        PUBLIC
+    }
 }
