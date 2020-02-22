@@ -17,16 +17,16 @@ if not os.path.exists("src/node"):
 if not os.path.exists("src/axios"):
     os.mkdir("src/axios")
 
-subprocess.call(["java",
-                 "-Dmodels",
-                 "-DmodelDocs=false",
-                 "-DmodelTests=false",
-                 "-jar", os.path.join(currentFilePath, "openapi-codegen-cli.jar"),
-                 "generate",
-                 "-i", "openapi.yaml",
-                 "-g", "typescript-node",
-                 "-o", os.path.join(currentFilePath, "src/node"),
-                 "--skip-validate-spec"])
+# subprocess.call(["java",
+#                  "-Dmodels",
+#                  "-DmodelDocs=false",
+#                  "-DmodelTests=false",
+#                  "-jar", os.path.join(currentFilePath, "openapi-codegen-cli.jar"),
+#                  "generate",
+#                  "-i", "openapi.yaml",
+#                  "-g", "typescript-node",
+#                  "-o", os.path.join(currentFilePath, "src/node"),
+#                  "--skip-validate-spec"])
 
 subprocess.call(["java",
                  "-DapiDocs=false",
@@ -38,11 +38,13 @@ subprocess.call(["java",
                  "-o", os.path.join(currentFilePath, "src/axios/"),
                  "--skip-validate-spec"])
 
-with open(os.path.join(currentFilePath, './src/index.ts'), 'w+') as indexFile:
-    indexFile.truncate(0)
-    indexFile.write("import * as axiosApi from './axios/api';\n")
-    indexFile.write("export const AxiosApi = axiosApi;\n")
-    for modelFile in os.listdir(os.path.join(currentFilePath, './src/node/model')):
-        indexFile.write("export * from './node/model/"+modelFile[0:len(modelFile)-3]+"';\n")
+open(os.path.join(currentFilePath, './src/index.ts'), 'w+')
+
+# with open(os.path.join(currentFilePath, './src/index.ts'), 'w+') as indexFile:
+#     indexFile.truncate(0)
+#     indexFile.write("import * as axiosApi from './axios/api';\n")
+#     indexFile.write("export const AxiosApi = axiosApi;\n")
+#     for modelFile in os.listdir(os.path.join(currentFilePath, './src/node/model')):
+#         indexFile.write("export * from './node/model/"+modelFile[0:len(modelFile)-3]+"';\n")
 
 subprocess.call(["git", "add", os.path.join(currentFilePath, "src")])
