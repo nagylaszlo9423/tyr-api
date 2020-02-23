@@ -40,13 +40,8 @@ export interface GroupRequest {
 export interface GroupResponse {
     name: string;
     description: string;
-    joinPolicy?: GroupResponseJoinPolicyEnum;
+    joinPolicy?: GroupJoinPolicy;
     owner: string;
-}
-export declare enum GroupResponseJoinPolicyEnum {
-    INVITEONLY = "INVITE_ONLY",
-    REQUEST = "REQUEST",
-    PUBLIC = "PUBLIC"
 }
 export interface LineStringDto {
     type: string;

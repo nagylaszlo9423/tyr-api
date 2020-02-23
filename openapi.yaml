@@ -574,11 +574,7 @@ components:
         description:
           type: string
         joinPolicy:
-          type: string
-          enum:
-            - INVITE_ONLY
-            - REQUEST
-            - PUBLIC
+          $ref: '#/components/schemas/GroupJoinPolicy'
         owner:
           type: string
       required:

@@ -201,10 +201,10 @@ export interface GroupResponse {
     description: string;
     /**
      * 
-     * @type {string}
+     * @type {GroupJoinPolicy}
      * @memberof GroupResponse
      */
-    joinPolicy?: GroupResponseJoinPolicyEnum;
+    joinPolicy?: GroupJoinPolicy;
     /**
      * 
      * @type {string}
@@ -212,17 +212,6 @@ export interface GroupResponse {
      */
     owner: string;
 }
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum GroupResponseJoinPolicyEnum {
-    INVITEONLY = 'INVITE_ONLY',
-    REQUEST = 'REQUEST',
-    PUBLIC = 'PUBLIC'
-}
-
 /**
  * 
  * @export
