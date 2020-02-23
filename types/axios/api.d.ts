@@ -7,16 +7,6 @@ export interface AuditDto {
     modifiedBy?: string;
     modifiedAt?: string;
 }
-export interface CreateGroupRequest {
-    name?: string;
-    description?: string;
-    joinPolicy?: CreateGroupRequestJoinPolicyEnum;
-}
-export declare enum CreateGroupRequestJoinPolicyEnum {
-    INVITEONLY = "INVITE_ONLY",
-    REQUEST = "REQUEST",
-    PUBLIC = "PUBLIC"
-}
 export interface CreateRouteRequest {
     title?: string;
     description?: string;
@@ -29,6 +19,11 @@ export interface ErrorResponse {
     cause: string;
     message?: string;
 }
+export declare enum GroupJoinPolicy {
+    INVITEONLY = "INVITE_ONLY",
+    REQUEST = "REQUEST",
+    PUBLIC = "PUBLIC"
+}
 export interface GroupPageResponse {
     page: number;
     size: number;
@@ -36,6 +31,11 @@ export interface GroupPageResponse {
 }
 export interface GroupPageResponseAllOf {
     items?: Array<GroupResponse>;
+}
+export interface GroupRequest {
+    name?: string;
+    description?: string;
+    joinPolicy?: GroupJoinPolicy;
 }
 export interface GroupResponse {
     name: string;
@@ -95,16 +95,6 @@ export interface TokenResponse {
     refreshToken: string;
     refreshTokenExpiration: string;
 }
-export interface UpdateGroupRequest {
-    name?: string;
-    description?: string;
-    joinPolicy?: UpdateGroupRequestJoinPolicyEnum;
-}
-export declare enum UpdateGroupRequestJoinPolicyEnum {
-    INVITEONLY = "INVITE_ONLY",
-    REQUEST = "REQUEST",
-    PUBLIC = "PUBLIC"
-}
 export interface UpdateRouteRequest {
     title?: string;
     description?: string;
@@ -123,40 +113,40 @@ export declare class DefaultApi extends BaseAPI {
     postOauthLogoutAll(logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void>;
 }
 export declare const GroupApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
-    createGroup(createGroupRequest?: CreateGroupRequest | undefined, options?: any): RequestArgs;
+    createGroup(groupRequest?: GroupRequest | undefined, options?: any): RequestArgs;
     findById(groupId: string, options?: any): RequestArgs;
     getGroupsPaged(page?: number | undefined, size?: number | undefined, options?: any): RequestArgs;
     groupGroupIdDelete(groupId: string, options?: any): RequestArgs;
     joinGroup(groupId: string, options?: any): RequestArgs;
     leaveGroup(groupId: string, options?: any): RequestArgs;
-    updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest | undefined, options?: any): RequestArgs;
+    updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): RequestArgs;
 };
 export declare const GroupApiFp: (configuration?: Configuration | undefined) => {
-    createGroup(createGroupRequest?: CreateGroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
+    createGroup(groupRequest?: GroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
     findById(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupResponse>;
     getGroupsPaged(page?: number | undefined, size?: number | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-    updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
 };
 export declare const GroupApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
-    createGroup(createGroupRequest?: CreateGroupRequest | undefined, options?: any): AxiosPromise<string>;
+    createGroup(groupRequest?: GroupRequest | undefined, options?: any): AxiosPromise<string>;
     findById(groupId: string, options?: any): AxiosPromise<GroupResponse>;
     getGroupsPaged(page?: number | undefined, size?: number | undefined, options?: any): AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): AxiosPromise<void>;
-    updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest | undefined, options?: any): AxiosPromise<void>;
+    updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): AxiosPromise<void>;
 };
 export declare class GroupApi extends BaseAPI {
-    createGroup(createGroupRequest?: CreateGroupRequest, options?: any): AxiosPromise<string>;
+    createGroup(groupRequest?: GroupRequest, options?: any): AxiosPromise<string>;
     findById(groupId: string, options?: any): AxiosPromise<GroupResponse>;
     getGroupsPaged(page?: number, size?: number, options?: any): AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): AxiosPromise<void>;
-    updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: any): AxiosPromise<void>;
+    updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): AxiosPromise<void>;
 }
 export declare const OauthApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): RequestArgs;

@@ -53,42 +53,6 @@ export interface AuditDto {
 /**
  * 
  * @export
- * @interface CreateGroupRequest
- */
-export interface CreateGroupRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateGroupRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateGroupRequest
-     */
-    description?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateGroupRequest
-     */
-    joinPolicy?: CreateGroupRequestJoinPolicyEnum;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum CreateGroupRequestJoinPolicyEnum {
-    INVITEONLY = 'INVITE_ONLY',
-    REQUEST = 'REQUEST',
-    PUBLIC = 'PUBLIC'
-}
-
-/**
- * 
- * @export
  * @interface CreateRouteRequest
  */
 export interface CreateRouteRequest {
@@ -146,6 +110,17 @@ export interface ErrorResponse {
 /**
  * 
  * @export
+ * @enum {string}
+ */
+export enum GroupJoinPolicy {
+    INVITEONLY = 'INVITE_ONLY',
+    REQUEST = 'REQUEST',
+    PUBLIC = 'PUBLIC'
+}
+
+/**
+ * 
+ * @export
  * @interface GroupPageResponse
  */
 export interface GroupPageResponse {
@@ -180,6 +155,31 @@ export interface GroupPageResponseAllOf {
      * @memberof GroupPageResponseAllOf
      */
     items?: Array<GroupResponse>;
+}
+/**
+ * 
+ * @export
+ * @interface GroupRequest
+ */
+export interface GroupRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupRequest
+     */
+    description?: string;
+    /**
+     * 
+     * @type {GroupJoinPolicy}
+     * @memberof GroupRequest
+     */
+    joinPolicy?: GroupJoinPolicy;
 }
 /**
  * 
@@ -458,42 +458,6 @@ export interface TokenResponse {
 /**
  * 
  * @export
- * @interface UpdateGroupRequest
- */
-export interface UpdateGroupRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateGroupRequest
-     */
-    name?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateGroupRequest
-     */
-    description?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateGroupRequest
-     */
-    joinPolicy?: UpdateGroupRequestJoinPolicyEnum;
-}
-
-/**
-    * @export
-    * @enum {string}
-    */
-export enum UpdateGroupRequestJoinPolicyEnum {
-    INVITEONLY = 'INVITE_ONLY',
-    REQUEST = 'REQUEST',
-    PUBLIC = 'PUBLIC'
-}
-
-/**
- * 
- * @export
  * @interface UpdateRouteRequest
  */
 export interface UpdateRouteRequest {
@@ -629,11 +593,11 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary createGroup
-         * @param {CreateGroupRequest} [createGroupRequest] 
+         * @param {GroupRequest} [groupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createGroup(createGroupRequest?: CreateGroupRequest, options: any = {}): RequestArgs {
+        createGroup(groupRequest?: GroupRequest, options: any = {}): RequestArgs {
             const localVarPath = `/group`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -652,8 +616,8 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-            const needsSerialization = (typeof createGroupRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(createGroupRequest !== undefined ? createGroupRequest : {}) : (createGroupRequest || "");
+            const needsSerialization = (typeof groupRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(groupRequest !== undefined ? groupRequest : {}) : (groupRequest || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -842,11 +806,11 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
          * 
          * @summary updateGroup
          * @param {string} groupId 
-         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {GroupRequest} [groupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options: any = {}): RequestArgs {
+        updateGroup(groupId: string, groupRequest?: GroupRequest, options: any = {}): RequestArgs {
             // verify required parameter 'groupId' is not null or undefined
             if (groupId === null || groupId === undefined) {
                 throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling updateGroup.');
@@ -870,8 +834,8 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-            const needsSerialization = (typeof updateGroupRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(updateGroupRequest !== undefined ? updateGroupRequest : {}) : (updateGroupRequest || "");
+            const needsSerialization = (typeof groupRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(groupRequest !== undefined ? groupRequest : {}) : (groupRequest || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -890,12 +854,12 @@ export const GroupApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary createGroup
-         * @param {CreateGroupRequest} [createGroupRequest] 
+         * @param {GroupRequest} [groupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createGroup(createGroupRequest?: CreateGroupRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string> {
-            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).createGroup(createGroupRequest, options);
+        createGroup(groupRequest?: GroupRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).createGroup(groupRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -975,12 +939,12 @@ export const GroupApiFp = function(configuration?: Configuration) {
          * 
          * @summary updateGroup
          * @param {string} groupId 
-         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {GroupRequest} [groupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).updateGroup(groupId, updateGroupRequest, options);
+        updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).updateGroup(groupId, groupRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -998,12 +962,12 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @summary createGroup
-         * @param {CreateGroupRequest} [createGroupRequest] 
+         * @param {GroupRequest} [groupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createGroup(createGroupRequest?: CreateGroupRequest, options?: any) {
-            return GroupApiFp(configuration).createGroup(createGroupRequest, options)(axios, basePath);
+        createGroup(groupRequest?: GroupRequest, options?: any) {
+            return GroupApiFp(configuration).createGroup(groupRequest, options)(axios, basePath);
         },
         /**
          * 
@@ -1059,12 +1023,12 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * 
          * @summary updateGroup
          * @param {string} groupId 
-         * @param {UpdateGroupRequest} [updateGroupRequest] 
+         * @param {GroupRequest} [groupRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: any) {
-            return GroupApiFp(configuration).updateGroup(groupId, updateGroupRequest, options)(axios, basePath);
+        updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any) {
+            return GroupApiFp(configuration).updateGroup(groupId, groupRequest, options)(axios, basePath);
         },
     };
 };
@@ -1079,13 +1043,13 @@ export class GroupApi extends BaseAPI {
     /**
      * 
      * @summary createGroup
-     * @param {CreateGroupRequest} [createGroupRequest] 
+     * @param {GroupRequest} [groupRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GroupApi
      */
-    public createGroup(createGroupRequest?: CreateGroupRequest, options?: any) {
-        return GroupApiFp(this.configuration).createGroup(createGroupRequest, options)(this.axios, this.basePath);
+    public createGroup(groupRequest?: GroupRequest, options?: any) {
+        return GroupApiFp(this.configuration).createGroup(groupRequest, options)(this.axios, this.basePath);
     }
 
     /**
@@ -1152,13 +1116,13 @@ export class GroupApi extends BaseAPI {
      * 
      * @summary updateGroup
      * @param {string} groupId 
-     * @param {UpdateGroupRequest} [updateGroupRequest] 
+     * @param {GroupRequest} [groupRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GroupApi
      */
-    public updateGroup(groupId: string, updateGroupRequest?: UpdateGroupRequest, options?: any) {
-        return GroupApiFp(this.configuration).updateGroup(groupId, updateGroupRequest, options)(this.axios, this.basePath);
+    public updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any) {
+        return GroupApiFp(this.configuration).updateGroup(groupId, groupRequest, options)(this.axios, this.basePath);
     }
 
 }

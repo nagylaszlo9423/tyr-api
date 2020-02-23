@@ -245,7 +245,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateGroupRequest'
+              $ref: '#/components/schemas/GroupRequest'
       tags:
         - group
   '/group/{groupId}':
@@ -290,7 +290,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateGroupRequest'
+              $ref: '#/components/schemas/GroupRequest'
       tags:
         - group
     delete:
@@ -555,18 +555,7 @@ components:
       required:
         - type
         - coordinates
-    CreateGroupRequest:
-      title: CreateGroupRequest
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        joinPolicy:
-          type: string
-          enum: ['INVITE_ONLY', 'REQUEST', 'PUBLIC']
-    UpdateGroupRequest:
+    GroupRequest:
       title: UpdateGroupRequest
       type: object
       properties:
@@ -575,8 +564,7 @@ components:
         description:
           type: string
         joinPolicy:
-          type: string
-          enum: ['INVITE_ONLY', 'REQUEST', 'PUBLIC']
+          $ref: '#/components/schemas/GroupJoinPolicy'
     GroupResponse:
       title: GroupResponse
       type: object
@@ -587,7 +575,10 @@ components:
           type: string
         joinPolicy:
           type: string
-          enum: ['INVITE_ONLY', 'REQUEST', 'PUBLIC']
+          enum:
+            - INVITE_ONLY
+            - REQUEST
+            - PUBLIC
         owner:
           type: string
       required:
@@ -649,3 +640,10 @@ components:
       properties:
         accessToken:
           type: string
+    GroupJoinPolicy:
+      title: GroupJoinPolicy
+      type: string
+      enum: 
+        - INVITE_ONLY
+        - REQUEST
+        - PUBLIC
