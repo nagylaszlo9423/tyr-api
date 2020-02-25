@@ -1,2 +1,2 @@
-import * as rxjsTyrApi from './rxjs/apis';
-export default rxjsTyrApi;
+import * as axiosApi from './axios/api';
+export declare const AxiosApi: typeof axiosApi;
