@@ -31,7 +31,7 @@ paths:
             schema:
               $ref: '#/components/schemas/LoginRequest'
         description: LoginRequest
-      operationId: login
+      operationId: loginOp
   /oauth/register:
     post:
       summary: ''
@@ -50,7 +50,7 @@ paths:
             schema:
               $ref: '#/components/schemas/RegistrationRequest'
         description: RegistrationRequest
-      operationId: register
+      operationId: registerOp
   /oauth/authorize:
     post:
       summary: ''
@@ -73,7 +73,7 @@ paths:
             type: string
           in: query
           name: redirect_uri
-      operationId: authorize
+      operationId: authorizeOp
   /oauth/logout:
     post:
       summary: ''
@@ -91,7 +91,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LogoutRequest'
-      operationId: logout
+      operationId: logoutOp
   /route:
     post:
       summary: ''
@@ -104,7 +104,7 @@ paths:
             application/json:
               schema:
                 type: string
-      operationId: createRoute
+      operationId: createRouteOp
       requestBody:
         content:
           application/json:
@@ -129,7 +129,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      operationId: getRouteById
+      operationId: getRouteByIdOp
     put:
       summary: ''
       tags:
@@ -148,7 +148,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateRouteRequest'
-      operationId: updateRouteById
+      operationId: updateRouteByIdOp
     delete:
       summary: ''
       tags:
@@ -193,7 +193,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      operationId: shareInGroup
+      operationId: shareInGroupOp
       tags:
         - route
   /oauth/token:
@@ -227,7 +227,7 @@ paths:
             type: string
           in: query
           name: refresh_token
-      operationId: token
+      operationId: tokenOp
       tags:
         - oauth
   /group:
@@ -240,7 +240,7 @@ paths:
             application/json:
               schema:
                 type: string
-      operationId: createGroup
+      operationId: createGroupOp
       requestBody:
         content:
           application/json:
@@ -273,7 +273,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       description: ''
-      operationId: findById
+      operationId: findByIdOp
     put:
       summary: updateGroup
       responses:
@@ -285,7 +285,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      operationId: updateGroup
+      operationId: updateGroupOp
       requestBody:
         content:
           application/json:
@@ -331,7 +331,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
       description: ''
-      operationId: joinGroup
+      operationId: joinGroupOp
       tags:
         - group
   '/group/{groupId}/leave':
@@ -358,7 +358,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      operationId: leaveGroup
+      operationId: leaveGroupOp
       tags:
         - group
   /group/page:
@@ -376,7 +376,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupPageResponse'
-      operationId: getGroupsPaged
+      operationId: getGroupsPagedOp
   /route/most-popular:
     get:
       summary: mostPopularRoutes
@@ -391,7 +391,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RouteResponse'
-      operationId: getMostPopularRoutes
+      operationId: getMostPopularRoutesOp
   /oauth/logout/all:
     post:
       summary: ''

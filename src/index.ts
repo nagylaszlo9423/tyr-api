@@ -1,2 +1,2 @@
-import * as axiosApi from './axios/api';
-export const AxiosApi = axiosApi;
+import * as rxjsTyrApi from './rxjs/apis';
+export const RxjsTyrApi = rxjsTyrApi;

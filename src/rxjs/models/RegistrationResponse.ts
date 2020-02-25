@@ -11,6 +11,14 @@
  * Do not edit the class manually.
  */
 
-
-export * from "./api";
-export * from "./configuration";
+/**
+ * @export
+ * @interface RegistrationResponse
+ */
+export interface RegistrationResponse {
+    /**
+     * @type {string}
+     * @memberof RegistrationResponse
+     */
+    userId: string;
+}

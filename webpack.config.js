@@ -21,7 +21,10 @@ module.exports = {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader?transpileOnly=false',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        options: {
+          transpileOnly: true
+        }
       }
     ]
   },
