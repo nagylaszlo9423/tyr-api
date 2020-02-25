@@ -53,7 +53,7 @@ create_index_file("./", "./src/rxjs/apis")
 with open(os.path.join(currentFilePath, './src/index.ts'), 'w+') as indexFile:
     indexFile.truncate(0)
     indexFile.write("import * as rxjsTyrApi from './rxjs/apis';\n")
-    indexFile.write("export const RxjsTyrApi = rxjsTyrApi;\n")
+    indexFile.write("export default rxjsTyrApi;\n")
 #     for modelFile in os.listdir(os.path.join(currentFilePath, './src/node/model')):
 #         indexFile.write("export * from './node/model/"+modelFile[0:len(modelFile)-3]+"';\n")
 
