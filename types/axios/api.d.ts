@@ -78,6 +78,7 @@ export interface RouteRequest {
     path?: LineStringDto;
 }
 export interface RouteResponse {
+    id?: string;
     title: string;
     description: string;
     path: LineStringDto;

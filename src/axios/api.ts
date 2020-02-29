@@ -387,6 +387,12 @@ export interface RouteResponse {
      * @type {string}
      * @memberof RouteResponse
      */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RouteResponse
+     */
     title: string;
     /**
      * 
