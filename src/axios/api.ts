@@ -167,6 +167,12 @@ export interface GroupResponse {
      * @type {string}
      * @memberof GroupResponse
      */
+    id: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupResponse
+     */
     name: string;
     /**
      * 

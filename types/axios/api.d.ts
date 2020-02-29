@@ -33,6 +33,7 @@ export interface GroupRequest {
     joinPolicy?: GroupJoinPolicy;
 }
 export interface GroupResponse {
+    id: string;
     name: string;
     description: string;
     joinPolicy?: GroupJoinPolicy;
