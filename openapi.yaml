@@ -109,7 +109,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateRouteRequest'
+              $ref: '#/components/schemas/RouteRequest'
         description: ''
   '/route/{id}':
     get:
@@ -147,7 +147,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateRouteRequest'
+              $ref: '#/components/schemas/RouteRequest'
       operationId: updateRouteById
     delete:
       summary: ''
@@ -440,18 +440,8 @@ components:
       required:
         - code
         - redirectUri
-    CreateRouteRequest:
-      title: CreateRouteRequest
-      type: object
-      properties:
-        title:
-          type: string
-        description:
-          type: string
-        path:
-          $ref: '#/components/schemas/LineStringDto'
-    UpdateRouteRequest:
-      title: UpdateRouteRequest
+    RouteRequest:
+      title: RouteRequest
       type: object
       properties:
         title:

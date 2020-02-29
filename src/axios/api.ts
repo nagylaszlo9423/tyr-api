@@ -53,31 +53,6 @@ export interface AuditDto {
 /**
  * 
  * @export
- * @interface CreateRouteRequest
- */
-export interface CreateRouteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRouteRequest
-     */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRouteRequest
-     */
-    description?: string;
-    /**
-     * 
-     * @type {LineStringDto}
-     * @memberof CreateRouteRequest
-     */
-    path?: LineStringDto;
-}
-/**
- * 
- * @export
  * @interface CreatedRespone
  */
 export interface CreatedRespone {
@@ -379,6 +354,31 @@ export interface ResourceItemResponse {
 /**
  * 
  * @export
+ * @interface RouteRequest
+ */
+export interface RouteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof RouteRequest
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RouteRequest
+     */
+    description?: string;
+    /**
+     * 
+     * @type {LineStringDto}
+     * @memberof RouteRequest
+     */
+    path?: LineStringDto;
+}
+/**
+ * 
+ * @export
  * @interface RouteResponse
  */
 export interface RouteResponse {
@@ -443,31 +443,6 @@ export interface TokenResponse {
      * @memberof TokenResponse
      */
     refreshTokenExpiration: string;
-}
-/**
- * 
- * @export
- * @interface UpdateRouteRequest
- */
-export interface UpdateRouteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRouteRequest
-     */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRouteRequest
-     */
-    description?: string;
-    /**
-     * 
-     * @type {LineStringDto}
-     * @memberof UpdateRouteRequest
-     */
-    path?: LineStringDto;
 }
 
 /**
@@ -1540,11 +1515,11 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * 
-         * @param {CreateRouteRequest} [createRouteRequest] 
+         * @param {RouteRequest} [routeRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoute(createRouteRequest?: CreateRouteRequest, options: any = {}): RequestArgs {
+        createRoute(routeRequest?: RouteRequest, options: any = {}): RequestArgs {
             const localVarPath = `/route`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1563,8 +1538,8 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-            const needsSerialization = (typeof createRouteRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(createRouteRequest !== undefined ? createRouteRequest : {}) : (createRouteRequest || "");
+            const needsSerialization = (typeof routeRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(routeRequest !== undefined ? routeRequest : {}) : (routeRequest || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1712,11 +1687,11 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @param {string} id 
-         * @param {UpdateRouteRequest} [updateRouteRequest] 
+         * @param {RouteRequest} [routeRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRouteById(id: string, updateRouteRequest?: UpdateRouteRequest, options: any = {}): RequestArgs {
+        updateRouteById(id: string, routeRequest?: RouteRequest, options: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
                 throw new RequiredError('id','Required parameter id was null or undefined when calling updateRouteById.');
@@ -1740,8 +1715,8 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-            const needsSerialization = (typeof updateRouteRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(updateRouteRequest !== undefined ? updateRouteRequest : {}) : (updateRouteRequest || "");
+            const needsSerialization = (typeof routeRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(routeRequest !== undefined ? routeRequest : {}) : (routeRequest || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1759,12 +1734,12 @@ export const RouteApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {CreateRouteRequest} [createRouteRequest] 
+         * @param {RouteRequest} [routeRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoute(createRouteRequest?: CreateRouteRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).createRoute(createRouteRequest, options);
+        createRoute(routeRequest?: RouteRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string> {
+            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).createRoute(routeRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1827,12 +1802,12 @@ export const RouteApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
-         * @param {UpdateRouteRequest} [updateRouteRequest] 
+         * @param {RouteRequest} [routeRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRouteById(id: string, updateRouteRequest?: UpdateRouteRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).updateRouteById(id, updateRouteRequest, options);
+        updateRouteById(id: string, routeRequest?: RouteRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).updateRouteById(id, routeRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1849,12 +1824,12 @@ export const RouteApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * 
-         * @param {CreateRouteRequest} [createRouteRequest] 
+         * @param {RouteRequest} [routeRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoute(createRouteRequest?: CreateRouteRequest, options?: any): AxiosPromise<string> {
-            return RouteApiFp(configuration).createRoute(createRouteRequest, options)(axios, basePath);
+        createRoute(routeRequest?: RouteRequest, options?: any): AxiosPromise<string> {
+            return RouteApiFp(configuration).createRoute(routeRequest, options)(axios, basePath);
         },
         /**
          * 
@@ -1897,12 +1872,12 @@ export const RouteApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @param {string} id 
-         * @param {UpdateRouteRequest} [updateRouteRequest] 
+         * @param {RouteRequest} [routeRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRouteById(id: string, updateRouteRequest?: UpdateRouteRequest, options?: any): AxiosPromise<void> {
-            return RouteApiFp(configuration).updateRouteById(id, updateRouteRequest, options)(axios, basePath);
+        updateRouteById(id: string, routeRequest?: RouteRequest, options?: any): AxiosPromise<void> {
+            return RouteApiFp(configuration).updateRouteById(id, routeRequest, options)(axios, basePath);
         },
     };
 };
@@ -1916,13 +1891,13 @@ export const RouteApiFactory = function (configuration?: Configuration, basePath
 export class RouteApi extends BaseAPI {
     /**
      * 
-     * @param {CreateRouteRequest} [createRouteRequest] 
+     * @param {RouteRequest} [routeRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RouteApi
      */
-    public createRoute(createRouteRequest?: CreateRouteRequest, options?: any) {
-        return RouteApiFp(this.configuration).createRoute(createRouteRequest, options)(this.axios, this.basePath);
+    public createRoute(routeRequest?: RouteRequest, options?: any) {
+        return RouteApiFp(this.configuration).createRoute(routeRequest, options)(this.axios, this.basePath);
     }
 
     /**
@@ -1974,13 +1949,13 @@ export class RouteApi extends BaseAPI {
     /**
      * 
      * @param {string} id 
-     * @param {UpdateRouteRequest} [updateRouteRequest] 
+     * @param {RouteRequest} [routeRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RouteApi
      */
-    public updateRouteById(id: string, updateRouteRequest?: UpdateRouteRequest, options?: any) {
-        return RouteApiFp(this.configuration).updateRouteById(id, updateRouteRequest, options)(this.axios, this.basePath);
+    public updateRouteById(id: string, routeRequest?: RouteRequest, options?: any) {
+        return RouteApiFp(this.configuration).updateRouteById(id, routeRequest, options)(this.axios, this.basePath);
     }
 
 }
