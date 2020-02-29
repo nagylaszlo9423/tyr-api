@@ -1589,11 +1589,17 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @summary mostPopularRoutes
+         * @param {string} filter 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMostPopularRoutes(options: any = {}): RequestArgs {
-            const localVarPath = `/route/most-popular`;
+        getMostPopularRoutes(filter: string, options: any = {}): RequestArgs {
+            // verify required parameter 'filter' is not null or undefined
+            if (filter === null || filter === undefined) {
+                throw new RequiredError('filter','Required parameter filter was null or undefined when calling getMostPopularRoutes.');
+            }
+            const localVarPath = `/route/{filter}`
+                .replace(`{${"filter"}}`, encodeURIComponent(String(filter)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -1767,11 +1773,12 @@ export const RouteApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary mostPopularRoutes
+         * @param {string} filter 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMostPopularRoutes(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RouteResponse>> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).getMostPopularRoutes(options);
+        getMostPopularRoutes(filter: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RouteResponse>> {
+            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).getMostPopularRoutes(filter, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1849,11 +1856,12 @@ export const RouteApiFactory = function (configuration?: Configuration, basePath
         /**
          * 
          * @summary mostPopularRoutes
+         * @param {string} filter 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMostPopularRoutes(options?: any): AxiosPromise<Array<RouteResponse>> {
-            return RouteApiFp(configuration).getMostPopularRoutes(options)(axios, basePath);
+        getMostPopularRoutes(filter: string, options?: any): AxiosPromise<Array<RouteResponse>> {
+            return RouteApiFp(configuration).getMostPopularRoutes(filter, options)(axios, basePath);
         },
         /**
          * 
@@ -1920,12 +1928,13 @@ export class RouteApi extends BaseAPI {
     /**
      * 
      * @summary mostPopularRoutes
+     * @param {string} filter 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RouteApi
      */
-    public getMostPopularRoutes(options?: any) {
-        return RouteApiFp(this.configuration).getMostPopularRoutes(options)(this.axios, this.basePath);
+    public getMostPopularRoutes(filter: string, options?: any) {
+        return RouteApiFp(this.configuration).getMostPopularRoutes(filter, options)(this.axios, this.basePath);
     }
 
     /**

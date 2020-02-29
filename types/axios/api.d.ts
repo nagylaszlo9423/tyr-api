@@ -170,7 +170,7 @@ export declare class OauthApi extends BaseAPI {
 export declare const RouteApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createRoute(routeRequest?: RouteRequest | undefined, options?: any): RequestArgs;
     deleteRouteById(id: string, options?: any): RequestArgs;
-    getMostPopularRoutes(options?: any): RequestArgs;
+    getMostPopularRoutes(filter: string, options?: any): RequestArgs;
     getRouteById(id: string, options?: any): RequestArgs;
     shareInGroup(routeId: string, groupId: string, options?: any): RequestArgs;
     updateRouteById(id: string, routeRequest?: RouteRequest | undefined, options?: any): RequestArgs;
@@ -178,7 +178,7 @@ export declare const RouteApiAxiosParamCreator: (configuration?: Configuration |
 export declare const RouteApiFp: (configuration?: Configuration | undefined) => {
     createRoute(routeRequest?: RouteRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
     deleteRouteById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-    getMostPopularRoutes(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RouteResponse[]>;
+    getMostPopularRoutes(filter: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RouteResponse[]>;
     getRouteById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RouteResponse>;
     shareInGroup(routeId: string, groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     updateRouteById(id: string, routeRequest?: RouteRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
@@ -186,7 +186,7 @@ export declare const RouteApiFp: (configuration?: Configuration | undefined) => 
 export declare const RouteApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     createRoute(routeRequest?: RouteRequest | undefined, options?: any): AxiosPromise<string>;
     deleteRouteById(id: string, options?: any): AxiosPromise<void>;
-    getMostPopularRoutes(options?: any): AxiosPromise<RouteResponse[]>;
+    getMostPopularRoutes(filter: string, options?: any): AxiosPromise<RouteResponse[]>;
     getRouteById(id: string, options?: any): AxiosPromise<RouteResponse>;
     shareInGroup(routeId: string, groupId: string, options?: any): AxiosPromise<void>;
     updateRouteById(id: string, routeRequest?: RouteRequest | undefined, options?: any): AxiosPromise<void>;
@@ -194,7 +194,7 @@ export declare const RouteApiFactory: (configuration?: Configuration | undefined
 export declare class RouteApi extends BaseAPI {
     createRoute(routeRequest?: RouteRequest, options?: any): AxiosPromise<string>;
     deleteRouteById(id: string, options?: any): AxiosPromise<void>;
-    getMostPopularRoutes(options?: any): AxiosPromise<RouteResponse[]>;
+    getMostPopularRoutes(filter: string, options?: any): AxiosPromise<RouteResponse[]>;
     getRouteById(id: string, options?: any): AxiosPromise<RouteResponse>;
     shareInGroup(routeId: string, groupId: string, options?: any): AxiosPromise<void>;
     updateRouteById(id: string, routeRequest?: RouteRequest, options?: any): AxiosPromise<void>;

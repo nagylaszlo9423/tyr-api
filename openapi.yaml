@@ -377,11 +377,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/GroupPageResponse'
       operationId: getGroupsPaged
-  /route/most-popular:
+  /route/{filter}:
     get:
       summary: mostPopularRoutes
       tags:
         - route
+      parameters:
+        - name: filter
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: OK
