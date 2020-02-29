@@ -377,7 +377,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/GroupPageResponse'
       operationId: getGroupsPaged
-  /route/{filter}:
+  /route/list/{filter}:
     get:
       summary: mostPopularRoutes
       tags:

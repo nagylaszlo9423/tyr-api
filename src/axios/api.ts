@@ -1598,7 +1598,7 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
             if (filter === null || filter === undefined) {
                 throw new RequiredError('filter','Required parameter filter was null or undefined when calling getMostPopularRoutes.');
             }
-            const localVarPath = `/route/{filter}`
+            const localVarPath = `/route/list/{filter}`
                 .replace(`{${"filter"}}`, encodeURIComponent(String(filter)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
