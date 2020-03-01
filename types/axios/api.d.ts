@@ -61,6 +61,20 @@ export interface PageResponse {
     size: number;
     items: Array<object>;
 }
+export interface PathRequest {
+    title?: string;
+    description?: string;
+    path?: LineStringDto;
+}
+export interface PathResponse {
+    id?: string;
+    title: string;
+    description: string;
+    path: LineStringDto;
+    audit: AuditDto;
+    images: Array<ResourceItemResponse>;
+    isEditable?: boolean;
+}
 export interface RegistrationRequest {
     email: string;
     password: string;
@@ -72,20 +86,6 @@ export interface ResourceItemResponse {
     id: string;
     name: string;
     url: string;
-}
-export interface RouteRequest {
-    title?: string;
-    description?: string;
-    path?: LineStringDto;
-}
-export interface RouteResponse {
-    id?: string;
-    title: string;
-    description: string;
-    path: LineStringDto;
-    audit: AuditDto;
-    images: Array<ResourceItemResponse>;
-    isEditable?: boolean;
 }
 export interface TokenResponse {
     accessToken: string;
@@ -169,35 +169,35 @@ export declare class OauthApi extends BaseAPI {
     register(registrationRequest?: RegistrationRequest, options?: any): AxiosPromise<RegistrationResponse>;
     token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any): AxiosPromise<TokenResponse>;
 }
-export declare const RouteApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
-    createRoute(routeRequest?: RouteRequest | undefined, options?: any): RequestArgs;
-    deleteRouteById(id: string, options?: any): RequestArgs;
-    findByFilter(filter: string, options?: any): RequestArgs;
-    getRouteById(id: string, options?: any): RequestArgs;
-    shareInGroup(routeId: string, groupId: string, options?: any): RequestArgs;
-    updateRouteById(id: string, routeRequest?: RouteRequest | undefined, options?: any): RequestArgs;
+export declare const PathApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
+    createPath(pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
+    deletePathById(id: string, options?: any): RequestArgs;
+    getByFilter(filter: string, options?: any): RequestArgs;
+    getPathById(id: string, options?: any): RequestArgs;
+    shareInGroup(pathId: string, groupId: string, options?: any): RequestArgs;
+    updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
 };
-export declare const RouteApiFp: (configuration?: Configuration | undefined) => {
-    createRoute(routeRequest?: RouteRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
-    deleteRouteById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-    findByFilter(filter: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RouteResponse[]>;
-    getRouteById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RouteResponse>;
-    shareInGroup(routeId: string, groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-    updateRouteById(id: string, routeRequest?: RouteRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+export declare const PathApiFp: (configuration?: Configuration | undefined) => {
+    createPath(pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
+    deletePathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    getByFilter(filter: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse[]>;
+    getPathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse>;
+    shareInGroup(pathId: string, groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
 };
-export declare const RouteApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
-    createRoute(routeRequest?: RouteRequest | undefined, options?: any): AxiosPromise<string>;
-    deleteRouteById(id: string, options?: any): AxiosPromise<void>;
-    findByFilter(filter: string, options?: any): AxiosPromise<RouteResponse[]>;
-    getRouteById(id: string, options?: any): AxiosPromise<RouteResponse>;
-    shareInGroup(routeId: string, groupId: string, options?: any): AxiosPromise<void>;
-    updateRouteById(id: string, routeRequest?: RouteRequest | undefined, options?: any): AxiosPromise<void>;
+export declare const PathApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
+    createPath(pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<string>;
+    deletePathById(id: string, options?: any): AxiosPromise<void>;
+    getByFilter(filter: string, options?: any): AxiosPromise<PathResponse[]>;
+    getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
+    shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
+    updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<void>;
 };
-export declare class RouteApi extends BaseAPI {
-    createRoute(routeRequest?: RouteRequest, options?: any): AxiosPromise<string>;
-    deleteRouteById(id: string, options?: any): AxiosPromise<void>;
-    findByFilter(filter: string, options?: any): AxiosPromise<RouteResponse[]>;
-    getRouteById(id: string, options?: any): AxiosPromise<RouteResponse>;
-    shareInGroup(routeId: string, groupId: string, options?: any): AxiosPromise<void>;
-    updateRouteById(id: string, routeRequest?: RouteRequest, options?: any): AxiosPromise<void>;
+export declare class PathApi extends BaseAPI {
+    createPath(pathRequest?: PathRequest, options?: any): AxiosPromise<string>;
+    deletePathById(id: string, options?: any): AxiosPromise<void>;
+    getByFilter(filter: string, options?: any): AxiosPromise<PathResponse[]>;
+    getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
+    shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
+    updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
 }

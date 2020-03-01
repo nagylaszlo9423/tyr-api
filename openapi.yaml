@@ -6,7 +6,7 @@ info:
     name: tyr
 tags:
   - name: oauth
-  - name: route
+  - name: path
   - name: group
 servers:
   - url: 'http://localhost:3001'
@@ -92,11 +92,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/LogoutRequest'
       operationId: logout
-  /route:
+  /path:
     post:
       summary: ''
       tags:
-        - route
+        - path
       responses:
         '200':
           description: OK
@@ -104,36 +104,36 @@ paths:
             application/json:
               schema:
                 type: string
-      operationId: createRoute
+      operationId: createPath
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RouteRequest'
+              $ref: '#/components/schemas/PathRequest'
         description: ''
-  '/route/{id}':
+  '/path/{id}':
     get:
       summary: Your GET endpoint
       tags:
-        - route
+        - path
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RouteResponse'
+                $ref: '#/components/schemas/PathResponse'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      operationId: getRouteById
+      operationId: getPathById
     put:
       summary: ''
       tags:
-        - route
+        - path
       responses:
         '200':
           description: OK
@@ -147,12 +147,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RouteRequest'
-      operationId: updateRouteById
+              $ref: '#/components/schemas/PathRequest'
+      operationId: updatePathById
     delete:
       summary: ''
       tags:
-        - route
+        - path
       responses:
         '200':
           description: OK
@@ -162,16 +162,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      operationId: deleteRouteById
+      operationId: deletePathById
     parameters:
       - schema:
           type: string
         name: id
         in: path
         required: true
-  '/route/{routeId}/share-in-group/{groupId}':
+  '/path/{pathId}/share-in-group/{groupId}':
     parameters:
-      - name: routeId
+      - name: pathId
         in: path
         required: true
         schema:
@@ -195,7 +195,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
       operationId: shareInGroup
       tags:
-        - route
+        - path
   /oauth/token:
     post:
       summary: ''
@@ -377,11 +377,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/GroupPageResponse'
       operationId: getGroupsPaged
-  /route/list/{filter}:
+  /path/list/{filter}:
     get:
-      summary: findByFilter
+      summary: getByFilter
       tags:
-        - route
+        - path
       parameters:
         - name: filter
           in: path
@@ -396,8 +396,8 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/RouteResponse'
-      operationId: findByFilter
+                  $ref: '#/components/schemas/PathResponse'
+      operationId: getByFilter
   /oauth/logout/all:
     post:
       summary: ''
@@ -446,8 +446,8 @@ components:
       required:
         - code
         - redirectUri
-    RouteRequest:
-      title: RouteRequest
+    PathRequest:
+      title: PathRequest
       type: object
       properties:
         title:
@@ -466,8 +466,8 @@ components:
           type: string
       required:
         - cause
-    RouteResponse:
-      title: RouteResponse
+    PathResponse:
+      title: PathResponse
       type: object
       properties:
         id:

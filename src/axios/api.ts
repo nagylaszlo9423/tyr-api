@@ -303,6 +303,80 @@ export interface PageResponse {
 /**
  * 
  * @export
+ * @interface PathRequest
+ */
+export interface PathRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PathRequest
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathRequest
+     */
+    description?: string;
+    /**
+     * 
+     * @type {LineStringDto}
+     * @memberof PathRequest
+     */
+    path?: LineStringDto;
+}
+/**
+ * 
+ * @export
+ * @interface PathResponse
+ */
+export interface PathResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof PathResponse
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathResponse
+     */
+    title: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathResponse
+     */
+    description: string;
+    /**
+     * 
+     * @type {LineStringDto}
+     * @memberof PathResponse
+     */
+    path: LineStringDto;
+    /**
+     * 
+     * @type {AuditDto}
+     * @memberof PathResponse
+     */
+    audit: AuditDto;
+    /**
+     * 
+     * @type {Array<ResourceItemResponse>}
+     * @memberof PathResponse
+     */
+    images: Array<ResourceItemResponse>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PathResponse
+     */
+    isEditable?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface RegistrationRequest
  */
 export interface RegistrationRequest {
@@ -356,80 +430,6 @@ export interface ResourceItemResponse {
      * @memberof ResourceItemResponse
      */
     url: string;
-}
-/**
- * 
- * @export
- * @interface RouteRequest
- */
-export interface RouteRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof RouteRequest
-     */
-    title?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RouteRequest
-     */
-    description?: string;
-    /**
-     * 
-     * @type {LineStringDto}
-     * @memberof RouteRequest
-     */
-    path?: LineStringDto;
-}
-/**
- * 
- * @export
- * @interface RouteResponse
- */
-export interface RouteResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof RouteResponse
-     */
-    id?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RouteResponse
-     */
-    title: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RouteResponse
-     */
-    description: string;
-    /**
-     * 
-     * @type {LineStringDto}
-     * @memberof RouteResponse
-     */
-    path: LineStringDto;
-    /**
-     * 
-     * @type {AuditDto}
-     * @memberof RouteResponse
-     */
-    audit: AuditDto;
-    /**
-     * 
-     * @type {Array<ResourceItemResponse>}
-     * @memberof RouteResponse
-     */
-    images: Array<ResourceItemResponse>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RouteResponse
-     */
-    isEditable?: boolean;
 }
 /**
  * 
@@ -1526,19 +1526,19 @@ export class OauthApi extends BaseAPI {
 
 
 /**
- * RouteApi - axios parameter creator
+ * PathApi - axios parameter creator
  * @export
  */
-export const RouteApiAxiosParamCreator = function (configuration?: Configuration) {
+export const PathApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {RouteRequest} [routeRequest] 
+         * @param {PathRequest} [pathRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoute(routeRequest?: RouteRequest, options: any = {}): RequestArgs {
-            const localVarPath = `/route`;
+        createPath(pathRequest?: PathRequest, options: any = {}): RequestArgs {
+            const localVarPath = `/path`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {
@@ -1556,8 +1556,8 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-            const needsSerialization = (typeof routeRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(routeRequest !== undefined ? routeRequest : {}) : (routeRequest || "");
+            const needsSerialization = (typeof pathRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(pathRequest !== undefined ? pathRequest : {}) : (pathRequest || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1570,12 +1570,12 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRouteById(id: string, options: any = {}): RequestArgs {
+        deletePathById(id: string, options: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling deleteRouteById.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling deletePathById.');
             }
-            const localVarPath = `/route/{id}`
+            const localVarPath = `/path/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1600,17 +1600,17 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @summary findByFilter
+         * @summary getByFilter
          * @param {string} filter 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findByFilter(filter: string, options: any = {}): RequestArgs {
+        getByFilter(filter: string, options: any = {}): RequestArgs {
             // verify required parameter 'filter' is not null or undefined
             if (filter === null || filter === undefined) {
-                throw new RequiredError('filter','Required parameter filter was null or undefined when calling findByFilter.');
+                throw new RequiredError('filter','Required parameter filter was null or undefined when calling getByFilter.');
             }
-            const localVarPath = `/route/list/{filter}`
+            const localVarPath = `/path/list/{filter}`
                 .replace(`{${"filter"}}`, encodeURIComponent(String(filter)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1640,12 +1640,12 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRouteById(id: string, options: any = {}): RequestArgs {
+        getPathById(id: string, options: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling getRouteById.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling getPathById.');
             }
-            const localVarPath = `/route/{id}`
+            const localVarPath = `/path/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1670,22 +1670,22 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
-         * @param {string} routeId 
+         * @param {string} pathId 
          * @param {string} groupId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareInGroup(routeId: string, groupId: string, options: any = {}): RequestArgs {
-            // verify required parameter 'routeId' is not null or undefined
-            if (routeId === null || routeId === undefined) {
-                throw new RequiredError('routeId','Required parameter routeId was null or undefined when calling shareInGroup.');
+        shareInGroup(pathId: string, groupId: string, options: any = {}): RequestArgs {
+            // verify required parameter 'pathId' is not null or undefined
+            if (pathId === null || pathId === undefined) {
+                throw new RequiredError('pathId','Required parameter pathId was null or undefined when calling shareInGroup.');
             }
             // verify required parameter 'groupId' is not null or undefined
             if (groupId === null || groupId === undefined) {
                 throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling shareInGroup.');
             }
-            const localVarPath = `/route/{routeId}/share-in-group/{groupId}`
-                .replace(`{${"routeId"}}`, encodeURIComponent(String(routeId)))
+            const localVarPath = `/path/{pathId}/share-in-group/{groupId}`
+                .replace(`{${"pathId"}}`, encodeURIComponent(String(pathId)))
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1711,16 +1711,16 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * 
          * @param {string} id 
-         * @param {RouteRequest} [routeRequest] 
+         * @param {PathRequest} [pathRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRouteById(id: string, routeRequest?: RouteRequest, options: any = {}): RequestArgs {
+        updatePathById(id: string, pathRequest?: PathRequest, options: any = {}): RequestArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling updateRouteById.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling updatePathById.');
             }
-            const localVarPath = `/route/{id}`
+            const localVarPath = `/path/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1739,8 +1739,8 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-            const needsSerialization = (typeof routeRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(routeRequest !== undefined ? routeRequest : {}) : (routeRequest || "");
+            const needsSerialization = (typeof pathRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(pathRequest !== undefined ? pathRequest : {}) : (pathRequest || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -1751,19 +1751,19 @@ export const RouteApiAxiosParamCreator = function (configuration?: Configuration
 };
 
 /**
- * RouteApi - functional programming interface
+ * PathApi - functional programming interface
  * @export
  */
-export const RouteApiFp = function(configuration?: Configuration) {
+export const PathApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {RouteRequest} [routeRequest] 
+         * @param {PathRequest} [pathRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoute(routeRequest?: RouteRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).createRoute(routeRequest, options);
+        createPath(pathRequest?: PathRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).createPath(pathRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1775,8 +1775,8 @@ export const RouteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRouteById(id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).deleteRouteById(id, options);
+        deletePathById(id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).deletePathById(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1784,13 +1784,13 @@ export const RouteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary findByFilter
+         * @summary getByFilter
          * @param {string} filter 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findByFilter(filter: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RouteResponse>> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).findByFilter(filter, options);
+        getByFilter(filter: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PathResponse>> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).getByFilter(filter, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1803,8 +1803,8 @@ export const RouteApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRouteById(id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<RouteResponse> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).getRouteById(id, options);
+        getPathById(id: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PathResponse> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).getPathById(id, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1812,13 +1812,13 @@ export const RouteApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} routeId 
+         * @param {string} pathId 
          * @param {string} groupId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareInGroup(routeId: string, groupId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).shareInGroup(routeId, groupId, options);
+        shareInGroup(pathId: string, groupId: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).shareInGroup(pathId, groupId, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1827,12 +1827,12 @@ export const RouteApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
-         * @param {RouteRequest} [routeRequest] 
+         * @param {PathRequest} [pathRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRouteById(id: string, routeRequest?: RouteRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = RouteApiAxiosParamCreator(configuration).updateRouteById(id, routeRequest, options);
+        updatePathById(id: string, pathRequest?: PathRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).updatePathById(id, pathRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1842,19 +1842,19 @@ export const RouteApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * RouteApi - factory interface
+ * PathApi - factory interface
  * @export
  */
-export const RouteApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+export const PathApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     return {
         /**
          * 
-         * @param {RouteRequest} [routeRequest] 
+         * @param {PathRequest} [pathRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoute(routeRequest?: RouteRequest, options?: any): AxiosPromise<string> {
-            return RouteApiFp(configuration).createRoute(routeRequest, options)(axios, basePath);
+        createPath(pathRequest?: PathRequest, options?: any): AxiosPromise<string> {
+            return PathApiFp(configuration).createPath(pathRequest, options)(axios, basePath);
         },
         /**
          * 
@@ -1862,18 +1862,18 @@ export const RouteApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteRouteById(id: string, options?: any): AxiosPromise<void> {
-            return RouteApiFp(configuration).deleteRouteById(id, options)(axios, basePath);
+        deletePathById(id: string, options?: any): AxiosPromise<void> {
+            return PathApiFp(configuration).deletePathById(id, options)(axios, basePath);
         },
         /**
          * 
-         * @summary findByFilter
+         * @summary getByFilter
          * @param {string} filter 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findByFilter(filter: string, options?: any): AxiosPromise<Array<RouteResponse>> {
-            return RouteApiFp(configuration).findByFilter(filter, options)(axios, basePath);
+        getByFilter(filter: string, options?: any): AxiosPromise<Array<PathResponse>> {
+            return PathApiFp(configuration).getByFilter(filter, options)(axios, basePath);
         },
         /**
          * 
@@ -1882,48 +1882,48 @@ export const RouteApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRouteById(id: string, options?: any): AxiosPromise<RouteResponse> {
-            return RouteApiFp(configuration).getRouteById(id, options)(axios, basePath);
+        getPathById(id: string, options?: any): AxiosPromise<PathResponse> {
+            return PathApiFp(configuration).getPathById(id, options)(axios, basePath);
         },
         /**
          * 
-         * @param {string} routeId 
+         * @param {string} pathId 
          * @param {string} groupId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareInGroup(routeId: string, groupId: string, options?: any): AxiosPromise<void> {
-            return RouteApiFp(configuration).shareInGroup(routeId, groupId, options)(axios, basePath);
+        shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void> {
+            return PathApiFp(configuration).shareInGroup(pathId, groupId, options)(axios, basePath);
         },
         /**
          * 
          * @param {string} id 
-         * @param {RouteRequest} [routeRequest] 
+         * @param {PathRequest} [pathRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRouteById(id: string, routeRequest?: RouteRequest, options?: any): AxiosPromise<void> {
-            return RouteApiFp(configuration).updateRouteById(id, routeRequest, options)(axios, basePath);
+        updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void> {
+            return PathApiFp(configuration).updatePathById(id, pathRequest, options)(axios, basePath);
         },
     };
 };
 
 /**
- * RouteApi - object-oriented interface
+ * PathApi - object-oriented interface
  * @export
- * @class RouteApi
+ * @class PathApi
  * @extends {BaseAPI}
  */
-export class RouteApi extends BaseAPI {
+export class PathApi extends BaseAPI {
     /**
      * 
-     * @param {RouteRequest} [routeRequest] 
+     * @param {PathRequest} [pathRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RouteApi
+     * @memberof PathApi
      */
-    public createRoute(routeRequest?: RouteRequest, options?: any) {
-        return RouteApiFp(this.configuration).createRoute(routeRequest, options)(this.axios, this.basePath);
+    public createPath(pathRequest?: PathRequest, options?: any) {
+        return PathApiFp(this.configuration).createPath(pathRequest, options)(this.axios, this.basePath);
     }
 
     /**
@@ -1931,22 +1931,22 @@ export class RouteApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RouteApi
+     * @memberof PathApi
      */
-    public deleteRouteById(id: string, options?: any) {
-        return RouteApiFp(this.configuration).deleteRouteById(id, options)(this.axios, this.basePath);
+    public deletePathById(id: string, options?: any) {
+        return PathApiFp(this.configuration).deletePathById(id, options)(this.axios, this.basePath);
     }
 
     /**
      * 
-     * @summary findByFilter
+     * @summary getByFilter
      * @param {string} filter 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RouteApi
+     * @memberof PathApi
      */
-    public findByFilter(filter: string, options?: any) {
-        return RouteApiFp(this.configuration).findByFilter(filter, options)(this.axios, this.basePath);
+    public getByFilter(filter: string, options?: any) {
+        return PathApiFp(this.configuration).getByFilter(filter, options)(this.axios, this.basePath);
     }
 
     /**
@@ -1955,34 +1955,34 @@ export class RouteApi extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RouteApi
+     * @memberof PathApi
      */
-    public getRouteById(id: string, options?: any) {
-        return RouteApiFp(this.configuration).getRouteById(id, options)(this.axios, this.basePath);
+    public getPathById(id: string, options?: any) {
+        return PathApiFp(this.configuration).getPathById(id, options)(this.axios, this.basePath);
     }
 
     /**
      * 
-     * @param {string} routeId 
+     * @param {string} pathId 
      * @param {string} groupId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RouteApi
+     * @memberof PathApi
      */
-    public shareInGroup(routeId: string, groupId: string, options?: any) {
-        return RouteApiFp(this.configuration).shareInGroup(routeId, groupId, options)(this.axios, this.basePath);
+    public shareInGroup(pathId: string, groupId: string, options?: any) {
+        return PathApiFp(this.configuration).shareInGroup(pathId, groupId, options)(this.axios, this.basePath);
     }
 
     /**
      * 
      * @param {string} id 
-     * @param {RouteRequest} [routeRequest] 
+     * @param {PathRequest} [pathRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof RouteApi
+     * @memberof PathApi
      */
-    public updateRouteById(id: string, routeRequest?: RouteRequest, options?: any) {
-        return RouteApiFp(this.configuration).updateRouteById(id, routeRequest, options)(this.axios, this.basePath);
+    public updatePathById(id: string, pathRequest?: PathRequest, options?: any) {
+        return PathApiFp(this.configuration).updatePathById(id, pathRequest, options)(this.axios, this.basePath);
     }
 
 }
