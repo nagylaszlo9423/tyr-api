@@ -484,6 +484,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceItemResponse'
+        isEditable:
+          type: boolean
       required:
         - title
         - description
@@ -640,7 +642,7 @@ components:
     GroupJoinPolicy:
       title: GroupJoinPolicy
       type: string
-      enum: 
+      enum:
         - INVITE_ONLY
         - REQUEST
         - PUBLIC

@@ -85,6 +85,7 @@ export interface RouteResponse {
     path: LineStringDto;
     audit: AuditDto;
     images: Array<ResourceItemResponse>;
+    isEditable?: boolean;
 }
 export interface TokenResponse {
     accessToken: string;

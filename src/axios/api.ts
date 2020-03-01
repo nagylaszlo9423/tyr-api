@@ -424,6 +424,12 @@ export interface RouteResponse {
      * @memberof RouteResponse
      */
     images: Array<ResourceItemResponse>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RouteResponse
+     */
+    isEditable?: boolean;
 }
 /**
  * 
