@@ -400,6 +400,8 @@ paths:
       operationId: getByFilter
   /oauth/logout/all:
     post:
+      tags:
+        - oauth
       summary: ''
       operationId: post-oauth-logout-all
       responses:

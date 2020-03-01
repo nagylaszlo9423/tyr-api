@@ -93,18 +93,6 @@ export interface TokenResponse {
     refreshToken: string;
     refreshTokenExpiration: string;
 }
-export declare const DefaultApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
-    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): RequestArgs;
-};
-export declare const DefaultApiFp: (configuration?: Configuration | undefined) => {
-    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-};
-export declare const DefaultApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
-    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): AxiosPromise<void>;
-};
-export declare class DefaultApi extends BaseAPI {
-    postOauthLogoutAll(logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void>;
-}
 export declare const GroupApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createGroup(groupRequest?: GroupRequest | undefined, options?: any): RequestArgs;
     findById(groupId: string, options?: any): RequestArgs;
@@ -145,6 +133,7 @@ export declare const OauthApiAxiosParamCreator: (configuration?: Configuration |
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): RequestArgs;
     login(loginRequest?: LoginRequest | undefined, options?: any): RequestArgs;
     logout(authorization?: string | undefined, options?: any): RequestArgs;
+    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): RequestArgs;
     register(registrationRequest?: RegistrationRequest | undefined, options?: any): RequestArgs;
     token(grantType?: string | undefined, code?: string | undefined, redirectUri?: string | undefined, clientId?: string | undefined, refreshToken?: string | undefined, options?: any): RequestArgs;
 };
@@ -152,6 +141,7 @@ export declare const OauthApiFp: (configuration?: Configuration | undefined) => 
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     login(loginRequest?: LoginRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<LoginResponse>;
     logout(authorization?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<LogoutRequest>;
+    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     register(registrationRequest?: RegistrationRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RegistrationResponse>;
     token(grantType?: string | undefined, code?: string | undefined, redirectUri?: string | undefined, clientId?: string | undefined, refreshToken?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TokenResponse>;
 };
@@ -159,6 +149,7 @@ export declare const OauthApiFactory: (configuration?: Configuration | undefined
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): AxiosPromise<void>;
     login(loginRequest?: LoginRequest | undefined, options?: any): AxiosPromise<LoginResponse>;
     logout(authorization?: string | undefined, options?: any): AxiosPromise<LogoutRequest>;
+    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): AxiosPromise<void>;
     register(registrationRequest?: RegistrationRequest | undefined, options?: any): AxiosPromise<RegistrationResponse>;
     token(grantType?: string | undefined, code?: string | undefined, redirectUri?: string | undefined, clientId?: string | undefined, refreshToken?: string | undefined, options?: any): AxiosPromise<TokenResponse>;
 };
@@ -166,6 +157,7 @@ export declare class OauthApi extends BaseAPI {
     authorize(responseType?: string, clientId?: string, redirectUri?: string, options?: any): AxiosPromise<void>;
     login(loginRequest?: LoginRequest, options?: any): AxiosPromise<LoginResponse>;
     logout(authorization?: string, options?: any): AxiosPromise<LogoutRequest>;
+    postOauthLogoutAll(logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void>;
     register(registrationRequest?: RegistrationRequest, options?: any): AxiosPromise<RegistrationResponse>;
     token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any): AxiosPromise<TokenResponse>;
 }
