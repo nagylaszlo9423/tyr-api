@@ -379,7 +379,7 @@ paths:
       operationId: getGroupsPaged
   /route/list/{filter}:
     get:
-      summary: mostPopularRoutes
+      summary: findByFilter
       tags:
         - route
       parameters:
@@ -397,7 +397,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/RouteResponse'
-      operationId: getMostPopularRoutes
+      operationId: findByFilter
   /oauth/logout/all:
     post:
       summary: ''
