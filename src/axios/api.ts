@@ -336,19 +336,19 @@ export interface PathListsResponse {
      * @type {Array<PathResponse>}
      * @memberof PathListsResponse
      */
-    own?: Array<PathResponse>;
+    ownPaths?: Array<PathResponse>;
     /**
      * 
      * @type {Array<GroupPathsResponse>}
      * @memberof PathListsResponse
      */
-    groups?: Array<GroupPathsResponse>;
+    groupPaths?: Array<GroupPathsResponse>;
     /**
      * 
      * @type {Array<PathResponse>}
      * @memberof PathListsResponse
      */
-    _public?: Array<PathResponse>;
+    publicPaths?: Array<PathResponse>;
 }
 /**
  * 

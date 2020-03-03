@@ -677,15 +677,15 @@ components:
       title: PathListsResponse
       type: object
       properties:
-        own:
+        ownPaths:
           type: array
           items:
             $ref: '#/components/schemas/PathResponse'
-        groups:
+        groupPaths:
           type: array
           items:
             $ref: '#/components/schemas/GroupPathsResponse'
-        public:
+        publicPaths:
           type: array
           items:
             $ref: '#/components/schemas/PathResponse'

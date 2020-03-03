@@ -67,9 +67,9 @@ export interface PageResponse {
     items: Array<object>;
 }
 export interface PathListsResponse {
-    own?: Array<PathResponse>;
-    groups?: Array<GroupPathsResponse>;
-    _public?: Array<PathResponse>;
+    ownPaths?: Array<PathResponse>;
+    groupPaths?: Array<GroupPathsResponse>;
+    publicPaths?: Array<PathResponse>;
 }
 export interface PathRequest {
     title?: string;
