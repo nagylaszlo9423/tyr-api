@@ -377,27 +377,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/GroupPageResponse'
       operationId: getGroupsPaged
-  '/path/list/{filter}':
-    get:
-      summary: getByFilter
-      tags:
-        - path
-      parameters:
-        - name: filter
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PathResponse'
-      operationId: getByFilter
   /oauth/logout/all:
     post:
       tags:
@@ -412,6 +391,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LogoutRequest'
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/size'
   /path/list:
     get:
       summary: Your GET endpoint
@@ -423,8 +405,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PathListsResponse'
-      operationId: findAllAvailable
+                $ref: '#/components/schemas/PathPageResponse'
+      operationId: findAllAvailableByFilters
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/size'
+        - schema:
+            type: string
+          in: query
+          name: search
+        - schema:
+            type: array
+            items:
+              type: string
+          in: query
+          name: filters
+          description: ''
 components:
   parameters:
     page:
@@ -679,23 +675,14 @@ components:
         - id
         - name
         - paths
-    PathListsResponse:
-      title: PathListsResponse
+    PathPageResponse:
+      title: GroupPageResponse
       type: object
-      properties:
-        ownPaths:
-          type: array
-          items:
-            $ref: '#/components/schemas/PathResponse'
-        groupPaths:
-          type: array
-          items:
-            $ref: '#/components/schemas/GroupPathsResponse'
-        publicPaths:
-          type: array
-          items:
-            $ref: '#/components/schemas/PathResponse'
-      required:
-        - ownPaths
-        - groupPaths
-        - publicPaths
+      allOf:
+        - $ref: '#/components/schemas/PageResponse'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/PathResponse'

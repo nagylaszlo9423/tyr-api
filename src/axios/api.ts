@@ -328,27 +328,40 @@ export interface PageResponse {
 /**
  * 
  * @export
- * @interface PathListsResponse
+ * @interface PathPageResponse
  */
-export interface PathListsResponse {
+export interface PathPageResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof PathPageResponse
+     */
+    page: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PathPageResponse
+     */
+    size: number;
     /**
      * 
      * @type {Array<PathResponse>}
-     * @memberof PathListsResponse
+     * @memberof PathPageResponse
      */
-    ownPaths: Array<PathResponse>;
-    /**
-     * 
-     * @type {Array<GroupPathsResponse>}
-     * @memberof PathListsResponse
-     */
-    groupPaths: Array<GroupPathsResponse>;
+    items: Array<PathResponse>;
+}
+/**
+ * 
+ * @export
+ * @interface PathPageResponseAllOf
+ */
+export interface PathPageResponseAllOf {
     /**
      * 
      * @type {Array<PathResponse>}
-     * @memberof PathListsResponse
+     * @memberof PathPageResponseAllOf
      */
-    publicPaths: Array<PathResponse>;
+    items?: Array<PathResponse>;
 }
 /**
  * 
@@ -1174,11 +1187,13 @@ export const OauthApiAxiosParamCreator = function (configuration?: Configuration
         },
         /**
          * 
+         * @param {number} [page] 
+         * @param {number} [size] 
          * @param {LogoutRequest} [logoutRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postOauthLogoutAll(logoutRequest?: LogoutRequest, options: any = {}): RequestArgs {
+        postOauthLogoutAll(page?: number, size?: number, logoutRequest?: LogoutRequest, options: any = {}): RequestArgs {
             const localVarPath = `/oauth/logout/all`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1188,6 +1203,14 @@ export const OauthApiAxiosParamCreator = function (configuration?: Configuration
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
+            }
 
 
     
@@ -1343,12 +1366,14 @@ export const OauthApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} [page] 
+         * @param {number} [size] 
          * @param {LogoutRequest} [logoutRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postOauthLogoutAll(logoutRequest?: LogoutRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = OauthApiAxiosParamCreator(configuration).postOauthLogoutAll(logoutRequest, options);
+        postOauthLogoutAll(page?: number, size?: number, logoutRequest?: LogoutRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = OauthApiAxiosParamCreator(configuration).postOauthLogoutAll(page, size, logoutRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1424,12 +1449,14 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * 
+         * @param {number} [page] 
+         * @param {number} [size] 
          * @param {LogoutRequest} [logoutRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postOauthLogoutAll(logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void> {
-            return OauthApiFp(configuration).postOauthLogoutAll(logoutRequest, options)(axios, basePath);
+        postOauthLogoutAll(page?: number, size?: number, logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void> {
+            return OauthApiFp(configuration).postOauthLogoutAll(page, size, logoutRequest, options)(axios, basePath);
         },
         /**
          * 
@@ -1500,13 +1527,15 @@ export class OauthApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} [page] 
+     * @param {number} [size] 
      * @param {LogoutRequest} [logoutRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OauthApi
      */
-    public postOauthLogoutAll(logoutRequest?: LogoutRequest, options?: any) {
-        return OauthApiFp(this.configuration).postOauthLogoutAll(logoutRequest, options)(this.axios, this.basePath);
+    public postOauthLogoutAll(page?: number, size?: number, logoutRequest?: LogoutRequest, options?: any) {
+        return OauthApiFp(this.configuration).postOauthLogoutAll(page, size, logoutRequest, options)(this.axios, this.basePath);
     }
 
     /**
@@ -1614,10 +1643,14 @@ export const PathApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Your GET endpoint
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {string} [search] 
+         * @param {Array<string>} [filters] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAllAvailable(options: any = {}): RequestArgs {
+        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options: any = {}): RequestArgs {
             const localVarPath = `/path/list`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1628,40 +1661,21 @@ export const PathApiAxiosParamCreator = function (configuration?: Configuration)
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-
-    
-            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-
-            return {
-                url: globalImportUrl.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary getByFilter
-         * @param {string} filter 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getByFilter(filter: string, options: any = {}): RequestArgs {
-            // verify required parameter 'filter' is not null or undefined
-            if (filter === null || filter === undefined) {
-                throw new RequiredError('filter','Required parameter filter was null or undefined when calling getByFilter.');
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
             }
-            const localVarPath = `/path/list/{filter}`
-                .replace(`{${"filter"}}`, encodeURIComponent(String(filter)));
-            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
+
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
             }
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (filters) {
+                localVarQueryParameter['filters'] = filters;
+            }
 
 
     
@@ -1827,25 +1841,15 @@ export const PathApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Your GET endpoint
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {string} [search] 
+         * @param {Array<string>} [filters] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAllAvailable(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PathListsResponse> {
-            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).findAllAvailable(options);
-            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
-                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
-                return axios.request(axiosRequestArgs);
-            };
-        },
-        /**
-         * 
-         * @summary getByFilter
-         * @param {string} filter 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getByFilter(filter: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PathResponse>> {
-            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).getByFilter(filter, options);
+        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PathPageResponse> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).findAllAvailableByFilters(page, size, search, filters, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1923,21 +1927,15 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Your GET endpoint
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {string} [search] 
+         * @param {Array<string>} [filters] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAllAvailable(options?: any): AxiosPromise<PathListsResponse> {
-            return PathApiFp(configuration).findAllAvailable(options)(axios, basePath);
-        },
-        /**
-         * 
-         * @summary getByFilter
-         * @param {string} filter 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getByFilter(filter: string, options?: any): AxiosPromise<Array<PathResponse>> {
-            return PathApiFp(configuration).getByFilter(filter, options)(axios, basePath);
+        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options?: any): AxiosPromise<PathPageResponse> {
+            return PathApiFp(configuration).findAllAvailableByFilters(page, size, search, filters, options)(axios, basePath);
         },
         /**
          * 
@@ -2004,24 +2002,16 @@ export class PathApi extends BaseAPI {
     /**
      * 
      * @summary Your GET endpoint
+     * @param {number} [page] 
+     * @param {number} [size] 
+     * @param {string} [search] 
+     * @param {Array<string>} [filters] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PathApi
      */
-    public findAllAvailable(options?: any) {
-        return PathApiFp(this.configuration).findAllAvailable(options)(this.axios, this.basePath);
-    }
-
-    /**
-     * 
-     * @summary getByFilter
-     * @param {string} filter 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof PathApi
-     */
-    public getByFilter(filter: string, options?: any) {
-        return PathApiFp(this.configuration).getByFilter(filter, options)(this.axios, this.basePath);
+    public findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options?: any) {
+        return PathApiFp(this.configuration).findAllAvailableByFilters(page, size, search, filters, options)(this.axios, this.basePath);
     }
 
     /**

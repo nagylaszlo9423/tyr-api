@@ -66,10 +66,13 @@ export interface PageResponse {
     size: number;
     items: Array<object>;
 }
-export interface PathListsResponse {
-    ownPaths: Array<PathResponse>;
-    groupPaths: Array<GroupPathsResponse>;
-    publicPaths: Array<PathResponse>;
+export interface PathPageResponse {
+    page: number;
+    size: number;
+    items: Array<PathResponse>;
+}
+export interface PathPageResponseAllOf {
+    items?: Array<PathResponse>;
 }
 export interface PathRequest {
     title?: string;
@@ -143,7 +146,7 @@ export declare const OauthApiAxiosParamCreator: (configuration?: Configuration |
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): RequestArgs;
     login(loginRequest?: LoginRequest | undefined, options?: any): RequestArgs;
     logout(authorization?: string | undefined, options?: any): RequestArgs;
-    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): RequestArgs;
+    postOauthLogoutAll(page?: number | undefined, size?: number | undefined, logoutRequest?: LogoutRequest | undefined, options?: any): RequestArgs;
     register(registrationRequest?: RegistrationRequest | undefined, options?: any): RequestArgs;
     token(grantType?: string | undefined, code?: string | undefined, redirectUri?: string | undefined, clientId?: string | undefined, refreshToken?: string | undefined, options?: any): RequestArgs;
 };
@@ -151,7 +154,7 @@ export declare const OauthApiFp: (configuration?: Configuration | undefined) => 
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     login(loginRequest?: LoginRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<LoginResponse>;
     logout(authorization?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<LogoutRequest>;
-    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    postOauthLogoutAll(page?: number | undefined, size?: number | undefined, logoutRequest?: LogoutRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     register(registrationRequest?: RegistrationRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<RegistrationResponse>;
     token(grantType?: string | undefined, code?: string | undefined, redirectUri?: string | undefined, clientId?: string | undefined, refreshToken?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<TokenResponse>;
 };
@@ -159,7 +162,7 @@ export declare const OauthApiFactory: (configuration?: Configuration | undefined
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): AxiosPromise<void>;
     login(loginRequest?: LoginRequest | undefined, options?: any): AxiosPromise<LoginResponse>;
     logout(authorization?: string | undefined, options?: any): AxiosPromise<LogoutRequest>;
-    postOauthLogoutAll(logoutRequest?: LogoutRequest | undefined, options?: any): AxiosPromise<void>;
+    postOauthLogoutAll(page?: number | undefined, size?: number | undefined, logoutRequest?: LogoutRequest | undefined, options?: any): AxiosPromise<void>;
     register(registrationRequest?: RegistrationRequest | undefined, options?: any): AxiosPromise<RegistrationResponse>;
     token(grantType?: string | undefined, code?: string | undefined, redirectUri?: string | undefined, clientId?: string | undefined, refreshToken?: string | undefined, options?: any): AxiosPromise<TokenResponse>;
 };
@@ -167,15 +170,14 @@ export declare class OauthApi extends BaseAPI {
     authorize(responseType?: string, clientId?: string, redirectUri?: string, options?: any): AxiosPromise<void>;
     login(loginRequest?: LoginRequest, options?: any): AxiosPromise<LoginResponse>;
     logout(authorization?: string, options?: any): AxiosPromise<LogoutRequest>;
-    postOauthLogoutAll(logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void>;
+    postOauthLogoutAll(page?: number, size?: number, logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void>;
     register(registrationRequest?: RegistrationRequest, options?: any): AxiosPromise<RegistrationResponse>;
     token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any): AxiosPromise<TokenResponse>;
 }
 export declare const PathApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
     deletePathById(id: string, options?: any): RequestArgs;
-    findAllAvailable(options?: any): RequestArgs;
-    getByFilter(filter: string, options?: any): RequestArgs;
+    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, options?: any): RequestArgs;
     getPathById(id: string, options?: any): RequestArgs;
     shareInGroup(pathId: string, groupId: string, options?: any): RequestArgs;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
@@ -183,8 +185,7 @@ export declare const PathApiAxiosParamCreator: (configuration?: Configuration | 
 export declare const PathApiFp: (configuration?: Configuration | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
     deletePathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-    findAllAvailable(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathListsResponse>;
-    getByFilter(filter: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse[]>;
+    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
@@ -192,8 +193,7 @@ export declare const PathApiFp: (configuration?: Configuration | undefined) => {
 export declare const PathApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<string>;
     deletePathById(id: string, options?: any): AxiosPromise<void>;
-    findAllAvailable(options?: any): AxiosPromise<PathListsResponse>;
-    getByFilter(filter: string, options?: any): AxiosPromise<PathResponse[]>;
+    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, options?: any): AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<void>;
@@ -201,8 +201,7 @@ export declare const PathApiFactory: (configuration?: Configuration | undefined,
 export declare class PathApi extends BaseAPI {
     createPath(pathRequest?: PathRequest, options?: any): AxiosPromise<string>;
     deletePathById(id: string, options?: any): AxiosPromise<void>;
-    findAllAvailable(options?: any): AxiosPromise<PathListsResponse>;
-    getByFilter(filter: string, options?: any): AxiosPromise<PathResponse[]>;
+    findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options?: any): AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
