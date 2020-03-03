@@ -117,6 +117,12 @@ export interface GroupPageResponse {
      * @memberof GroupPageResponse
      */
     items: Array<GroupResponse>;
+    /**
+     * 
+     * @type {number}
+     * @memberof GroupPageResponse
+     */
+    total: number;
 }
 /**
  * 
@@ -324,6 +330,12 @@ export interface PageResponse {
      * @memberof PageResponse
      */
     items: Array<object>;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageResponse
+     */
+    total: number;
 }
 /**
  * 
@@ -349,6 +361,12 @@ export interface PathPageResponse {
      * @memberof PathPageResponse
      */
     items: Array<PathResponse>;
+    /**
+     * 
+     * @type {number}
+     * @memberof PathPageResponse
+     */
+    total: number;
 }
 /**
  * 

@@ -415,7 +415,7 @@ paths:
           in: query
           name: search
         - schema:
-            type: array
+            type: string
             items:
               type: string
           in: query
@@ -620,10 +620,13 @@ components:
         items:
           type: array
           items: {}
+        total:
+          type: number
       required:
         - page
         - size
         - items
+        - total
     CreatedRespone:
       title: CreatedRespone
       type: object

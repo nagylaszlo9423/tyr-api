@@ -23,6 +23,7 @@ export interface GroupPageResponse {
     page: number;
     size: number;
     items: Array<GroupResponse>;
+    total: number;
 }
 export interface GroupPageResponseAllOf {
     items?: Array<GroupResponse>;
@@ -65,11 +66,13 @@ export interface PageResponse {
     page: number;
     size: number;
     items: Array<object>;
+    total: number;
 }
 export interface PathPageResponse {
     page: number;
     size: number;
     items: Array<PathResponse>;
+    total: number;
 }
 export interface PathPageResponseAllOf {
     items?: Array<PathResponse>;
