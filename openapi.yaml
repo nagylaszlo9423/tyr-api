@@ -502,11 +502,13 @@ components:
         isEditable:
           type: boolean
       required:
+        - id
         - title
         - description
         - path
         - audit
         - images
+        - isEditable
     AuditDto:
       title: AuditDto
       type: object
@@ -673,6 +675,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PathResponse'
+      required:
+        - id
+        - name
+        - paths
     PathListsResponse:
       title: PathListsResponse
       type: object
@@ -689,3 +695,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PathResponse'
+      required:
+        - ownPaths
+        - groupPaths
+        - publicPaths

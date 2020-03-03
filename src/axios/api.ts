@@ -142,19 +142,19 @@ export interface GroupPathsResponse {
      * @type {string}
      * @memberof GroupPathsResponse
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof GroupPathsResponse
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {Array<PathResponse>}
      * @memberof GroupPathsResponse
      */
-    paths?: Array<PathResponse>;
+    paths: Array<PathResponse>;
 }
 /**
  * 
@@ -336,19 +336,19 @@ export interface PathListsResponse {
      * @type {Array<PathResponse>}
      * @memberof PathListsResponse
      */
-    ownPaths?: Array<PathResponse>;
+    ownPaths: Array<PathResponse>;
     /**
      * 
      * @type {Array<GroupPathsResponse>}
      * @memberof PathListsResponse
      */
-    groupPaths?: Array<GroupPathsResponse>;
+    groupPaths: Array<GroupPathsResponse>;
     /**
      * 
      * @type {Array<PathResponse>}
      * @memberof PathListsResponse
      */
-    publicPaths?: Array<PathResponse>;
+    publicPaths: Array<PathResponse>;
 }
 /**
  * 
@@ -386,7 +386,7 @@ export interface PathResponse {
      * @type {string}
      * @memberof PathResponse
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
@@ -422,7 +422,7 @@ export interface PathResponse {
      * @type {boolean}
      * @memberof PathResponse
      */
-    isEditable?: boolean;
+    isEditable: boolean;
 }
 /**
  * 

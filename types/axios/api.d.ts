@@ -28,9 +28,9 @@ export interface GroupPageResponseAllOf {
     items?: Array<GroupResponse>;
 }
 export interface GroupPathsResponse {
-    id?: string;
-    name?: string;
-    paths?: Array<PathResponse>;
+    id: string;
+    name: string;
+    paths: Array<PathResponse>;
 }
 export interface GroupRequest {
     name?: string;
@@ -67,9 +67,9 @@ export interface PageResponse {
     items: Array<object>;
 }
 export interface PathListsResponse {
-    ownPaths?: Array<PathResponse>;
-    groupPaths?: Array<GroupPathsResponse>;
-    publicPaths?: Array<PathResponse>;
+    ownPaths: Array<PathResponse>;
+    groupPaths: Array<GroupPathsResponse>;
+    publicPaths: Array<PathResponse>;
 }
 export interface PathRequest {
     title?: string;
@@ -77,13 +77,13 @@ export interface PathRequest {
     path?: LineStringDto;
 }
 export interface PathResponse {
-    id?: string;
+    id: string;
     title: string;
     description: string;
     path: LineStringDto;
     audit: AuditDto;
     images: Array<ResourceItemResponse>;
-    isEditable?: boolean;
+    isEditable: boolean;
 }
 export interface RegistrationRequest {
     email: string;
