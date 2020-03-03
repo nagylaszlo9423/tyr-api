@@ -27,6 +27,11 @@ export interface GroupPageResponse {
 export interface GroupPageResponseAllOf {
     items?: Array<GroupResponse>;
 }
+export interface GroupPathsResponse {
+    id?: string;
+    name?: string;
+    paths?: Array<PathResponse>;
+}
 export interface GroupRequest {
     name?: string;
     description?: string;
@@ -60,6 +65,11 @@ export interface PageResponse {
     page: number;
     size: number;
     items: Array<object>;
+}
+export interface PathListsResponse {
+    own?: Array<PathResponse>;
+    groups?: Array<GroupPathsResponse>;
+    _public?: Array<PathResponse>;
 }
 export interface PathRequest {
     title?: string;
@@ -166,6 +176,7 @@ export declare const PathApiAxiosParamCreator: (configuration?: Configuration | 
     deletePathById(id: string, options?: any): RequestArgs;
     getByFilter(filter: string, options?: any): RequestArgs;
     getPathById(id: string, options?: any): RequestArgs;
+    getPathList(options?: any): RequestArgs;
     shareInGroup(pathId: string, groupId: string, options?: any): RequestArgs;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
 };
@@ -174,6 +185,7 @@ export declare const PathApiFp: (configuration?: Configuration | undefined) => {
     deletePathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     getByFilter(filter: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse[]>;
     getPathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse>;
+    getPathList(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathListsResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
 };
@@ -182,6 +194,7 @@ export declare const PathApiFactory: (configuration?: Configuration | undefined,
     deletePathById(id: string, options?: any): AxiosPromise<void>;
     getByFilter(filter: string, options?: any): AxiosPromise<PathResponse[]>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
+    getPathList(options?: any): AxiosPromise<PathListsResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<void>;
 };
@@ -190,6 +203,7 @@ export declare class PathApi extends BaseAPI {
     deletePathById(id: string, options?: any): AxiosPromise<void>;
     getByFilter(filter: string, options?: any): AxiosPromise<PathResponse[]>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
+    getPathList(options?: any): AxiosPromise<PathListsResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
 }

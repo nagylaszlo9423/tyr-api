@@ -377,7 +377,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/GroupPageResponse'
       operationId: getGroupsPaged
-  /path/list/{filter}:
+  '/path/list/{filter}':
     get:
       summary: getByFilter
       tags:
@@ -412,6 +412,19 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LogoutRequest'
+  /path/list:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - path
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathListsResponse'
+      operationId: get-path-list
 components:
   parameters:
     page:
@@ -648,3 +661,31 @@ components:
         - INVITE_ONLY
         - REQUEST
         - PUBLIC
+    GroupPathsResponse:
+      title: GroupPathsResponse
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        paths:
+          type: array
+          items:
+            $ref: '#/components/schemas/PathResponse'
+    PathListsResponse:
+      title: PathListsResponse
+      type: object
+      properties:
+        own:
+          type: array
+          items:
+            $ref: '#/components/schemas/PathResponse'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/GroupPathsResponse'
+        public:
+          type: array
+          items:
+            $ref: '#/components/schemas/PathResponse'

@@ -134,6 +134,31 @@ export interface GroupPageResponseAllOf {
 /**
  * 
  * @export
+ * @interface GroupPathsResponse
+ */
+export interface GroupPathsResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupPathsResponse
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupPathsResponse
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Array<PathResponse>}
+     * @memberof GroupPathsResponse
+     */
+    paths?: Array<PathResponse>;
+}
+/**
+ * 
+ * @export
  * @interface GroupRequest
  */
 export interface GroupRequest {
@@ -299,6 +324,31 @@ export interface PageResponse {
      * @memberof PageResponse
      */
     items: Array<object>;
+}
+/**
+ * 
+ * @export
+ * @interface PathListsResponse
+ */
+export interface PathListsResponse {
+    /**
+     * 
+     * @type {Array<PathResponse>}
+     * @memberof PathListsResponse
+     */
+    own?: Array<PathResponse>;
+    /**
+     * 
+     * @type {Array<GroupPathsResponse>}
+     * @memberof PathListsResponse
+     */
+    groups?: Array<GroupPathsResponse>;
+    /**
+     * 
+     * @type {Array<PathResponse>}
+     * @memberof PathListsResponse
+     */
+    _public?: Array<PathResponse>;
 }
 /**
  * 
@@ -1633,6 +1683,35 @@ export const PathApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @summary Your GET endpoint
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPathList(options: any = {}): RequestArgs {
+            const localVarPath = `/path/list`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {string} pathId 
          * @param {string} groupId 
          * @param {*} [options] Override http request option.
@@ -1775,6 +1854,19 @@ export const PathApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Your GET endpoint
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPathList(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PathListsResponse> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).getPathList(options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @param {string} pathId 
          * @param {string} groupId 
          * @param {*} [options] Override http request option.
@@ -1850,6 +1942,15 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @summary Your GET endpoint
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPathList(options?: any): AxiosPromise<PathListsResponse> {
+            return PathApiFp(configuration).getPathList(options)(axios, basePath);
+        },
+        /**
+         * 
          * @param {string} pathId 
          * @param {string} groupId 
          * @param {*} [options] Override http request option.
@@ -1922,6 +2023,17 @@ export class PathApi extends BaseAPI {
      */
     public getPathById(id: string, options?: any) {
         return PathApiFp(this.configuration).getPathById(id, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Your GET endpoint
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PathApi
+     */
+    public getPathList(options?: any) {
+        return PathApiFp(this.configuration).getPathList(options)(this.axios, this.basePath);
     }
 
     /**
