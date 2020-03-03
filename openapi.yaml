@@ -424,7 +424,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PathListsResponse'
-      operationId: get-path-list
+      operationId: findAllAvailable
 components:
   parameters:
     page:

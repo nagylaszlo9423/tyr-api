@@ -174,36 +174,36 @@ export declare class OauthApi extends BaseAPI {
 export declare const PathApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
     deletePathById(id: string, options?: any): RequestArgs;
+    findAllAvailable(options?: any): RequestArgs;
     getByFilter(filter: string, options?: any): RequestArgs;
     getPathById(id: string, options?: any): RequestArgs;
-    getPathList(options?: any): RequestArgs;
     shareInGroup(pathId: string, groupId: string, options?: any): RequestArgs;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
 };
 export declare const PathApiFp: (configuration?: Configuration | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
     deletePathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    findAllAvailable(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathListsResponse>;
     getByFilter(filter: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse[]>;
     getPathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse>;
-    getPathList(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathListsResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
 };
 export declare const PathApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<string>;
     deletePathById(id: string, options?: any): AxiosPromise<void>;
+    findAllAvailable(options?: any): AxiosPromise<PathListsResponse>;
     getByFilter(filter: string, options?: any): AxiosPromise<PathResponse[]>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
-    getPathList(options?: any): AxiosPromise<PathListsResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<void>;
 };
 export declare class PathApi extends BaseAPI {
     createPath(pathRequest?: PathRequest, options?: any): AxiosPromise<string>;
     deletePathById(id: string, options?: any): AxiosPromise<void>;
+    findAllAvailable(options?: any): AxiosPromise<PathListsResponse>;
     getByFilter(filter: string, options?: any): AxiosPromise<PathResponse[]>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
-    getPathList(options?: any): AxiosPromise<PathListsResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
 }
