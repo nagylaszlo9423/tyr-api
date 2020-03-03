@@ -421,6 +421,10 @@ paths:
           in: query
           name: filters
           description: ''
+        - schema:
+            type: string
+          in: query
+          name: sortBy
 components:
   parameters:
     page:

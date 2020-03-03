@@ -1665,10 +1665,11 @@ export const PathApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {number} [size] 
          * @param {string} [search] 
          * @param {Array<string>} [filters] 
+         * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options: any = {}): RequestArgs {
+        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options: any = {}): RequestArgs {
             const localVarPath = `/path/list`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -1693,6 +1694,10 @@ export const PathApiAxiosParamCreator = function (configuration?: Configuration)
 
             if (filters) {
                 localVarQueryParameter['filters'] = filters;
+            }
+
+            if (sortBy !== undefined) {
+                localVarQueryParameter['sortBy'] = sortBy;
             }
 
 
@@ -1863,11 +1868,12 @@ export const PathApiFp = function(configuration?: Configuration) {
          * @param {number} [size] 
          * @param {string} [search] 
          * @param {Array<string>} [filters] 
+         * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PathPageResponse> {
-            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).findAllAvailableByFilters(page, size, search, filters, options);
+        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<PathPageResponse> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).findAllAvailableByFilters(page, size, search, filters, sortBy, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1949,11 +1955,12 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
          * @param {number} [size] 
          * @param {string} [search] 
          * @param {Array<string>} [filters] 
+         * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options?: any): AxiosPromise<PathPageResponse> {
-            return PathApiFp(configuration).findAllAvailableByFilters(page, size, search, filters, options)(axios, basePath);
+        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any): AxiosPromise<PathPageResponse> {
+            return PathApiFp(configuration).findAllAvailableByFilters(page, size, search, filters, sortBy, options)(axios, basePath);
         },
         /**
          * 
@@ -2024,12 +2031,13 @@ export class PathApi extends BaseAPI {
      * @param {number} [size] 
      * @param {string} [search] 
      * @param {Array<string>} [filters] 
+     * @param {string} [sortBy] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof PathApi
      */
-    public findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, options?: any) {
-        return PathApiFp(this.configuration).findAllAvailableByFilters(page, size, search, filters, options)(this.axios, this.basePath);
+    public findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any) {
+        return PathApiFp(this.configuration).findAllAvailableByFilters(page, size, search, filters, sortBy, options)(this.axios, this.basePath);
     }
 
     /**
