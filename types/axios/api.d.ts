@@ -14,11 +14,6 @@ export interface ErrorResponse {
     cause: string;
     message?: string;
 }
-export declare enum GroupJoinPolicy {
-    INVITEONLY = "INVITE_ONLY",
-    REQUEST = "REQUEST",
-    PUBLIC = "PUBLIC"
-}
 export interface GroupPageResponse {
     page: number;
     size: number;
@@ -31,13 +26,13 @@ export interface GroupPageResponseAllOf {
 export interface GroupRequest {
     name?: string;
     description?: string;
-    joinPolicy?: GroupJoinPolicy;
+    joinPolicy?: number;
 }
 export interface GroupResponse {
     id: string;
     name: string;
     description: string;
-    joinPolicy?: GroupJoinPolicy;
+    joinPolicy?: number;
     owner: string;
 }
 export interface LineStringDto {
@@ -85,6 +80,7 @@ export interface PathResponse {
     audit: AuditDto;
     images: Array<ResourceItemResponse>;
     isEditable: boolean;
+    visibility?: number;
 }
 export interface RegistrationRequest {
     email: string;

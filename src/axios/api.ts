@@ -85,17 +85,6 @@ export interface ErrorResponse {
 /**
  * 
  * @export
- * @enum {string}
- */
-export enum GroupJoinPolicy {
-    INVITEONLY = 'INVITE_ONLY',
-    REQUEST = 'REQUEST',
-    PUBLIC = 'PUBLIC'
-}
-
-/**
- * 
- * @export
  * @interface GroupPageResponse
  */
 export interface GroupPageResponse {
@@ -157,10 +146,10 @@ export interface GroupRequest {
     description?: string;
     /**
      * 
-     * @type {GroupJoinPolicy}
+     * @type {number}
      * @memberof GroupRequest
      */
-    joinPolicy?: GroupJoinPolicy;
+    joinPolicy?: number;
 }
 /**
  * 
@@ -188,10 +177,10 @@ export interface GroupResponse {
     description: string;
     /**
      * 
-     * @type {GroupJoinPolicy}
+     * @type {number}
      * @memberof GroupResponse
      */
-    joinPolicy?: GroupJoinPolicy;
+    joinPolicy?: number;
     /**
      * 
      * @type {string}
@@ -429,6 +418,12 @@ export interface PathResponse {
      * @memberof PathResponse
      */
     isEditable: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof PathResponse
+     */
+    visibility?: number;
 }
 /**
  * 

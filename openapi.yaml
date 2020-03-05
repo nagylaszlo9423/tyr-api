@@ -516,6 +516,8 @@ components:
             $ref: '#/components/schemas/ResourceItemResponse'
         isEditable:
           type: boolean
+        visibility:
+          type: number
       required:
         - id
         - name
@@ -596,7 +598,7 @@ components:
         description:
           type: string
         joinPolicy:
-          $ref: '#/components/schemas/GroupJoinPolicy'
+          type: number
     GroupResponse:
       title: GroupResponse
       type: object
@@ -608,7 +610,7 @@ components:
         description:
           type: string
         joinPolicy:
-          $ref: '#/components/schemas/GroupJoinPolicy'
+          type: number
         owner:
           type: string
       required:
@@ -674,13 +676,6 @@ components:
       properties:
         accessToken:
           type: string
-    GroupJoinPolicy:
-      title: GroupJoinPolicy
-      type: string
-      enum:
-        - INVITE_ONLY
-        - REQUEST
-        - PUBLIC
     PathPageResponse:
       title: GroupPageResponse
       type: object
