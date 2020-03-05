@@ -600,12 +600,12 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [page] 
          * @param {number} [size] 
          * @param {string} [search] 
-         * @param {Array<string>} [filters] 
+         * @param {Array<number>} [filters] 
          * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options: any = {}): RequestArgs {
+        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options: any = {}): RequestArgs {
             const localVarPath = `/group/page`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -835,12 +835,12 @@ export const GroupApiFp = function(configuration?: Configuration) {
          * @param {number} [page] 
          * @param {number} [size] 
          * @param {string} [search] 
-         * @param {Array<string>} [filters] 
+         * @param {Array<number>} [filters] 
          * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupPageResponse> {
+        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupPageResponse> {
             const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).getGroupsPaged(page, size, search, filters, sortBy, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -938,12 +938,12 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {number} [page] 
          * @param {number} [size] 
          * @param {string} [search] 
-         * @param {Array<string>} [filters] 
+         * @param {Array<number>} [filters] 
          * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any): AxiosPromise<GroupPageResponse> {
+        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any): AxiosPromise<GroupPageResponse> {
             return GroupApiFp(configuration).getGroupsPaged(page, size, search, filters, sortBy, options)(axios, basePath);
         },
         /**
@@ -1026,13 +1026,13 @@ export class GroupApi extends BaseAPI {
      * @param {number} [page] 
      * @param {number} [size] 
      * @param {string} [search] 
-     * @param {Array<string>} [filters] 
+     * @param {Array<number>} [filters] 
      * @param {string} [sortBy] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GroupApi
      */
-    public getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any) {
+    public getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any) {
         return GroupApiFp(this.configuration).getGroupsPaged(page, size, search, filters, sortBy, options)(this.axios, this.basePath);
     }
 
@@ -1669,7 +1669,7 @@ export const PathApiAxiosParamCreator = function (configuration?: Configuration)
          * @throws {RequiredError}
          */
         findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options: any = {}): RequestArgs {
-            const localVarPath = `/path/list`;
+            const localVarPath = `/path/page`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
             if (configuration) {

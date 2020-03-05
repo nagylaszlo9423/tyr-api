@@ -374,9 +374,9 @@ paths:
           in: query
           name: search
         - schema:
-            type: string
+            type: array
             items:
-              type: string
+              type: number
           in: query
           name: filters
           description: ''
@@ -409,7 +409,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/size'
-  /path/list:
+  /path/page:
     get:
       summary: Your GET endpoint
       tags:
@@ -430,7 +430,7 @@ paths:
           in: query
           name: search
         - schema:
-            type: string
+            type: array
             items:
               type: string
           in: query
