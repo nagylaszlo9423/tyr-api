@@ -480,7 +480,7 @@ components:
       title: PathRequest
       type: object
       properties:
-        title:
+        name:
           type: string
         description:
           type: string
@@ -502,7 +502,7 @@ components:
       properties:
         id:
           type: string
-        title:
+        name:
           type: string
         description:
           type: string
@@ -518,7 +518,7 @@ components:
           type: boolean
       required:
         - id
-        - title
+        - name
         - description
         - path
         - audit

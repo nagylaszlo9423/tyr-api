@@ -73,13 +73,13 @@ export interface PathPageResponseAllOf {
     items?: Array<PathResponse>;
 }
 export interface PathRequest {
-    title?: string;
+    name?: string;
     description?: string;
     path?: LineStringDto;
 }
 export interface PathResponse {
     id: string;
-    title: string;
+    name: string;
     description: string;
     path: LineStringDto;
     audit: AuditDto;

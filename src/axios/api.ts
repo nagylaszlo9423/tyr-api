@@ -367,7 +367,7 @@ export interface PathRequest {
      * @type {string}
      * @memberof PathRequest
      */
-    title?: string;
+    name?: string;
     /**
      * 
      * @type {string}
@@ -398,7 +398,7 @@ export interface PathResponse {
      * @type {string}
      * @memberof PathResponse
      */
-    title: string;
+    name: string;
     /**
      * 
      * @type {string}
