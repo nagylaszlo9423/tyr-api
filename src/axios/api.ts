@@ -140,31 +140,6 @@ export interface GroupPageResponseAllOf {
 /**
  * 
  * @export
- * @interface GroupPathsResponse
- */
-export interface GroupPathsResponse {
-    /**
-     * 
-     * @type {string}
-     * @memberof GroupPathsResponse
-     */
-    id: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GroupPathsResponse
-     */
-    name: string;
-    /**
-     * 
-     * @type {Array<PathResponse>}
-     * @memberof GroupPathsResponse
-     */
-    paths: Array<PathResponse>;
-}
-/**
- * 
- * @export
  * @interface GroupRequest
  */
 export interface GroupRequest {
@@ -624,10 +599,13 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
          * @summary getGroupsPaged
          * @param {number} [page] 
          * @param {number} [size] 
+         * @param {string} [search] 
+         * @param {Array<string>} [filters] 
+         * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(page?: number, size?: number, options: any = {}): RequestArgs {
+        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options: any = {}): RequestArgs {
             const localVarPath = `/group/page`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -644,6 +622,18 @@ export const GroupApiAxiosParamCreator = function (configuration?: Configuration
 
             if (size !== undefined) {
                 localVarQueryParameter['size'] = size;
+            }
+
+            if (search !== undefined) {
+                localVarQueryParameter['search'] = search;
+            }
+
+            if (filters) {
+                localVarQueryParameter['filters'] = filters;
+            }
+
+            if (sortBy !== undefined) {
+                localVarQueryParameter['sortBy'] = sortBy;
             }
 
 
@@ -844,11 +834,14 @@ export const GroupApiFp = function(configuration?: Configuration) {
          * @summary getGroupsPaged
          * @param {number} [page] 
          * @param {number} [size] 
+         * @param {string} [search] 
+         * @param {Array<string>} [filters] 
+         * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(page?: number, size?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupPageResponse> {
-            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).getGroupsPaged(page, size, options);
+        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupPageResponse> {
+            const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).getGroupsPaged(page, size, search, filters, sortBy, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -944,11 +937,14 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @summary getGroupsPaged
          * @param {number} [page] 
          * @param {number} [size] 
+         * @param {string} [search] 
+         * @param {Array<string>} [filters] 
+         * @param {string} [sortBy] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(page?: number, size?: number, options?: any): AxiosPromise<GroupPageResponse> {
-            return GroupApiFp(configuration).getGroupsPaged(page, size, options)(axios, basePath);
+        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any): AxiosPromise<GroupPageResponse> {
+            return GroupApiFp(configuration).getGroupsPaged(page, size, search, filters, sortBy, options)(axios, basePath);
         },
         /**
          * 
@@ -1029,12 +1025,15 @@ export class GroupApi extends BaseAPI {
      * @summary getGroupsPaged
      * @param {number} [page] 
      * @param {number} [size] 
+     * @param {string} [search] 
+     * @param {Array<string>} [filters] 
+     * @param {string} [sortBy] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GroupApi
      */
-    public getGroupsPaged(page?: number, size?: number, options?: any) {
-        return GroupApiFp(this.configuration).getGroupsPaged(page, size, options)(this.axios, this.basePath);
+    public getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any) {
+        return GroupApiFp(this.configuration).getGroupsPaged(page, size, search, filters, sortBy, options)(this.axios, this.basePath);
     }
 
     /**

@@ -369,6 +369,21 @@ paths:
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/size'
+        - schema:
+            type: string
+          in: query
+          name: search
+        - schema:
+            type: string
+            items:
+              type: string
+          in: query
+          name: filters
+          description: ''
+        - schema:
+            type: string
+          in: query
+          name: sortBy
       responses:
         '200':
           description: OK
@@ -666,22 +681,6 @@ components:
         - INVITE_ONLY
         - REQUEST
         - PUBLIC
-    GroupPathsResponse:
-      title: GroupPathsResponse
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        paths:
-          type: array
-          items:
-            $ref: '#/components/schemas/PathResponse'
-      required:
-        - id
-        - name
-        - paths
     PathPageResponse:
       title: GroupPageResponse
       type: object

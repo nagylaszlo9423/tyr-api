@@ -28,11 +28,6 @@ export interface GroupPageResponse {
 export interface GroupPageResponseAllOf {
     items?: Array<GroupResponse>;
 }
-export interface GroupPathsResponse {
-    id: string;
-    name: string;
-    paths: Array<PathResponse>;
-}
 export interface GroupRequest {
     name?: string;
     description?: string;
@@ -112,7 +107,7 @@ export interface TokenResponse {
 export declare const GroupApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createGroup(groupRequest?: GroupRequest | undefined, options?: any): RequestArgs;
     findById(groupId: string, options?: any): RequestArgs;
-    getGroupsPaged(page?: number | undefined, size?: number | undefined, options?: any): RequestArgs;
+    getGroupsPaged(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, sortBy?: string | undefined, options?: any): RequestArgs;
     groupGroupIdDelete(groupId: string, options?: any): RequestArgs;
     joinGroup(groupId: string, options?: any): RequestArgs;
     leaveGroup(groupId: string, options?: any): RequestArgs;
@@ -121,7 +116,7 @@ export declare const GroupApiAxiosParamCreator: (configuration?: Configuration |
 export declare const GroupApiFp: (configuration?: Configuration | undefined) => {
     createGroup(groupRequest?: GroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
     findById(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupResponse>;
-    getGroupsPaged(page?: number | undefined, size?: number | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupPageResponse>;
+    getGroupsPaged(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, sortBy?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
@@ -130,7 +125,7 @@ export declare const GroupApiFp: (configuration?: Configuration | undefined) => 
 export declare const GroupApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     createGroup(groupRequest?: GroupRequest | undefined, options?: any): AxiosPromise<string>;
     findById(groupId: string, options?: any): AxiosPromise<GroupResponse>;
-    getGroupsPaged(page?: number | undefined, size?: number | undefined, options?: any): AxiosPromise<GroupPageResponse>;
+    getGroupsPaged(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, sortBy?: string | undefined, options?: any): AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): AxiosPromise<void>;
@@ -139,7 +134,7 @@ export declare const GroupApiFactory: (configuration?: Configuration | undefined
 export declare class GroupApi extends BaseAPI {
     createGroup(groupRequest?: GroupRequest, options?: any): AxiosPromise<string>;
     findById(groupId: string, options?: any): AxiosPromise<GroupResponse>;
-    getGroupsPaged(page?: number, size?: number, options?: any): AxiosPromise<GroupPageResponse>;
+    getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any): AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): AxiosPromise<void>;
