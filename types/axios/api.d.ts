@@ -171,7 +171,7 @@ export declare class OauthApi extends BaseAPI {
 export declare const PathApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
     deletePathById(id: string, options?: any): RequestArgs;
-    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, sortBy?: string | undefined, options?: any): RequestArgs;
+    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): RequestArgs;
     getPathById(id: string, options?: any): RequestArgs;
     shareInGroup(pathId: string, groupId: string, options?: any): RequestArgs;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
@@ -179,7 +179,7 @@ export declare const PathApiAxiosParamCreator: (configuration?: Configuration | 
 export declare const PathApiFp: (configuration?: Configuration | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
     deletePathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, sortBy?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathPageResponse>;
+    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
@@ -187,7 +187,7 @@ export declare const PathApiFp: (configuration?: Configuration | undefined) => {
 export declare const PathApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<string>;
     deletePathById(id: string, options?: any): AxiosPromise<void>;
-    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: string[] | undefined, sortBy?: string | undefined, options?: any): AxiosPromise<PathPageResponse>;
+    findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<void>;
@@ -195,7 +195,7 @@ export declare const PathApiFactory: (configuration?: Configuration | undefined,
 export declare class PathApi extends BaseAPI {
     createPath(pathRequest?: PathRequest, options?: any): AxiosPromise<string>;
     deletePathById(id: string, options?: any): AxiosPromise<void>;
-    findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<string>, sortBy?: string, options?: any): AxiosPromise<PathPageResponse>;
+    findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any): AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
