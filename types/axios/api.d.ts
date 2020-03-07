@@ -45,8 +45,10 @@ export interface GroupResponse {
     id: string;
     name: string;
     description: string;
-    joinPolicy?: number;
+    joinPolicy: number;
     owner: string;
+    isEditable: boolean;
+    audit: AuditDto;
 }
 export interface LineStringDto {
     type: string;

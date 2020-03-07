@@ -243,13 +243,25 @@ export interface GroupResponse {
      * @type {number}
      * @memberof GroupResponse
      */
-    joinPolicy?: number;
+    joinPolicy: number;
     /**
      * 
      * @type {string}
      * @memberof GroupResponse
      */
     owner: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupResponse
+     */
+    isEditable: boolean;
+    /**
+     * 
+     * @type {AuditDto}
+     * @memberof GroupResponse
+     */
+    audit: AuditDto;
 }
 /**
  * 

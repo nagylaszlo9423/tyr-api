@@ -636,12 +636,18 @@ components:
           type: number
         owner:
           type: string
+        isEditable:
+          type: boolean
+        audit:
+          $ref: '#/components/schemas/AuditDto'
       required:
         - id
         - name
         - description
-        - access
+        - joinPolicy
         - owner
+        - isEditable
+        - audit
     GroupPageResponse:
       title: GroupPageResponse
       type: object
