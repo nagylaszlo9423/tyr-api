@@ -450,19 +450,19 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags: 
+      tags:
         - user
-      parameters:
-        - $ref: '#/components/parameters/page'
-        - $ref: '#/components/parameters/size'
-      responses: 
+      responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GroupMemberPageResponse'
-      operationId: get-user-members-groupId-page
+      operationId: getGroupMembers
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/size'
 components:
   parameters:
     page:
@@ -710,6 +710,14 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/PathResponse'
+    GroupMemberResponse:
+      title: GroupMemberResponse
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
     GroupMemberPageResponse:
       title: GroupMemberPageResponse
       type: object
@@ -721,11 +729,3 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/GroupMemberResponse'
-    GroupMemberResponse:
-      title: GroupMemberResponse
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string

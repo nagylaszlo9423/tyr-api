@@ -2151,10 +2151,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options: any = {}): RequestArgs {
+        getGroupMembers(groupId: string, page?: number, size?: number, options: any = {}): RequestArgs {
             // verify required parameter 'groupId' is not null or undefined
             if (groupId === null || groupId === undefined) {
-                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling getUserMembersGroupIdPage.');
+                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling getGroupMembers.');
             }
             const localVarPath = `/user/members/{groupId}/page`
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
@@ -2205,8 +2205,8 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMemberPageResponse> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).getUserMembersGroupIdPage(groupId, page, size, options);
+        getGroupMembers(groupId: string, page?: number, size?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMemberPageResponse> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).getGroupMembers(groupId, page, size, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -2230,8 +2230,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options?: any): AxiosPromise<GroupMemberPageResponse> {
-            return UserApiFp(configuration).getUserMembersGroupIdPage(groupId, page, size, options)(axios, basePath);
+        getGroupMembers(groupId: string, page?: number, size?: number, options?: any): AxiosPromise<GroupMemberPageResponse> {
+            return UserApiFp(configuration).getGroupMembers(groupId, page, size, options)(axios, basePath);
         },
     };
 };
@@ -2253,8 +2253,8 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options?: any) {
-        return UserApiFp(this.configuration).getUserMembersGroupIdPage(groupId, page, size, options)(this.axios, this.basePath);
+    public getGroupMembers(groupId: string, page?: number, size?: number, options?: any) {
+        return UserApiFp(this.configuration).getGroupMembers(groupId, page, size, options)(this.axios, this.basePath);
     }
 
 }

@@ -214,14 +214,14 @@ export declare class PathApi extends BaseAPI {
     updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
 }
 export declare const UserApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
-    getUserMembersGroupIdPage(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): RequestArgs;
+    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): RequestArgs;
 };
 export declare const UserApiFp: (configuration?: Configuration | undefined) => {
-    getUserMembersGroupIdPage(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupMemberPageResponse>;
+    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupMemberPageResponse>;
 };
 export declare const UserApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
-    getUserMembersGroupIdPage(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): AxiosPromise<GroupMemberPageResponse>;
+    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): AxiosPromise<GroupMemberPageResponse>;
 };
 export declare class UserApi extends BaseAPI {
-    getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options?: any): AxiosPromise<GroupMemberPageResponse>;
+    getGroupMembers(groupId: string, page?: number, size?: number, options?: any): AxiosPromise<GroupMemberPageResponse>;
 }
