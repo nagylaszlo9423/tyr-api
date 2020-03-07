@@ -8,6 +8,7 @@ tags:
   - name: oauth
   - name: path
   - name: group
+  - name: user
 servers:
   - url: 'http://localhost:3001'
     description: local-dev
@@ -440,6 +441,28 @@ paths:
             type: string
           in: query
           name: sortBy
+  '/user/members/{groupId}/page':
+    parameters:
+      - schema:
+          type: string
+        name: groupId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: 
+        - user
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/size'
+      responses: 
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMemberPageResponse'
+      operationId: get-user-members-groupId-page
 components:
   parameters:
     page:
@@ -687,3 +710,22 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/PathResponse'
+    GroupMemberPageResponse:
+      title: GroupMemberPageResponse
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/PageResponse'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/GroupMemberResponse'
+    GroupMemberResponse:
+      title: GroupMemberResponse
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string

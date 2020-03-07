@@ -85,6 +85,69 @@ export interface ErrorResponse {
 /**
  * 
  * @export
+ * @interface GroupMemberPageResponse
+ */
+export interface GroupMemberPageResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof GroupMemberPageResponse
+     */
+    page: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GroupMemberPageResponse
+     */
+    size: number;
+    /**
+     * 
+     * @type {Array<GroupMemberResponse>}
+     * @memberof GroupMemberPageResponse
+     */
+    items: Array<GroupMemberResponse>;
+    /**
+     * 
+     * @type {number}
+     * @memberof GroupMemberPageResponse
+     */
+    total: number;
+}
+/**
+ * 
+ * @export
+ * @interface GroupMemberPageResponseAllOf
+ */
+export interface GroupMemberPageResponseAllOf {
+    /**
+     * 
+     * @type {Array<GroupMemberResponse>}
+     * @memberof GroupMemberPageResponseAllOf
+     */
+    items?: Array<GroupMemberResponse>;
+}
+/**
+ * 
+ * @export
+ * @interface GroupMemberResponse
+ */
+export interface GroupMemberResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMemberResponse
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GroupMemberResponse
+     */
+    email?: string;
+}
+/**
+ * 
+ * @export
  * @interface GroupPageResponse
  */
 export interface GroupPageResponse {
@@ -2068,6 +2131,130 @@ export class PathApi extends BaseAPI {
      */
     public updatePathById(id: string, pathRequest?: PathRequest, options?: any) {
         return PathApiFp(this.configuration).updatePathById(id, pathRequest, options)(this.axios, this.basePath);
+    }
+
+}
+
+
+/**
+ * UserApi - axios parameter creator
+ * @export
+ */
+export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Your GET endpoint
+         * @param {string} groupId 
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options: any = {}): RequestArgs {
+            // verify required parameter 'groupId' is not null or undefined
+            if (groupId === null || groupId === undefined) {
+                throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling getUserMembersGroupIdPage.');
+            }
+            const localVarPath = `/user/members/{groupId}/page`
+                .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
+            }
+
+
+    
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+export const UserApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Your GET endpoint
+         * @param {string} groupId 
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMemberPageResponse> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).getUserMembersGroupIdPage(groupId, page, size, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+    }
+};
+
+/**
+ * UserApi - factory interface
+ * @export
+ */
+export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    return {
+        /**
+         * 
+         * @summary Your GET endpoint
+         * @param {string} groupId 
+         * @param {number} [page] 
+         * @param {number} [size] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options?: any): AxiosPromise<GroupMemberPageResponse> {
+            return UserApiFp(configuration).getUserMembersGroupIdPage(groupId, page, size, options)(axios, basePath);
+        },
+    };
+};
+
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+export class UserApi extends BaseAPI {
+    /**
+     * 
+     * @summary Your GET endpoint
+     * @param {string} groupId 
+     * @param {number} [page] 
+     * @param {number} [size] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public getUserMembersGroupIdPage(groupId: string, page?: number, size?: number, options?: any) {
+        return UserApiFp(this.configuration).getUserMembersGroupIdPage(groupId, page, size, options)(this.axios, this.basePath);
     }
 
 }
