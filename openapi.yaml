@@ -241,6 +241,9 @@ paths:
             application/json:
               schema:
                 type: string
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
       operationId: createGroup
       requestBody:
         content:
@@ -280,6 +283,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
         '404':
           description: Not Found
           content:

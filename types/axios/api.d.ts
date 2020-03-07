@@ -131,7 +131,7 @@ export declare const GroupApiFp: (configuration?: Configuration | undefined) => 
     groupGroupIdDelete(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
-    updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupResponse>;
 };
 export declare const GroupApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     createGroup(groupRequest?: GroupRequest | undefined, options?: any): AxiosPromise<string>;
@@ -140,7 +140,7 @@ export declare const GroupApiFactory: (configuration?: Configuration | undefined
     groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): AxiosPromise<void>;
-    updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): AxiosPromise<void>;
+    updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): AxiosPromise<GroupResponse>;
 };
 export declare class GroupApi extends BaseAPI {
     createGroup(groupRequest?: GroupRequest, options?: any): AxiosPromise<string>;
@@ -149,7 +149,7 @@ export declare class GroupApi extends BaseAPI {
     groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): AxiosPromise<void>;
     leaveGroup(groupId: string, options?: any): AxiosPromise<void>;
-    updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): AxiosPromise<void>;
+    updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): AxiosPromise<GroupResponse>;
 }
 export declare const OauthApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     authorize(responseType?: string | undefined, clientId?: string | undefined, redirectUri?: string | undefined, options?: any): RequestArgs;

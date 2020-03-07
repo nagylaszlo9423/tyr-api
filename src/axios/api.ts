@@ -966,7 +966,7 @@ export const GroupApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+        updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupResponse> {
             const localVarAxiosArgs = GroupApiAxiosParamCreator(configuration).updateGroup(groupId, groupRequest, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
@@ -1053,7 +1053,7 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): AxiosPromise<void> {
+        updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): AxiosPromise<GroupResponse> {
             return GroupApiFp(configuration).updateGroup(groupId, groupRequest, options)(axios, basePath);
         },
     };
