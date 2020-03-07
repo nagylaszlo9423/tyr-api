@@ -2168,7 +2168,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             if (groupId === null || groupId === undefined) {
                 throw new RequiredError('groupId','Required parameter groupId was null or undefined when calling getGroupMembers.');
             }
-            const localVarPath = `/user/members/{groupId}/page`
+            const localVarPath = `/user/group-members/{groupId}/page`
                 .replace(`{${"groupId"}}`, encodeURIComponent(String(groupId)));
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;

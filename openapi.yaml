@@ -448,7 +448,7 @@ paths:
             type: string
           in: query
           name: sortBy
-  '/user/members/{groupId}/page':
+  '/user/group-members/{groupId}/page':
     parameters:
       - schema:
           type: string
