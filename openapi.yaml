@@ -647,6 +647,8 @@ components:
           type: boolean
         audit:
           $ref: '#/components/schemas/AuditDto'
+        isJoinEnabled:
+          type: boolean
       required:
         - id
         - name

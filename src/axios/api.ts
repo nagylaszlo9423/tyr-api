@@ -262,6 +262,12 @@ export interface GroupResponse {
      * @memberof GroupResponse
      */
     audit: AuditDto;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GroupResponse
+     */
+    isJoinEnabled?: boolean;
 }
 /**
  * 
@@ -989,7 +995,7 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createGroup(groupRequest?: GroupRequest, options?: any): AxiosPromise<string> {
+        createGroup(groupRequest?: GroupRequest, options?: any) {
             return GroupApiFp(configuration).createGroup(groupRequest, options)(axios, basePath);
         },
         /**
@@ -999,7 +1005,7 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findById(groupId: string, options?: any): AxiosPromise<GroupResponse> {
+        findById(groupId: string, options?: any) {
             return GroupApiFp(configuration).findById(groupId, options)(axios, basePath);
         },
         /**
@@ -1013,7 +1019,7 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any): AxiosPromise<GroupPageResponse> {
+        getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any) {
             return GroupApiFp(configuration).getGroupsPaged(page, size, search, filters, sortBy, options)(axios, basePath);
         },
         /**
@@ -1022,7 +1028,7 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void> {
+        groupGroupIdDelete(groupId: string, options?: any) {
             return GroupApiFp(configuration).groupGroupIdDelete(groupId, options)(axios, basePath);
         },
         /**
@@ -1032,7 +1038,7 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        joinGroup(groupId: string, options?: any): AxiosPromise<void> {
+        joinGroup(groupId: string, options?: any) {
             return GroupApiFp(configuration).joinGroup(groupId, options)(axios, basePath);
         },
         /**
@@ -1042,7 +1048,7 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        leaveGroup(groupId: string, options?: any): AxiosPromise<void> {
+        leaveGroup(groupId: string, options?: any) {
             return GroupApiFp(configuration).leaveGroup(groupId, options)(axios, basePath);
         },
         /**
@@ -1053,7 +1059,7 @@ export const GroupApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any): AxiosPromise<GroupResponse> {
+        updateGroup(groupId: string, groupRequest?: GroupRequest, options?: any) {
             return GroupApiFp(configuration).updateGroup(groupId, groupRequest, options)(axios, basePath);
         },
     };
@@ -1513,7 +1519,7 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authorize(responseType?: string, clientId?: string, redirectUri?: string, options?: any): AxiosPromise<void> {
+        authorize(responseType?: string, clientId?: string, redirectUri?: string, options?: any) {
             return OauthApiFp(configuration).authorize(responseType, clientId, redirectUri, options)(axios, basePath);
         },
         /**
@@ -1522,7 +1528,7 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        login(loginRequest?: LoginRequest, options?: any): AxiosPromise<LoginResponse> {
+        login(loginRequest?: LoginRequest, options?: any) {
             return OauthApiFp(configuration).login(loginRequest, options)(axios, basePath);
         },
         /**
@@ -1531,7 +1537,7 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        logout(authorization?: string, options?: any): AxiosPromise<LogoutRequest> {
+        logout(authorization?: string, options?: any) {
             return OauthApiFp(configuration).logout(authorization, options)(axios, basePath);
         },
         /**
@@ -1542,7 +1548,7 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        postOauthLogoutAll(page?: number, size?: number, logoutRequest?: LogoutRequest, options?: any): AxiosPromise<void> {
+        postOauthLogoutAll(page?: number, size?: number, logoutRequest?: LogoutRequest, options?: any) {
             return OauthApiFp(configuration).postOauthLogoutAll(page, size, logoutRequest, options)(axios, basePath);
         },
         /**
@@ -1551,7 +1557,7 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        register(registrationRequest?: RegistrationRequest, options?: any): AxiosPromise<RegistrationResponse> {
+        register(registrationRequest?: RegistrationRequest, options?: any) {
             return OauthApiFp(configuration).register(registrationRequest, options)(axios, basePath);
         },
         /**
@@ -1564,7 +1570,7 @@ export const OauthApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any): AxiosPromise<TokenResponse> {
+        token(grantType?: string, code?: string, redirectUri?: string, clientId?: string, refreshToken?: string, options?: any) {
             return OauthApiFp(configuration).token(grantType, code, redirectUri, clientId, refreshToken, options)(axios, basePath);
         },
     };
@@ -2005,7 +2011,7 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createPath(pathRequest?: PathRequest, options?: any): AxiosPromise<string> {
+        createPath(pathRequest?: PathRequest, options?: any) {
             return PathApiFp(configuration).createPath(pathRequest, options)(axios, basePath);
         },
         /**
@@ -2014,7 +2020,7 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deletePathById(id: string, options?: any): AxiosPromise<void> {
+        deletePathById(id: string, options?: any) {
             return PathApiFp(configuration).deletePathById(id, options)(axios, basePath);
         },
         /**
@@ -2028,7 +2034,7 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any): AxiosPromise<PathPageResponse> {
+        findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any) {
             return PathApiFp(configuration).findAllAvailableByFilters(page, size, search, filters, sortBy, options)(axios, basePath);
         },
         /**
@@ -2038,7 +2044,7 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPathById(id: string, options?: any): AxiosPromise<PathResponse> {
+        getPathById(id: string, options?: any) {
             return PathApiFp(configuration).getPathById(id, options)(axios, basePath);
         },
         /**
@@ -2048,7 +2054,7 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void> {
+        shareInGroup(pathId: string, groupId: string, options?: any) {
             return PathApiFp(configuration).shareInGroup(pathId, groupId, options)(axios, basePath);
         },
         /**
@@ -2058,7 +2064,7 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void> {
+        updatePathById(id: string, pathRequest?: PathRequest, options?: any) {
             return PathApiFp(configuration).updatePathById(id, pathRequest, options)(axios, basePath);
         },
     };
@@ -2242,7 +2248,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getGroupMembers(groupId: string, page?: number, size?: number, options?: any): AxiosPromise<GroupMemberPageResponse> {
+        getGroupMembers(groupId: string, page?: number, size?: number, options?: any) {
             return UserApiFp(configuration).getGroupMembers(groupId, page, size, options)(axios, basePath);
         },
     };
