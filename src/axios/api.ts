@@ -267,7 +267,7 @@ export interface GroupResponse {
      * @type {boolean}
      * @memberof GroupResponse
      */
-    canUserJoin: boolean;
+    isMember: boolean;
 }
 /**
  * 

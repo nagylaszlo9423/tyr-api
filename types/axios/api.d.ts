@@ -49,7 +49,7 @@ export interface GroupResponse {
     owner: string;
     isEditable: boolean;
     audit: AuditDto;
-    canUserJoin: boolean;
+    isMember: boolean;
 }
 export interface LineStringDto {
     type: string;

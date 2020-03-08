@@ -647,7 +647,7 @@ components:
           type: boolean
         audit:
           $ref: '#/components/schemas/AuditDto'
-        canUserJoin:
+        isMember:
           type: boolean
       required:
         - id
@@ -657,7 +657,7 @@ components:
         - owner
         - isEditable
         - audit
-        - canUserJoin
+        - isMember
     GroupPageResponse:
       title: GroupPageResponse
       type: object
