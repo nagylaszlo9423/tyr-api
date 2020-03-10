@@ -509,6 +509,25 @@ export interface PathResponse {
 /**
  * 
  * @export
+ * @interface ProfileInfoResponse
+ */
+export interface ProfileInfoResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfileInfoResponse
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ProfileInfoResponse
+     */
+    email?: string;
+}
+/**
+ * 
+ * @export
  * @interface RegistrationRequest
  */
 export interface RegistrationRequest {
@@ -2540,6 +2559,113 @@ export class PathApi extends BaseAPI {
      */
     public updatePathById(id: string, pathRequest?: PathRequest, options?: any) {
         return PathApiFp(this.configuration).updatePathById(id, pathRequest, options)(this.axios, this.basePath);
+    }
+
+}
+
+
+/**
+ * UserApi - axios parameter creator
+ * @export
+ */
+export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Your GET endpoint
+         * @param {ProfileInfoResponse} [profileInfoResponse] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options: any = {}): RequestArgs {
+            const localVarPath = `/user/profile/info`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (typeof profileInfoResponse !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(profileInfoResponse !== undefined ? profileInfoResponse : {}) : (profileInfoResponse || "");
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * UserApi - functional programming interface
+ * @export
+ */
+export const UserApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Your GET endpoint
+         * @param {ProfileInfoResponse} [profileInfoResponse] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).getProfileInfo(profileInfoResponse, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+    }
+};
+
+/**
+ * UserApi - factory interface
+ * @export
+ */
+export const UserApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    return {
+        /**
+         * 
+         * @summary Your GET endpoint
+         * @param {ProfileInfoResponse} [profileInfoResponse] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options?: any): AxiosPromise<void> {
+            return UserApiFp(configuration).getProfileInfo(profileInfoResponse, options)(axios, basePath);
+        },
+    };
+};
+
+/**
+ * UserApi - object-oriented interface
+ * @export
+ * @class UserApi
+ * @extends {BaseAPI}
+ */
+export class UserApi extends BaseAPI {
+    /**
+     * 
+     * @summary Your GET endpoint
+     * @param {ProfileInfoResponse} [profileInfoResponse] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof UserApi
+     */
+    public getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options?: any) {
+        return UserApiFp(this.configuration).getProfileInfo(profileInfoResponse, options)(this.axios, this.basePath);
     }
 
 }

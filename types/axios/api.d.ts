@@ -98,6 +98,10 @@ export interface PathResponse {
     isEditable: boolean;
     visibility?: number;
 }
+export interface ProfileInfoResponse {
+    id?: string;
+    email?: string;
+}
 export interface RegistrationRequest {
     email: string;
     password: string;
@@ -235,4 +239,16 @@ export declare class PathApi extends BaseAPI {
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
+}
+export declare const UserApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
+    getProfileInfo(profileInfoResponse?: ProfileInfoResponse | undefined, options?: any): RequestArgs;
+};
+export declare const UserApiFp: (configuration?: Configuration | undefined) => {
+    getProfileInfo(profileInfoResponse?: ProfileInfoResponse | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+};
+export declare const UserApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
+    getProfileInfo(profileInfoResponse?: ProfileInfoResponse | undefined, options?: any): AxiosPromise<void>;
+};
+export declare class UserApi extends BaseAPI {
+    getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options?: any): AxiosPromise<void>;
 }

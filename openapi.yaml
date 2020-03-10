@@ -552,6 +552,18 @@ paths:
       tags:
         - group
       description: ''
+  /user/profile/info:
+    get:
+      summary: Your GET endpoint
+      tags:
+        - user
+      responses: {}
+      operationId: getProfileInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileInfoResponse'
 components:
   parameters:
     page:
@@ -827,3 +839,11 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/GroupMemberResponse'
+    ProfileInfoResponse:
+      title: ProfileInfoResponse
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
