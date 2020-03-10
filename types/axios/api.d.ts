@@ -117,8 +117,13 @@ export interface TokenResponse {
     refreshTokenExpiration: string;
 }
 export declare const GroupApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
+    acceptJoinRequest(groupId: string, userId: string, options?: any): RequestArgs;
+    allowUser(groupId: string, userId: string, options?: any): RequestArgs;
+    banUser(groupId: string, userId: string, options?: any): RequestArgs;
     createGroup(groupRequest?: GroupRequest | undefined, options?: any): RequestArgs;
+    declineJoinRequest(groupId: string, userId: string, options?: any): RequestArgs;
     findById(groupId: string, options?: any): RequestArgs;
+    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): RequestArgs;
     getGroupsPaged(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): RequestArgs;
     groupGroupIdDelete(groupId: string, options?: any): RequestArgs;
     joinGroup(groupId: string, options?: any): RequestArgs;
@@ -126,8 +131,13 @@ export declare const GroupApiAxiosParamCreator: (configuration?: Configuration |
     updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): RequestArgs;
 };
 export declare const GroupApiFp: (configuration?: Configuration | undefined) => {
+    acceptJoinRequest(groupId: string, userId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    allowUser(groupId: string, userId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    banUser(groupId: string, userId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     createGroup(groupRequest?: GroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
+    declineJoinRequest(groupId: string, userId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     findById(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupResponse>;
+    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupMemberPageResponse>;
     getGroupsPaged(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
@@ -135,8 +145,13 @@ export declare const GroupApiFp: (configuration?: Configuration | undefined) => 
     updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupResponse>;
 };
 export declare const GroupApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
+    acceptJoinRequest(groupId: string, userId: string, options?: any): AxiosPromise<void>;
+    allowUser(groupId: string, userId: string, options?: any): AxiosPromise<void>;
+    banUser(groupId: string, userId: string, options?: any): AxiosPromise<void>;
     createGroup(groupRequest?: GroupRequest | undefined, options?: any): AxiosPromise<string>;
+    declineJoinRequest(groupId: string, userId: string, options?: any): AxiosPromise<void>;
     findById(groupId: string, options?: any): AxiosPromise<GroupResponse>;
+    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): AxiosPromise<GroupMemberPageResponse>;
     getGroupsPaged(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): AxiosPromise<void>;
@@ -144,8 +159,13 @@ export declare const GroupApiFactory: (configuration?: Configuration | undefined
     updateGroup(groupId: string, groupRequest?: GroupRequest | undefined, options?: any): AxiosPromise<GroupResponse>;
 };
 export declare class GroupApi extends BaseAPI {
+    acceptJoinRequest(groupId: string, userId: string, options?: any): AxiosPromise<void>;
+    allowUser(groupId: string, userId: string, options?: any): AxiosPromise<void>;
+    banUser(groupId: string, userId: string, options?: any): AxiosPromise<void>;
     createGroup(groupRequest?: GroupRequest, options?: any): AxiosPromise<string>;
+    declineJoinRequest(groupId: string, userId: string, options?: any): AxiosPromise<void>;
     findById(groupId: string, options?: any): AxiosPromise<GroupResponse>;
+    getGroupMembers(groupId: string, page?: number, size?: number, options?: any): AxiosPromise<GroupMemberPageResponse>;
     getGroupsPaged(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any): AxiosPromise<GroupPageResponse>;
     groupGroupIdDelete(groupId: string, options?: any): AxiosPromise<void>;
     joinGroup(groupId: string, options?: any): AxiosPromise<void>;
@@ -215,16 +235,4 @@ export declare class PathApi extends BaseAPI {
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
-}
-export declare const UserApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
-    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): RequestArgs;
-};
-export declare const UserApiFp: (configuration?: Configuration | undefined) => {
-    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<GroupMemberPageResponse>;
-};
-export declare const UserApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
-    getGroupMembers(groupId: string, page?: number | undefined, size?: number | undefined, options?: any): AxiosPromise<GroupMemberPageResponse>;
-};
-export declare class UserApi extends BaseAPI {
-    getGroupMembers(groupId: string, page?: number, size?: number, options?: any): AxiosPromise<GroupMemberPageResponse>;
 }

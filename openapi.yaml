@@ -448,7 +448,7 @@ paths:
             type: string
           in: query
           name: sortBy
-  '/user/group-members/{groupId}/page':
+  '/group/{groupId}/members/page':
     parameters:
       - schema:
           type: string
@@ -457,8 +457,6 @@ paths:
         required: true
     get:
       summary: Your GET endpoint
-      tags:
-        - user
       responses:
         '200':
           description: OK
@@ -470,6 +468,90 @@ paths:
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/size'
+      tags:
+        - group
+  '/group/{groupId}/join-request/accept/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: groupId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: acceptJoinRequest
+      responses:
+        '200':
+          description: OK
+      tags:
+        - group
+      description: ''
+  '/group/{groupId}/join-request/decline/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: groupId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: declineJoinRequest
+      responses:
+        '200':
+          description: OK
+      tags:
+        - group
+  '/group/{groupId}/ban/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: groupId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: banUser
+      responses:
+        '200':
+          description: OK
+      tags:
+        - group
+  '/group/{groupId}/allow/{userId}':
+    parameters:
+      - schema:
+          type: string
+        name: groupId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: allowUser
+      responses:
+        '200':
+          description: OK
+      tags:
+        - group
+      description: ''
 components:
   parameters:
     page:
