@@ -85,6 +85,38 @@ export interface ErrorResponse {
 /**
  * 
  * @export
+ * @interface FindPathsInAreaRequest
+ */
+export interface FindPathsInAreaRequest {
+    /**
+     * 
+     * @type {GeoFeatureDto}
+     * @memberof FindPathsInAreaRequest
+     */
+    feature?: GeoFeatureDto;
+}
+/**
+ * 
+ * @export
+ * @interface GeoFeatureDto
+ */
+export interface GeoFeatureDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof GeoFeatureDto
+     */
+    type: string;
+    /**
+     * 
+     * @type {Array<Array<number>>}
+     * @memberof GeoFeatureDto
+     */
+    coordinates: Array<Array<number>>;
+}
+/**
+ * 
+ * @export
  * @interface GroupMemberPageResponse
  */
 export interface GroupMemberPageResponse {
@@ -272,25 +304,6 @@ export interface GroupResponse {
 /**
  * 
  * @export
- * @interface LineStringDto
- */
-export interface LineStringDto {
-    /**
-     * 
-     * @type {string}
-     * @memberof LineStringDto
-     */
-    type: string;
-    /**
-     * 
-     * @type {Array<Array<number>>}
-     * @memberof LineStringDto
-     */
-    coordinates: Array<Array<number>>;
-}
-/**
- * 
- * @export
  * @interface LoginRequest
  */
 export interface LoginRequest {
@@ -446,10 +459,10 @@ export interface PathRequest {
     description?: string;
     /**
      * 
-     * @type {LineStringDto}
+     * @type {GeoFeatureDto}
      * @memberof PathRequest
      */
-    path?: LineStringDto;
+    path?: GeoFeatureDto;
 }
 /**
  * 
@@ -477,10 +490,10 @@ export interface PathResponse {
     description: string;
     /**
      * 
-     * @type {LineStringDto}
+     * @type {GeoFeatureDto}
      * @memberof PathResponse
      */
-    path: LineStringDto;
+    path: GeoFeatureDto;
     /**
      * 
      * @type {AuditDto}
@@ -2145,6 +2158,39 @@ export const PathApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {FindPathsInAreaRequest} [findPathsInAreaRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        findAllAvailableByArea(findPathsInAreaRequest?: FindPathsInAreaRequest, options: any = {}): RequestArgs {
+            const localVarPath = `/path/area`;
+            const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
+            const needsSerialization = (typeof findPathsInAreaRequest !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(findPathsInAreaRequest !== undefined ? findPathsInAreaRequest : {}) : (findPathsInAreaRequest || "");
+
+            return {
+                url: globalImportUrl.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Your GET endpoint
          * @param {number} [page] 
          * @param {number} [size] 
@@ -2348,6 +2394,19 @@ export const PathApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {FindPathsInAreaRequest} [findPathsInAreaRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        findAllAvailableByArea(findPathsInAreaRequest?: FindPathsInAreaRequest, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PathResponse>> {
+            const localVarAxiosArgs = PathApiAxiosParamCreator(configuration).findAllAvailableByArea(findPathsInAreaRequest, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * 
          * @summary Your GET endpoint
          * @param {number} [page] 
          * @param {number} [size] 
@@ -2435,6 +2494,15 @@ export const PathApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
+         * @param {FindPathsInAreaRequest} [findPathsInAreaRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        findAllAvailableByArea(findPathsInAreaRequest?: FindPathsInAreaRequest, options?: any): AxiosPromise<Array<PathResponse>> {
+            return PathApiFp(configuration).findAllAvailableByArea(findPathsInAreaRequest, options)(axios, basePath);
+        },
+        /**
+         * 
          * @summary Your GET endpoint
          * @param {number} [page] 
          * @param {number} [size] 
@@ -2511,6 +2579,17 @@ export class PathApi extends BaseAPI {
 
     /**
      * 
+     * @param {FindPathsInAreaRequest} [findPathsInAreaRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PathApi
+     */
+    public findAllAvailableByArea(findPathsInAreaRequest?: FindPathsInAreaRequest, options?: any) {
+        return PathApiFp(this.configuration).findAllAvailableByArea(findPathsInAreaRequest, options)(this.axios, this.basePath);
+    }
+
+    /**
+     * 
      * @summary Your GET endpoint
      * @param {number} [page] 
      * @param {number} [size] 
@@ -2573,11 +2652,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @summary Your GET endpoint
-         * @param {ProfileInfoResponse} [profileInfoResponse] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options: any = {}): RequestArgs {
+        getProfileInfo(options: any = {}): RequestArgs {
             const localVarPath = `/user/profile/info`;
             const localVarUrlObj = globalImportUrl.parse(localVarPath, true);
             let baseOptions;
@@ -2590,14 +2668,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
             localVarUrlObj.query = {...localVarUrlObj.query, ...localVarQueryParameter, ...options.query};
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...options.headers};
-            const needsSerialization = (typeof profileInfoResponse !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(profileInfoResponse !== undefined ? profileInfoResponse : {}) : (profileInfoResponse || "");
 
             return {
                 url: globalImportUrl.format(localVarUrlObj),
@@ -2616,12 +2690,11 @@ export const UserApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Your GET endpoint
-         * @param {ProfileInfoResponse} [profileInfoResponse] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void> {
-            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).getProfileInfo(profileInfoResponse, options);
+        getProfileInfo(options?: any): (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ProfileInfoResponse> {
+            const localVarAxiosArgs = UserApiAxiosParamCreator(configuration).getProfileInfo(options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -2639,12 +2712,11 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @summary Your GET endpoint
-         * @param {ProfileInfoResponse} [profileInfoResponse] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options?: any): AxiosPromise<void> {
-            return UserApiFp(configuration).getProfileInfo(profileInfoResponse, options)(axios, basePath);
+        getProfileInfo(options?: any): AxiosPromise<ProfileInfoResponse> {
+            return UserApiFp(configuration).getProfileInfo(options)(axios, basePath);
         },
     };
 };
@@ -2659,13 +2731,12 @@ export class UserApi extends BaseAPI {
     /**
      * 
      * @summary Your GET endpoint
-     * @param {ProfileInfoResponse} [profileInfoResponse] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options?: any) {
-        return UserApiFp(this.configuration).getProfileInfo(profileInfoResponse, options)(this.axios, this.basePath);
+    public getProfileInfo(options?: any) {
+        return UserApiFp(this.configuration).getProfileInfo(options)(this.axios, this.basePath);
     }
 
 }

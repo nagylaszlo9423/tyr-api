@@ -14,6 +14,13 @@ export interface ErrorResponse {
     cause: string;
     message?: string;
 }
+export interface FindPathsInAreaRequest {
+    feature?: GeoFeatureDto;
+}
+export interface GeoFeatureDto {
+    type: string;
+    coordinates: Array<Array<number>>;
+}
 export interface GroupMemberPageResponse {
     page: number;
     size: number;
@@ -51,10 +58,6 @@ export interface GroupResponse {
     audit: AuditDto;
     isMember: boolean;
 }
-export interface LineStringDto {
-    type: string;
-    coordinates: Array<Array<number>>;
-}
 export interface LoginRequest {
     email?: string;
     password?: string;
@@ -86,13 +89,13 @@ export interface PathPageResponseAllOf {
 export interface PathRequest {
     name?: string;
     description?: string;
-    path?: LineStringDto;
+    path?: GeoFeatureDto;
 }
 export interface PathResponse {
     id: string;
     name: string;
     description: string;
-    path: LineStringDto;
+    path: GeoFeatureDto;
     audit: AuditDto;
     images: Array<ResourceItemResponse>;
     isEditable: boolean;
@@ -211,6 +214,7 @@ export declare class OauthApi extends BaseAPI {
 export declare const PathApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): RequestArgs;
     deletePathById(id: string, options?: any): RequestArgs;
+    findAllAvailableByArea(findPathsInAreaRequest?: FindPathsInAreaRequest | undefined, options?: any): RequestArgs;
     findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): RequestArgs;
     getPathById(id: string, options?: any): RequestArgs;
     shareInGroup(pathId: string, groupId: string, options?: any): RequestArgs;
@@ -219,6 +223,7 @@ export declare const PathApiAxiosParamCreator: (configuration?: Configuration | 
 export declare const PathApiFp: (configuration?: Configuration | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<string>;
     deletePathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    findAllAvailableByArea(findPathsInAreaRequest?: FindPathsInAreaRequest | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse[]>;
     findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
@@ -227,6 +232,7 @@ export declare const PathApiFp: (configuration?: Configuration | undefined) => {
 export declare const PathApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
     createPath(pathRequest?: PathRequest | undefined, options?: any): AxiosPromise<string>;
     deletePathById(id: string, options?: any): AxiosPromise<void>;
+    findAllAvailableByArea(findPathsInAreaRequest?: FindPathsInAreaRequest | undefined, options?: any): AxiosPromise<PathResponse[]>;
     findAllAvailableByFilters(page?: number | undefined, size?: number | undefined, search?: string | undefined, filters?: number[] | undefined, sortBy?: string | undefined, options?: any): AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
@@ -235,20 +241,21 @@ export declare const PathApiFactory: (configuration?: Configuration | undefined,
 export declare class PathApi extends BaseAPI {
     createPath(pathRequest?: PathRequest, options?: any): AxiosPromise<string>;
     deletePathById(id: string, options?: any): AxiosPromise<void>;
+    findAllAvailableByArea(findPathsInAreaRequest?: FindPathsInAreaRequest, options?: any): AxiosPromise<PathResponse[]>;
     findAllAvailableByFilters(page?: number, size?: number, search?: string, filters?: Array<number>, sortBy?: string, options?: any): AxiosPromise<PathPageResponse>;
     getPathById(id: string, options?: any): AxiosPromise<PathResponse>;
     shareInGroup(pathId: string, groupId: string, options?: any): AxiosPromise<void>;
     updatePathById(id: string, pathRequest?: PathRequest, options?: any): AxiosPromise<void>;
 }
 export declare const UserApiAxiosParamCreator: (configuration?: Configuration | undefined) => {
-    getProfileInfo(profileInfoResponse?: ProfileInfoResponse | undefined, options?: any): RequestArgs;
+    getProfileInfo(options?: any): RequestArgs;
 };
 export declare const UserApiFp: (configuration?: Configuration | undefined) => {
-    getProfileInfo(profileInfoResponse?: ProfileInfoResponse | undefined, options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<void>;
+    getProfileInfo(options?: any): (axios?: AxiosInstance | undefined, basePath?: string | undefined) => AxiosPromise<ProfileInfoResponse>;
 };
 export declare const UserApiFactory: (configuration?: Configuration | undefined, basePath?: string | undefined, axios?: AxiosInstance | undefined) => {
-    getProfileInfo(profileInfoResponse?: ProfileInfoResponse | undefined, options?: any): AxiosPromise<void>;
+    getProfileInfo(options?: any): AxiosPromise<ProfileInfoResponse>;
 };
 export declare class UserApi extends BaseAPI {
-    getProfileInfo(profileInfoResponse?: ProfileInfoResponse, options?: any): AxiosPromise<void>;
+    getProfileInfo(options?: any): AxiosPromise<ProfileInfoResponse>;
 }

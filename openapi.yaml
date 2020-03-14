@@ -557,13 +557,35 @@ paths:
       summary: Your GET endpoint
       tags:
         - user
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileInfoResponse'
       operationId: getProfileInfo
+  /path/area:
+    post:
+      summary: ''
+      operationId: findAllAvailableByArea
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PathResponse'
+      description: ''
+      tags:
+        - path
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProfileInfoResponse'
+              $ref: '#/components/schemas/FindPathsInAreaRequest'
 components:
   parameters:
     page:
@@ -609,7 +631,7 @@ components:
         description:
           type: string
         path:
-          $ref: '#/components/schemas/LineStringDto'
+          $ref: '#/components/schemas/GeoFeatureDto'
     ErrorResponse:
       title: ErrorResponse
       type: object
@@ -631,7 +653,7 @@ components:
         description:
           type: string
         path:
-          $ref: '#/components/schemas/LineStringDto'
+          $ref: '#/components/schemas/GeoFeatureDto'
         audit:
           $ref: '#/components/schemas/AuditDto'
         images:
@@ -698,7 +720,7 @@ components:
           type: string
       required:
         - userId
-    LineStringDto:
+    GeoFeatureDto:
       title: LineStringDto
       type: object
       properties:
@@ -847,3 +869,9 @@ components:
           type: string
         email:
           type: string
+    FindPathsInAreaRequest:
+      title: FindPathsInAreaRequest
+      type: object
+      properties:
+        feature:
+          $ref: '#/components/schemas/GeoFeatureDto'
