@@ -109,10 +109,10 @@ export interface GeoFeatureDto {
     type: string;
     /**
      * 
-     * @type {Array<Array<number>>}
+     * @type {Array<object>}
      * @memberof GeoFeatureDto
      */
-    coordinates: Array<Array<number>>;
+    coordinates: Array<object>;
 }
 /**
  * 

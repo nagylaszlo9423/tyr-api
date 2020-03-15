@@ -728,10 +728,7 @@ components:
           type: string
         coordinates:
           type: array
-          items:
-            type: array
-            items:
-              type: number
+          items: {}
       required:
         - type
         - coordinates

@@ -19,7 +19,7 @@ export interface FindPathsInAreaRequest {
 }
 export interface GeoFeatureDto {
     type: string;
-    coordinates: Array<Array<number>>;
+    coordinates: Array<object>;
 }
 export interface GroupMemberPageResponse {
     page: number;
